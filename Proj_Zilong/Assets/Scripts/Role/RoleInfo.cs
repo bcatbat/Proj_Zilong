@@ -53,13 +53,13 @@ public struct Stats
 public class RoleInfo : MonoBehaviour {
     // 用来存放各类角色的信息
     protected int m_ID;                   // ID
-    protected string m_Name;              // 名称     
+    protected string m_Name;              // 名称
     protected int m_Level;                // 等级
 
     protected int m_Hp;                   // 当前生命
     protected int m_Mp;                   // 当前能量
 
-    protected Image m_Portrait;           // 头像 
+    protected Image m_Portrait;           // 头像
     protected bool m_UnderControl = true; // 是否可控制. 用于ai控制, 或者是控制技能
     protected SkillInfo[] skills;         // 拥有技能-skillinfo.cs
 
@@ -137,8 +137,8 @@ public class RoleInfo : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        RunBuff();
-        RunDebuff();
+        RunBuff(Time.deltaTime);
+        RunDebuff(Time.deltaTime);
     }
 
     void InitBasicStats()
@@ -146,53 +146,58 @@ public class RoleInfo : MonoBehaviour {
         // 升级的数值从文件读取, 或者是内嵌到代码中.
     }
 
-    // 
+    // 向自身buff池中添加buff
     public void AddBuff(Buff buff)
     {
         // 如果buffPool中已经存在此buff, 则刷新持续时间
         if (m_BuffPool.Contains(buff))
         {
-
+            buff.Refresh();
         }
         else
         {// 如果buffPool中无此buff存在, 则添加
-            m_BuffPool.Add(buff);
+            buff.Refresh();         // 重置剩余时间
+            m_BuffPool.Add(buff);   //
         }
     }
 
-    // 
+    // 向自身debuff池中添加debuff
     public void AddDebuff(Buff debuff)
     {        
         if (m_DebuffPool.Contains(debuff))
         {
             // 如果debuffPool中已经存在此buff, 则刷新持续时间
+            debuff.Refresh();           // 重置剩余时间
         }
         else
         {
             // 如果debuffPool中无此buff存在, 则添加
-            m_DebuffPool.Add(debuff);
+            debuff.Refresh();           // 重置剩余时间
+            m_DebuffPool.Add(debuff);   // 
         }
     }
 
-    // 让自身的Buffs起作用
-    protected void RunBuff() {
+    // 自身Buffs生效过程
+    protected void RunBuff(float deltatime) {
         foreach (var buff in m_BuffPool)
         {
-            // 显示图标. 仅在playerinfo中存在,这个需要另行详筹.
             foreach (var effect in buff.Effects)
             {
-                
+                effect.EffectRunning(this, deltatime);
             }
         }
     }
 
-    // 让自身的Debuff起作用
-    protected void RunDebuff()
+    // 自身debuffs生效过程
+    protected void RunDebuff(float deltatime)
     {
         foreach (var debuff in m_DebuffPool)
         {
-
-        }
+            foreach (var effect in debuff.Effects)
+            {
+                effect.EffectRunning(this, deltatime);
+            }
+        }        
     }
 
     // 角色死亡

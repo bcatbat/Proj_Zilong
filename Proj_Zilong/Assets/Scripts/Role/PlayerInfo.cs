@@ -22,8 +22,8 @@ public class PlayerInfo : RoleInfo {
     {
         get
         {
-            m_ActualStats = m_BasicStats + m_AdditionStats + m_PermanentStats;
-            return m_ActualStats;
+            actualStats = basicStats + additionStats + permanentStats;
+            return actualStats;
         }
     }
 
@@ -31,7 +31,7 @@ public class PlayerInfo : RoleInfo {
     {
         get
         {
-            return m_BasicStats;
+            return basicStats;
         }
     }
 
@@ -39,12 +39,12 @@ public class PlayerInfo : RoleInfo {
     {
         get
         {
-            m_AdditionStats =
+            additionStats =
                 WeaponSlots.AttachStats +
                 ArmorSlots.AttachStats +
                 TrinketSlots1.AttachStats +
                 TrinketSlots2.AttachStats;
-            return m_AdditionStats;
+            return additionStats;
         }
     }
 
@@ -52,11 +52,11 @@ public class PlayerInfo : RoleInfo {
     {
         get
         {
-            return m_PermanentStats;
+            return permanentStats;
         }
         set
         {
-            m_PermanentStats = value;
+            permanentStats = value;
         }
     }
 
@@ -69,5 +69,4 @@ public class PlayerInfo : RoleInfo {
     // buff生效时,更新监视图标
 
     // debuff生效时,更新监视图标
-
 }

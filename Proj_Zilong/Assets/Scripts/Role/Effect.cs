@@ -42,7 +42,7 @@ public class Effect{
     public float LeftTime
     {
         get { return m_leftTime; }
-        set { m_leftTime = value; }
+        set { m_leftTime = value; }s
     }
 
     // 初始化
@@ -295,14 +295,14 @@ public class Effect{
     {
         if (isRunning)
         {
-            role.UnderControl = false;
+            role.IsControllable = false;
 
             m_tickTime += deltatime;    // 每跳计时器
             m_leftTime -= deltatime;    // 剩余计时器
 
             if (m_leftTime < 0)
             {
-                role.UnderControl = true;
+                role.IsControllable = true;
                 Reset();
             }
         }

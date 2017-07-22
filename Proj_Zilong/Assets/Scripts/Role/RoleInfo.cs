@@ -6,25 +6,26 @@ using UnityEngine.UI;
 // 属性列表
 public struct Stats
 {
-    private int m_UpHp;   // 生命上限
-    private int m_UpMp;   // 能量上线
-    private int m_Atk;    // 攻击力
-    private int m_Def;    // 防御力
-    private int m_Spd;    // 移动速度
-    private int m_Luk;    // 幸运值
+    private int upHp;   // 生命上限
+    private int upMp;   // 能量上线
+    private int atk;    // 攻击力
+    private int def;    // 防御力
+    private int spd;    // 移动速度
+    private int luk;    // 幸运值
 
-    public int UpHp { get { return m_UpHp; } set { this.m_UpHp = value; } }
-    public int UpMp { get { return m_UpMp; } set { this.m_UpMp = value; } }
-    public int Atk { get { return m_Atk; } set { this.m_Atk = value; } }
-    public int Def { get { return m_Def; } set { this.m_Def = value; } }
-    public int Spd { get { return m_Spd; } set { this.m_Spd = value; } }
-    public int Luk { get { return m_Luk; } set { this.m_Luk = value; } }
+    public int UpHp { get { return upHp; } set { this.upHp = value; } }
+    public int UpMp { get { return upMp; } set { this.upMp = value; } }
+    public int Atk { get { return atk; } set { this.atk = value; } }
+    public int Def { get { return def; } set { this.def = value; } }
+    public int Spd { get { return spd; } set { this.spd = value; } }
+    public int Luk { get { return luk; } set { this.luk = value; } }
 
     public Stats(int uphp, int upmp, int atk, int def, int spd, int luk)
     {
-        m_UpHp = uphp;m_UpMp = upmp;
-        m_Atk = atk;m_Def = def;
-        m_Spd = spd; m_Luk = luk;
+        upHp = uphp;upMp = upmp;
+        this.atk = atk;
+        this.def = def;
+        this.spd = spd; this.luk = luk;
     }
 
     public static Stats operator + (Stats s1, Stats s2)
@@ -52,87 +53,92 @@ public struct Stats
 
 public class RoleInfo : MonoBehaviour {
     // 用来存放各类角色的信息
-    protected int m_ID;                   // ID
-    protected string m_Name;              // 名称
-    protected int m_Level;                // 等级
+    protected int id;                   // ID
+    protected string roleName;          // 名称
+    protected int level;                // 等级
 
-    protected int m_Hp;                   // 当前生命
-    protected int m_Mp;                   // 当前能量
+    protected int hp;                   // 当前生命
+    protected int mp;                   // 当前能量
 
-    protected Image m_Portrait;           // 头像
-    protected bool m_UnderControl = true; // 是否可控制. 用于ai控制, 或者是控制技能
-    protected SkillInfo[] skills;         // 拥有技能-skillinfo.cs
+    protected Image portrait;           // 头像
 
-    protected List<Buff> m_BuffPool;      // buff池. 相同的合并/刷新
-    protected List<Buff> m_DebuffPool;    // debuff池. 
+    protected bool isControllable = true; // 是否可控制. 用于ai控制, 或者是控制技能
+    protected bool isAlive = true;      // 是否活着
+
+    protected SkillInfo[] skills;       // 拥有技能-skillinfo.cs
+
+    protected List<Buff> buffPool;      // buff池. 相同的合并/刷新
+    protected List<Buff> debuffPool;    // debuff池. 
     
-    protected Stats m_ActualStats;       // 实时属性值
-    protected Stats m_BasicStats;        // 基础属性值
-    protected Stats m_AdditionStats;     // 装备附加的属性值
-    protected Stats m_PermanentStats;    // 补品/锻炼永久增加的属性值
-    protected Stats m_TempStats;         // 临时增加的属性
+    protected Stats actualStats;       // 实时属性值
+    protected Stats basicStats;        // 基础属性值
+    protected Stats additionStats;     // 装备附加的属性值
+    protected Stats permanentStats;    // 补品/锻炼永久增加的属性值
+    protected Stats tempStats;         // 临时增加的属性
+    protected Transform targetPostion; // 目标位置
     
-    public string Name { get { return m_Name; } set { this.m_Name = value; } }
-    public int Level { get { return m_Level; } set { this.m_Level = value; } }
-    public bool UnderControl { get { return m_UnderControl; } set { this.m_UnderControl = value; } }
+    public string Name { get { return roleName; } set { this.roleName = value; } }
+    public int Level { get { return level; } set { this.level = value; } }
+    public bool IsControllable { get { return isControllable; } set { this.isControllable = value; } }
+    public bool IsAlive { get { return isAlive; } set { this.isAlive = value; } }
+    public Transform TargetPosition { get { return targetPostion; } set { this.targetPostion = value; } }
 
     public int Hp {
-        get { return m_Hp; }
+        get { return hp; }
         set {
-            this.m_Hp = value;
-            if (m_Hp > m_ActualStats.UpHp)
-                m_Hp = m_ActualStats.UpHp;
-            if (m_Hp <= 0)
+            this.hp = value;
+            if (hp > actualStats.UpHp)
+                hp = actualStats.UpHp;
+            if (hp <= 0)
             {
-                m_Hp = 0;
-                Die();
+                hp = 0;
             }     
         }
     }
     public int Mp {
-        get { return m_Mp; }
+        get { return mp; }
         set {
-            this.m_Mp = value;
-            if (m_Mp > m_ActualStats.UpMp)
-                m_Mp = m_ActualStats.UpMp;
-            if (m_Mp <= 0)
-                m_Mp = 0;            
+            this.mp = value;
+            if (mp > actualStats.UpMp)
+                mp = actualStats.UpMp;
+            if (mp <= 0)
+                mp = 0;            
         }
     }
 
     public virtual Stats ActualStats
     {
-        get { return m_ActualStats; }
-        set { m_ActualStats = value;}
+        get { return actualStats; }
+        set { actualStats = value;}
     }
 
     public virtual Stats BasicStats
     {
-        get{return m_BasicStats;}
-        set {m_BasicStats = value; }
+        get{return basicStats;}
+        set {basicStats = value; }
     }
 
     public virtual Stats AdditionStats
     {
-        get{return m_AdditionStats; }
-        set { m_AdditionStats = value; }
+        get{return additionStats; }
+        set { additionStats = value; }
     }
     public virtual Stats PermanentStats
     {
-        get{return m_PermanentStats; }
-        set{ m_PermanentStats = value;}
+        get{return permanentStats; }
+        set{ permanentStats = value;}
     }
 
     public virtual Stats TempStats
     {
-        get { return m_TempStats; }
-        set { m_TempStats = value; }
+        get { return tempStats; }
+        set { tempStats = value; }
     }
 
     private void Start()
     {
-        m_BuffPool = new List<Buff>();
-        m_DebuffPool = new List<Buff>();
+        buffPool = new List<Buff>();
+        debuffPool = new List<Buff>();
     }
 
     private void FixedUpdate()
@@ -150,21 +156,21 @@ public class RoleInfo : MonoBehaviour {
     public void AddBuff(Buff buff)
     {
         // 如果buffPool中已经存在此buff, 则刷新持续时间
-        if (m_BuffPool.Contains(buff))
+        if (buffPool.Contains(buff))
         {
             buff.Refresh();
         }
         else
         {// 如果buffPool中无此buff存在, 则添加
             buff.Refresh();         // 重置剩余时间
-            m_BuffPool.Add(buff);   //
+            buffPool.Add(buff);   //
         }
     }
 
     // 向自身debuff池中添加debuff
     public void AddDebuff(Buff debuff)
     {        
-        if (m_DebuffPool.Contains(debuff))
+        if (debuffPool.Contains(debuff))
         {
             // 如果debuffPool中已经存在此buff, 则刷新持续时间
             debuff.Refresh();           // 重置剩余时间
@@ -173,13 +179,13 @@ public class RoleInfo : MonoBehaviour {
         {
             // 如果debuffPool中无此buff存在, 则添加
             debuff.Refresh();           // 重置剩余时间
-            m_DebuffPool.Add(debuff);   // 
+            debuffPool.Add(debuff);   // 
         }
     }
 
     // 自身Buffs生效过程
     protected void RunBuff(float deltatime) {
-        foreach (var buff in m_BuffPool)
+        foreach (var buff in buffPool)
         {
             foreach (var effect in buff.Effects)
             {
@@ -191,18 +197,12 @@ public class RoleInfo : MonoBehaviour {
     // 自身debuffs生效过程
     protected void RunDebuff(float deltatime)
     {
-        foreach (var debuff in m_DebuffPool)
+        foreach (var debuff in debuffPool)
         {
             foreach (var effect in debuff.Effects)
             {
                 effect.EffectRunning(this, deltatime);
             }
         }        
-    }
-
-    // 角色死亡
-    public void Die()
-    {
-        Debug.Log(m_ID + " " + m_Name + ": Die!");
     }
 }

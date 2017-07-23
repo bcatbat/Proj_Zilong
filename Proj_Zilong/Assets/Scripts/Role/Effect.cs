@@ -42,7 +42,7 @@ public class Effect{
     public float LeftTime
     {
         get { return m_leftTime; }
-        set { m_leftTime = value; }s
+        set { m_leftTime = value; }
     }
 
     // 初始化

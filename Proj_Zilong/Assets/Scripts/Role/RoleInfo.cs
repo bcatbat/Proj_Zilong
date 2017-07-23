@@ -64,24 +64,49 @@ public class RoleInfo : MonoBehaviour {
 
     protected bool isControllable = true; // 是否可控制. 用于ai控制, 或者是控制技能
     protected bool isAlive = true;      // 是否活着
+    protected Transform target;         // 目标位置
+    protected Transform guardTarget;    // 护卫/跟随目标
 
     protected SkillInfo[] skills;       // 拥有技能-skillinfo.cs
 
     protected List<Buff> buffPool;      // buff池. 相同的合并/刷新
     protected List<Buff> debuffPool;    // debuff池. 
     
-    protected Stats actualStats;       // 实时属性值
-    protected Stats basicStats;        // 基础属性值
-    protected Stats additionStats;     // 装备附加的属性值
-    protected Stats permanentStats;    // 补品/锻炼永久增加的属性值
-    protected Stats tempStats;         // 临时增加的属性
-    protected Transform targetPostion; // 目标位置
+    protected Stats actualStats;        // 实时属性值
+    protected Stats basicStats;         // 基础属性值
+    protected Stats additionStats;      // 装备附加的属性值
+    protected Stats permanentStats;     // 补品/锻炼永久增加的属性值
+    protected Stats tempStats;          // 临时增加的属性 
+
+    private float guardRange = 30f;
+    private float skillRange = 5f;
+    private float slashRange = 2f;
+    private float dodgeRange = .8f;
+
+    private float dodgeProbability = 0.4f;
+
+    private Transform captain;
     
+
     public string Name { get { return roleName; } set { this.roleName = value; } }
+
     public int Level { get { return level; } set { this.level = value; } }
+
     public bool IsControllable { get { return isControllable; } set { this.isControllable = value; } }
+
     public bool IsAlive { get { return isAlive; } set { this.isAlive = value; } }
-    public Transform TargetPosition { get { return targetPostion; } set { this.targetPostion = value; } }
+
+    public Transform Target { get { return target; } set { this.target = value; } }
+    public Transform GuardTarget { get { return guardTarget; } }
+
+    public float GuardRange { get { return guardRange; } }
+    public float SkillRange { get { return skillRange; } }
+    public float SlashRange { get { return slashRange; } }
+    public float DodgeRange { get { return dodgeRange; } }
+
+    public float DodgeProbability { get { return dodgeProbability; } set { dodgeProbability = value; } }
+
+    public Transform Captain { get { return captain; } }
 
     public int Hp {
         get { return hp; }
@@ -123,6 +148,7 @@ public class RoleInfo : MonoBehaviour {
         get{return additionStats; }
         set { additionStats = value; }
     }
+
     public virtual Stats PermanentStats
     {
         get{return permanentStats; }
@@ -139,17 +165,19 @@ public class RoleInfo : MonoBehaviour {
     {
         buffPool = new List<Buff>();
         debuffPool = new List<Buff>();
+
+        guardTarget = captain;
+    }
+
+    void InitBasicStats()
+    {
+        // 升级的数值从文件读取, 或者是内嵌到代码中.
     }
 
     private void FixedUpdate()
     {
         RunBuff(Time.deltaTime);
         RunDebuff(Time.deltaTime);
-    }
-
-    void InitBasicStats()
-    {
-        // 升级的数值从文件读取, 或者是内嵌到代码中.
     }
 
     // 向自身buff池中添加buff

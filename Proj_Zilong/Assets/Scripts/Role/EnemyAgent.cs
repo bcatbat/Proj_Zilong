@@ -10,6 +10,8 @@ public class EnemyAgent : MonoBehaviour {
     public void Awake()
     {
         enemyBT = EnemyLogic.BuildBehaviorTree(roleinfo);
+
+        roleinfo = GetComponent<RoleInfo>();
     }
 
     public void Update()

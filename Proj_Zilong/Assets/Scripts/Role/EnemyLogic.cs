@@ -25,7 +25,7 @@ public static class EnemyLogic {
         return new RoleAction("go back", EnemyAction.GoBackInit, EnemyAction.GoBackUpdate, EnemyAction.GoBackCleanUp, info);
     }
     
-    private static BehaviorTreeNode CreateAction(string name,RoleAction action)
+    private static BehaviorTreeNode CreateAction(string name, RoleAction action)
     {
         BehaviorTreeNode node = new BehaviorTreeNode(name, BehaviorTreeNode.NodeType.ACTION);
         node.SetAction(action);

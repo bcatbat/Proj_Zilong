@@ -44,6 +44,7 @@ public class BehaviorTree {
                 bool result = EvaluateSelector(child, deltaTime,out on);
                 if (result)
                 {
+                    outputNode = on;
                     return true;
                 }
             }else if(child.Type == BehaviorTreeNode.NodeType.SEQUENCE)
@@ -51,6 +52,7 @@ public class BehaviorTree {
                 bool result = EvaluateSequence(child, deltaTime, out on);
                 if(result)
                 {
+                    outputNode = on;
                     return true;
                 }
             }
@@ -75,8 +77,10 @@ public class BehaviorTree {
             }
             else if (child.Type == BehaviorTreeNode.NodeType.CONDITION)
             {
+                // 若为真 则继续运算到下一个节点.
                 bool result = child.evaluator(roleInfo);
 
+                // 若为假 则返回假
                 if(!result)
                 {
                     return false;
@@ -90,6 +94,7 @@ public class BehaviorTree {
                     return false;
                 }else if(result && on != null)
                 {
+                    outputNode = on;
                     return result;
                 }
             }
@@ -109,6 +114,7 @@ public class BehaviorTree {
         return true;
     }
 
+    // 从根节点开始递归运算, 返回一个子节点(action)
     public BehaviorTreeNode EvaluateNode(BehaviorTreeNode node, float deltaTime)
     {
         BehaviorTreeNode on;
@@ -153,7 +159,7 @@ public class BehaviorTree {
             {
                 int childIndex = parentNode.IndexOfChild(childNode);
 
-                if(childIndex < parentNode.CountOfChildren())
+                if(childIndex < parentNode.CountOfChildren() - 1)
                 {
                     BehaviorTreeNode on;
                     EvaluateSequence(parentNode, deltaTime, out on, childIndex + 1);

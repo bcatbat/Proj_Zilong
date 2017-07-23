@@ -23,10 +23,14 @@ public class RoleAction {
     public RoleAction(string name, Action initFunc, Func<float,Status> updateFunc, Action cleanUpFunc, RoleInfo info)
     {
         actionName = name;
+
         initialzeFunction = initFunc;
         updateFunction = updateFunc;
         cleanUpFunction = cleanUpFunc;
+
         roleInfo = info;
+
+        status = Status.UNINITIALIZED;
     }
 
     public void Initialize()

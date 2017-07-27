@@ -66,6 +66,10 @@ public class PlayerInfo : RoleInfo {
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        country = RoleBelonging.Shu;
+    }
     // buff生效时,更新监视图标
 
     // debuff生效时,更新监视图标

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 // 属性列表
 public struct Stats
@@ -51,42 +52,51 @@ public struct Stats
     }
 }
 
-public class RoleInfo : MonoBehaviour {
-    // 用来存放各类角色的信息
-    protected int id;                   // ID
-    protected string roleName;          // 名称
-    protected int level;                // 等级
+public class RoleInfo : MonoBehaviour {    
+    [Header("Basic Info")]
+    [SerializeField] protected int id;                   // ID
+    [SerializeField] protected string roleName;          // 名称
+    [SerializeField] protected int level;                // 等级
+    [SerializeField] protected RoleBelonging country;    // 势力
 
-    protected int hp;                   // 当前生命
-    protected int mp;                   // 当前能量
+    [SerializeField] protected int hp;                   // 当前-生命
+    [SerializeField] protected int mp;                   // 当前-能量
 
-    protected Image portrait;           // 头像
+    [SerializeField] protected Image portrait;           // 头像
 
-    protected bool isControllable = true; // 是否可控制. 用于ai控制, 或者是控制技能
-    protected bool isAlive = true;      // 是否活着
-    protected Transform target;         // 目标位置
-    protected Transform guardTarget;    // 护卫/跟随目标
+    [Header("Enable")]
+    [SerializeField] protected bool isControllable = true;  // 是否可控制. 用于ai控制, 或者是控制技能
+    [SerializeField] protected bool isAlive = true;         // 是否活着
+    protected float idleEndTime;                         // 停止发呆的时间
+    [SerializeField] protected float idleDuration;          // 发呆时长
+
+    [Header("Target")]
+    [SerializeField] protected Transform target;            // 目标位置
+    [SerializeField] protected Transform guardTarget;       // 护卫/跟随目标
+    [SerializeField] protected Transform orderTarget;       // 指令目标
+    [SerializeField] private Transform captain;             // 队长
+    
+    [SerializeField] protected Stats actualStats;        // 实时属性值
+    [SerializeField] protected Stats basicStats;         // 基础属性值
+    [SerializeField] protected Stats additionStats;      // 装备附加的属性值
+    [SerializeField] protected Stats permanentStats;     // 补品/锻炼永久增加的属性值
+    [SerializeField] protected Stats tempStats;          // 临时增加的属性 
+
+    [Header("Range")]
+    [SerializeField] private float guardRange = 30f;
+    [SerializeField] private float skillRange = 5f;
+    [SerializeField] private float slashRange = 2f;
+    [SerializeField] private float dodgeRange = .8f;
+
+    [Header("Action Probability")]
+    [SerializeField][Range(0,1)] protected float dodgeProbability = 0.4f;
 
     protected SkillInfo[] skills;       // 拥有技能-skillinfo.cs
 
-    protected List<Buff> buffPool;      // buff池. 相同的合并/刷新
-    protected List<Buff> debuffPool;    // debuff池. 
-    
-    protected Stats actualStats;        // 实时属性值
-    protected Stats basicStats;         // 基础属性值
-    protected Stats additionStats;      // 装备附加的属性值
-    protected Stats permanentStats;     // 补品/锻炼永久增加的属性值
-    protected Stats tempStats;          // 临时增加的属性 
+    public List<Buff> buffPool;      // buff池. 相同的合并/刷新
+    public List<Buff> debuffPool;    // debuff池. 
 
-    private float guardRange = 30f;
-    private float skillRange = 5f;
-    private float slashRange = 2f;
-    private float dodgeRange = .8f;
-
-    private float dodgeProbability = 0.4f;
-
-    private Transform captain;
-    
+    public NavMeshAgent roleAgent;   // ai代理
 
     public string Name { get { return roleName; } set { this.roleName = value; } }
 
@@ -96,8 +106,12 @@ public class RoleInfo : MonoBehaviour {
 
     public bool IsAlive { get { return isAlive; } set { this.isAlive = value; } }
 
+    public float IdleEndTime { get { return idleEndTime; } set { idleEndTime = value; } }
+    public float IdleDuration { get { return idleDuration; } }
+
     public Transform Target { get { return target; } set { this.target = value; } }
     public Transform GuardTarget { get { return guardTarget; } }
+    public Transform OrderTarget { get { return orderTarget; } set { orderTarget = value; } }
 
     public float GuardRange { get { return guardRange; } }
     public float SkillRange { get { return skillRange; } }
@@ -120,6 +134,7 @@ public class RoleInfo : MonoBehaviour {
             }     
         }
     }
+
     public int Mp {
         get { return mp; }
         set {
@@ -129,6 +144,14 @@ public class RoleInfo : MonoBehaviour {
             if (mp <= 0)
                 mp = 0;            
         }
+    }
+
+    public enum RoleBelonging
+    {
+        Shu,        // 蜀汉
+        Wu,         // 东吴
+        Wei,        // 曹魏
+        Other       // 其他
     }
 
     public virtual Stats ActualStats
@@ -161,18 +184,23 @@ public class RoleInfo : MonoBehaviour {
         set { tempStats = value; }
     }
 
+    private void InitBasicStats()
+    {
+        // 升级的数值从文件读取, 或者是内嵌到代码中.
+    }
+
     private void Start()
     {
         buffPool = new List<Buff>();
         debuffPool = new List<Buff>();
 
-        guardTarget = captain;
-    }
+        roleAgent = GetComponent<NavMeshAgent>();   // 还得初始化agent的速度.
 
-    void InitBasicStats()
-    {
-        // 升级的数值从文件读取, 或者是内嵌到代码中.
-    }
+        target = null;
+        captain = null;
+        guardTarget = null;
+        orderTarget = null;
+    }   
 
     private void FixedUpdate()
     {
@@ -211,6 +239,16 @@ public class RoleInfo : MonoBehaviour {
         }
     }
 
+    public bool HasBuff(int id)
+    {
+        foreach(var buff in buffPool)
+        {
+            if (buff.BuffID == id)
+                return true;
+        }
+        return false;
+    }
+
     // 自身Buffs生效过程
     protected void RunBuff(float deltatime) {
         foreach (var buff in buffPool)
@@ -232,5 +270,5 @@ public class RoleInfo : MonoBehaviour {
                 effect.EffectRunning(this, deltatime);
             }
         }        
-    }
+    }   
 }

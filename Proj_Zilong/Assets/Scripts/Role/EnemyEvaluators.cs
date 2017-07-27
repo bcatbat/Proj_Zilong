@@ -35,7 +35,9 @@ public class EnemyEvaluators
 
     public static bool HasEnemy(RoleInfo info)
     {
-        // todo player
+        // todo 以当前角色位中心, 进行范围碰撞检测, 然后从检测到的目标中选择一个非本阵营的角色作为目标
+
+        // player
         Vector3 myPos = info.transform.position;
         Vector3 playerPos = PlayerInfo.Instance.transform.position;
 
@@ -46,7 +48,7 @@ public class EnemyEvaluators
             return true;
         }
 
-        // todo ally
+        // ally
         GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
         float min_mtoA = float.MaxValue;
         Transform target = null;
@@ -88,24 +90,42 @@ public class EnemyEvaluators
 
     public static bool OutOfGuardRange(RoleInfo info)
     {
-        return !IsTargetWithinRange(info, info.GuardTarget.position, info.GuardRange);
+        if (info.GuardTarget == null)
+            return false;
+        else
+            return !IsTargetWithinRange(info, info.GuardTarget.position, info.GuardRange);
     }
 
-//    public static bool FarAwayFromCaptain(RoleInfo info) { return false; } 
+    public static bool FarAwayFromCaptain(RoleInfo info)
+    {
+        if (info.Captain == null)
+            return false;
+        else
+            return !IsTargetWithinRange(info, info.Captain.position, info.GuardRange);
+    }
 
     public static bool WithinSkillRange(RoleInfo info)
     {
-        return IsTargetWithinRange(info, info.Target.position, info.SkillRange);
+        if (info.Target == null)
+            return false;
+        else
+            return IsTargetWithinRange(info, info.Target.position, info.SkillRange);
     }      
 
     public static bool TooClose(RoleInfo info)
     {
-        return IsTargetWithinRange(info, info.Target.position, info.DodgeRange);
+        if (info.Target == null)
+            return false;
+        else
+            return IsTargetWithinRange(info, info.Target.position, info.DodgeRange);
     }
 
     public static bool WithinSlashRange(RoleInfo info)
     {
-        return IsTargetWithinRange(info, info.Target.position, info.SlashRange);
+        if (info.Target == null)
+            return false;
+        else
+            return IsTargetWithinRange(info, info.Target.position, info.SlashRange);
     }
 
     public static bool DodgeDice(RoleInfo info) {
@@ -113,10 +133,22 @@ public class EnemyEvaluators
 
         return res <= info.DodgeProbability;
     }
+
     public static bool HasTargetPostion(RoleInfo info)
     {
+        if (info.OrderTarget == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
-        // todo
-        return false;        
+    public static bool HasFury(RoleInfo info)
+    {
+        // fury的id需要改.
+        return info.HasBuff(12313);
     }
 }

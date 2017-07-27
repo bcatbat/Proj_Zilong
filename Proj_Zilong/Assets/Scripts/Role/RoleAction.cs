@@ -12,15 +12,15 @@ public class RoleAction {
     }
 
     protected string actionName;
-    protected Action initialzeFunction;
-    protected Func<float,Status> updateFunction;
-    protected Action cleanUpFunction;   
+    protected Func<RoleInfo,Status> initialzeFunction;
+    protected Func<RoleInfo,float, Status> updateFunction;
+    protected Action<RoleInfo> cleanUpFunction;   
 
     protected RoleInfo roleInfo;
     //private BTNode.NodeType type;
     public Status status;
 
-    public RoleAction(string name, Action initFunc, Func<float,Status> updateFunc, Action cleanUpFunc, RoleInfo info)
+    public RoleAction(string name, Func<RoleInfo,Status> initFunc, Func<RoleInfo,float,Status> updateFunc, Action<RoleInfo> cleanUpFunc, RoleInfo info)
     {
         actionName = name;
 
@@ -39,7 +39,7 @@ public class RoleAction {
         {
             if(initialzeFunction != null)
             {
-                initialzeFunction();
+                initialzeFunction(roleInfo);
             }
         }
         status = Status.RUNNING;
@@ -55,7 +55,7 @@ public class RoleAction {
         {
             if(updateFunction != null)
             {
-                status = updateFunction(deltaTime);
+                status = updateFunction(roleInfo, deltaTime);
                 Debug.Log(status);
             }
             else
@@ -72,7 +72,7 @@ public class RoleAction {
         {
             if(cleanUpFunction != null)
             {
-                cleanUpFunction();
+                cleanUpFunction(roleInfo);
             }
         }
         status = Status.UNINITIALIZED;

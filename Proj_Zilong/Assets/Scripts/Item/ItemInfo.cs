@@ -15,7 +15,7 @@ public enum Slot
     task                // 任务物品
 }
 
-public class ItemInfo : MonoBehaviour {
+public class ItemInfo:MonoBehaviour {
     protected Slot m_slot;           // 类型
     [Header("基本属性")]
     public int itemID;          // ID

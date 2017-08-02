@@ -7,7 +7,7 @@ public class TonicItem : ItemInfo {
 
     private void Start()
     {
-        m_slot = Slot.tonic;
+        itemType = ItemType.tonic;
     }
 
     public override void UseItem()

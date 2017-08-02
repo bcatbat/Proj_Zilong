@@ -6,31 +6,29 @@ public class InventoryControl : MonoBehaviour {
 
     public GameObject itemPrefabs;      // 物品格子的Prefab
     public GameObject itemScrollList;   // 物品滚动列表
-    List<GameObject> grids;             // 物品格子列表
-    //List<Item> items;                   // 物品
+
+    private static InventoryControl instance;   // 单例之
+    private List<GameObject> grids;             // 物品格子列表
+    private List<Item> items;                   // 物品
+
+    //private bool isShowAllItems = true;        // 是否正在显示所有物品
+
+    public static InventoryControl Instance
+    {
+        get { return instance; }
+    }
 
     private void Awake()
     {
+        instance = this;
         grids = new List<GameObject>();
-      //  items = new List<Item>();
+        items = new List<Item>();
     }
 
     private void Start()
     {
         // TODO: deleted,测试用
-        for (int i = 0; i < 10; i++)
-        {
-            var grid = Instantiate(itemPrefabs, itemScrollList.transform);
-            grids.Add(grid);
-            
-            var item = grid.GetComponent<Item>();
-           // items.Add(item);
-
-            item.itemDes = "这是测试物品ID"+i;
-            item.itemNum = Random.Range(0,3);
-
-            item.ShowNumber();
-        }
+        CreateTestItems();
     }
 
     // 物品数量为0时,清理物品.
@@ -61,6 +59,7 @@ public class InventoryControl : MonoBehaviour {
                 if(item.itemNum == 0)
                 {
                     grids.Remove(grid);
+                    items.Remove(item);
                     Destroy(grid);
                     break;
                 }
@@ -73,18 +72,17 @@ public class InventoryControl : MonoBehaviour {
     // 在背包里面减少一个物品.
     public void RemoveItem()
     {
-        // TODO: 这是实验内容 . 记着有空判断
+        // TODO: 这是实验内容 . 记着有空判断, 按照id减少物品
         Destroy(grids[0]);
         grids.RemoveAt(0);
         Debug.Log(grids[0].GetComponent<Item>().itemNum);
     }
-
-
+    
     // 在背包里面添加一个物品(图标)
     public void AddItem()
     {
-        // TODO: 这是试验内容.
-        var grid = Instantiate(itemPrefabs, itemScrollList.transform);
+        // TODO: 这是试验内容. 未来补充: 按照id添加物品
+        var grid = Instantiate(itemPrefabs, itemScrollList.transform);        
         grids.Add(grid);
     }
 
@@ -92,20 +90,108 @@ public class InventoryControl : MonoBehaviour {
     // 查找某一id的物品
 
 
-    // 排序功能
+    // 排序功能, 物品按照id排序.
 
 
-    // 只显示weapon功能
-
-
-    // 只显示armor功能
-
+    // 只显示装备功能
+    public void ShowEquipmentOnly()
+    {
+        foreach (var grid in grids)
+        {
+            var item = grid.GetComponent<Item>();
+            if (item.itemInfo.itemType == ItemType.weapon || item.itemInfo.itemType == ItemType.armor || item.itemInfo.itemType == ItemType.trinket)
+            {
+                grid.SetActive(true);
+            }
+            else
+            {
+                grid.SetActive(false);
+            }
+        }        
+    } 
 
     // 只显示药品功能
+    public void ShowConsumptionOnly()
+    {
+        foreach (var grid in grids)
+        {
+            var item = grid.GetComponent<Item>();
+            if (item.itemInfo.itemType == ItemType.consumable || item.itemInfo.itemType == ItemType.tonic)
+            {
+                grid.SetActive(true);
+            }
+            else
+            {
+                grid.SetActive(false);
+            }
+        }        
+    }
 
 
     // 只显示素材功能
+    public void ShowMaterialOnly()
+    {
 
+        foreach (var grid in grids)
+        {
+            var item = grid.GetComponent<Item>();
+            if (item.itemInfo.itemType == ItemType.material)
+            {
+                grid.SetActive(true);
+            }
+            else
+            {
+                grid.SetActive(false);
+            }
+        }        
+    }
+
+    // 只显示任务品
+    public void ShowTastItemOnly()
+    {
+
+        foreach (var grid in grids)
+        {
+            var item = grid.GetComponent<Item>();
+            if (item.itemInfo.itemType == ItemType.task)
+            {
+                grid.SetActive(true);
+            }
+            else
+            {
+                grid.SetActive(false);
+            }
+        }        
+    }
 
     // 全部显示
+    public void ShowAllItems()
+    {
+        foreach(var grid in grids)
+        {
+            grid.SetActive(true);
+        }
+    }
+
+    // TODO: 测试用, 随机生成若干物品
+    public void CreateTestItems()
+    {
+        // TODO: deleted,测试用
+        for (int i = 0; i < 10; i++)
+        {
+            var grid = Instantiate(itemPrefabs, itemScrollList.transform);
+            grids.Add(grid);
+
+            var item = grid.GetComponent<Item>();
+            items.Add(item);
+
+            item.itemNum = Random.Range(1, 10);
+
+            item.ShowNumber();
+
+            item.itemInfo.itemType = (ItemType)Random.Range(0, 7);
+
+            item.itemInfo.itemDes = "类型: " + item.itemInfo.itemType.ToString();
+        }
+    }
 }

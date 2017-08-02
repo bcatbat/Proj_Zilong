@@ -12,7 +12,7 @@ public class ConsumableItem : ItemInfo {
 
     private void Start()
     {
-        m_slot = Slot.consumable;
+        itemType = ItemType.consumable;
     }
 
     public override void UseItem()

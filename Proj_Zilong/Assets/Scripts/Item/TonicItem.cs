@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TonicItem : ItemInfo {
+    public string testName;
     public Stats GrowthStats;       // 永久增加的属性值
 
-    private void Start()
+    public TonicItem()
     {
+        testName = "Tonic";
         itemType = ItemType.tonic;
     }
 

@@ -93,13 +93,17 @@ public class InventoryControl : MonoBehaviour {
     // 排序功能, 物品按照id排序.
 
 
-    // 只显示装备功能
+    // 筛选:只显示装备
     public void ShowEquipmentOnly()
     {
         foreach (var grid in grids)
         {
             var item = grid.GetComponent<Item>();
-            if (item.itemInfo.itemType == ItemType.weapon || item.itemInfo.itemType == ItemType.armor || item.itemInfo.itemType == ItemType.trinket)
+            //if (item.itemInfo.itemType == ItemType.weapon || item.itemInfo.itemType == ItemType.armor || item.itemInfo.itemType == ItemType.trinket)
+            //{
+            //    grid.SetActive(true);
+            //}
+            if(item.itemInfo.GetType() == typeof(WeaponItem)|| item.itemInfo.GetType() == typeof(ArmorItem)|| item.itemInfo.GetType() == typeof(TrinketItem))
             {
                 grid.SetActive(true);
             }
@@ -110,7 +114,7 @@ public class InventoryControl : MonoBehaviour {
         }        
     } 
 
-    // 只显示药品功能
+    // 筛选:只显示药品
     public void ShowConsumptionOnly()
     {
         foreach (var grid in grids)
@@ -127,8 +131,7 @@ public class InventoryControl : MonoBehaviour {
         }        
     }
 
-
-    // 只显示素材功能
+    // 筛选:只显示素材
     public void ShowMaterialOnly()
     {
 
@@ -146,7 +149,7 @@ public class InventoryControl : MonoBehaviour {
         }        
     }
 
-    // 只显示任务品
+    // 筛选:只显示任务品
     public void ShowTastItemOnly()
     {
 
@@ -183,13 +186,38 @@ public class InventoryControl : MonoBehaviour {
             grids.Add(grid);
 
             var item = grid.GetComponent<Item>();
-            items.Add(item);
+            items.Add(item);            
 
             item.itemNum = Random.Range(1, 10);
 
             item.ShowNumber();
 
             item.itemInfo.itemType = (ItemType)Random.Range(0, 7);
+
+            switch (item.itemInfo.itemType)
+            {
+                case ItemType.weapon:
+                    item.itemInfo = new WeaponItem();
+                    break;
+                case ItemType.armor:
+                    item.itemInfo = new ArmorItem();
+                    break;
+                case ItemType.trinket:
+                    item.itemInfo = new TrinketItem();
+                    break;
+                case ItemType.consumable:
+                    item.itemInfo = new ConsumableItem();
+                    break;
+                case ItemType.tonic:
+                    item.itemInfo = new TonicItem();
+                    break;
+                case ItemType.material:
+                    item.itemInfo = new MaterialItem();
+                    break;
+                case ItemType.task:
+                    item.itemInfo = new TaskItem();
+                    break;
+            }           
 
             item.itemInfo.itemDes = "类型: " + item.itemInfo.itemType.ToString();
         }

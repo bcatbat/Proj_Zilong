@@ -6,12 +6,14 @@ using UnityEngine;
 /// 消耗物品类. 使用后给本体提供一个增益.
 /// </summary>
 public class ConsumableItem : ItemInfo {
+    public string testName;
     // 附带的技能/效果
     [SerializeField] private List<Buff> m_OwnBuff;  // 给自己的buff/debuff
     [SerializeField] private List<Buff> m_TarBuff;  // 给目标的buff/debuff
 
-    private void Start()
+    public ConsumableItem()
     {
+        testName = "ConsumableItem";
         itemType = ItemType.consumable;
     }
 

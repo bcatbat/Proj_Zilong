@@ -27,8 +27,10 @@ public class ItemInfo {
     public Image itemIcon;      // 图标
     public string itemDes;      // 物品描述
 
-    public Stats AttachStats;   // 附加属性
-    public Stats GrowthStats;   // 永久增加的属性值
+    public ItemInfo()
+    {
+
+    }
 
     public virtual void UseItem() { }
 }

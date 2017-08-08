@@ -7,7 +7,7 @@ using System;
 
 // 类别
 public enum ItemType
-{
+{    
     consumable = 0,     // 常规消耗品
     tonic,              // 滋补品, 增加固定属性.
     weapon,             // 武器
@@ -29,7 +29,11 @@ public class ItemInfo {
 
     public ItemInfo()
     {
-
+        // 0号物品...占空符.
+        itemID = 0; 
+        itemName = "";
+        itemIcon = null;
+        itemDes = "";        
     }
 
     public virtual void UseItem() { }

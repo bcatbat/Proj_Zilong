@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryControl : MonoBehaviour {
 
     public GameObject itemPrefabs;      // 物品格子的Prefab
     public GameObject itemScrollList;   // 物品滚动列表
+    public Image choiceFrame;           // 选择框. 默认不显示
+    public List<Item> items;            // 物品
 
     private static InventoryControl instance;   // 单例之
-    private List<GameObject> grids;             // 物品格子列表
-    private List<Item> items;                   // 物品
+    private List<GameObject> grids;             // 物品格子列表    
+    private Item currentItem;                   // 当前选择的物品
 
     //private bool isShowAllItems = true;        // 是否正在显示所有物品
 
+
+    // 单例之
     public static InventoryControl Instance
     {
         get { return instance; }
@@ -90,9 +95,6 @@ public class InventoryControl : MonoBehaviour {
     // 查找某一id的物品
 
 
-    // 排序功能, 物品按照id排序.
-
-
     // 筛选:只显示装备
     public void ShowEquipmentOnly()
     {
@@ -111,7 +113,8 @@ public class InventoryControl : MonoBehaviour {
             {
                 grid.SetActive(false);
             }
-        }        
+        }
+        HideChoiceFrame();
     } 
 
     // 筛选:只显示药品
@@ -128,7 +131,8 @@ public class InventoryControl : MonoBehaviour {
             {
                 grid.SetActive(false);
             }
-        }        
+        }
+        HideChoiceFrame();
     }
 
     // 筛选:只显示素材
@@ -146,7 +150,8 @@ public class InventoryControl : MonoBehaviour {
             {
                 grid.SetActive(false);
             }
-        }        
+        }
+        HideChoiceFrame();
     }
 
     // 筛选:只显示任务品
@@ -164,16 +169,56 @@ public class InventoryControl : MonoBehaviour {
             {
                 grid.SetActive(false);
             }
-        }        
+        }
+        HideChoiceFrame();
     }
 
-    // 全部显示
+    // 筛选:全部显示
     public void ShowAllItems()
     {
         foreach(var grid in grids)
         {
             grid.SetActive(true);
         }
+        HideChoiceFrame();
+    }
+
+    // 设置当前选择的物品
+    public void SetCurrentItem(Item item)
+    {
+        // 如果item在物品list中, 则设置currentItem
+        if (items.Contains(item))
+        {
+            currentItem = item;
+            SetChoiceFramePosition();
+        }
+        else // 否则提示错误
+        {
+            Debug.Log("该物品不在背包中..");
+        }
+    }
+
+    // 移动选择框到当前物品上面
+    private void SetChoiceFramePosition()
+    {
+        if(currentItem != null)
+        {
+            Vector3 curItemPos = currentItem.gameObject.transform.position;
+            choiceFrame.transform.position = curItemPos;
+            ShowChoiceFrame();
+        }
+    }
+
+    // 显示选框
+    private void ShowChoiceFrame()
+    {
+        choiceFrame.gameObject.SetActive(true);
+    }
+
+    // 隐藏选框
+    public void HideChoiceFrame()
+    {
+        choiceFrame.gameObject.SetActive(false);
     }
 
     // TODO: 测试用, 随机生成若干物品
@@ -185,12 +230,11 @@ public class InventoryControl : MonoBehaviour {
             var grid = Instantiate(itemPrefabs, itemScrollList.transform);
             grids.Add(grid);
 
+            // 改一下颜色
+            var image = grid.GetComponent<Image>();            
+            image.color = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f),Random.Range(0,1f));
+
             var item = grid.GetComponent<Item>();
-            items.Add(item);            
-
-            item.itemNum = Random.Range(1, 10);
-
-            item.ShowNumber();
 
             item.itemInfo.itemType = (ItemType)Random.Range(0, 7);
 
@@ -207,19 +251,32 @@ public class InventoryControl : MonoBehaviour {
                     break;
                 case ItemType.consumable:
                     item.itemInfo = new ConsumableItem();
+                    item.itemNum = Random.Range(1, 10);
                     break;
                 case ItemType.tonic:
                     item.itemInfo = new TonicItem();
+                    item.itemNum = Random.Range(1, 10);
                     break;
                 case ItemType.material:
                     item.itemInfo = new MaterialItem();
+                    item.itemNum = Random.Range(1, 10);
                     break;
                 case ItemType.task:
                     item.itemInfo = new TaskItem();
                     break;
-            }           
+                default:
+                    throw new System.Exception("出现未知类型");
+            }
 
-            item.itemInfo.itemDes = "类型: " + item.itemInfo.itemType.ToString();
+            item.itemInfo.itemID = Random.Range(1, 100);
+
+            item.itemInfo.itemIcon = image; // todo:delete
+
+            items.Add(item);
+
+            item.ShowNumber();          
+            
+            item.itemInfo.itemDes = "类型: " + item.itemInfo.itemType.ToString()+" ID:"+item.itemInfo.itemID;
         }
     }
 }

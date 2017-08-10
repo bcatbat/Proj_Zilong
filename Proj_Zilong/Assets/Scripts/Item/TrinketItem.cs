@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrinketItem : ItemInfo {
+public class TrinketItem : EquipmentItem {
     public string testName;     // todo: deleted
-    public Stats AttachStats;    // 附加属性
 
     public TrinketItem()
     {

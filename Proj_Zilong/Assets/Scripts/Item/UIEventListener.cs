@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class UIEventListener : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler,IDragHandler,IBeginDragHandler,IEndDragHandler
+public class UIEventListener : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler,IDragHandler,IBeginDragHandler,IEndDragHandler,IDropHandler
 {
     public delegate void UIEventProxy(GameObject gb);
 
@@ -13,9 +13,10 @@ public class UIEventListener : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public event UIEventProxy OnMouseRightClick;
     public event UIEventProxy OnMouseEnter;
     public event UIEventProxy OnMouseExit;
-    public event UIEventProxy OnBeginDrag;
-    public event UIEventProxy OnEndDrag;
-    public event UIEventProxy OnDrag;
+    public event UIEventProxy OnMouseBeginDrag;
+    public event UIEventProxy OnMouseEndDrag;
+    public event UIEventProxy OnMouseDrag;
+    public event UIEventProxy OnMouseDrop;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -47,19 +48,27 @@ public class UIEventListener : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        if (OnDrag != null)
-            OnDrag(gameObject);
+        if (OnMouseDrag != null)
+            OnMouseDrag(gameObject);
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        if (OnBeginDrag != null)
-            OnBeginDrag(gameObject);
+        if (OnMouseBeginDrag != null)
+            OnMouseBeginDrag(gameObject);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if(OnMouseDrop != null)
+        {
+            OnMouseDrop(eventData.pointerDrag);
+        }
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        if (OnEndDrag != null)
-            OnEndDrag(gameObject);
+        if (OnMouseEndDrag != null)
+            OnMouseEndDrag(gameObject);
     }
 }

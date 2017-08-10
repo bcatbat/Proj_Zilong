@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DescriptionCtrl : MonoBehaviour {
-    private static DescriptionCtrl instance;
-    
-    private Text desText;
-
-    private GameObject descriptionFrame;
-    public static DescriptionCtrl Instance
+public class DescriptionManager : MonoBehaviour {
+    // 单例之
+    private static DescriptionManager instance;
+    public static DescriptionManager Instance
     {
         get { return instance; }
-    }   
+    }
+
+    private Text descriptionText;           // 描述文字
+    [SerializeField]private GameObject descriptionFrame;    // 描述框,手动赋值
 
     private void Awake()
     {
@@ -20,18 +20,19 @@ public class DescriptionCtrl : MonoBehaviour {
         {
             instance = this;
         }
+        DontDestroyOnLoad(this);
+        descriptionText = descriptionFrame.GetComponentInChildren<Text>();
     }
 
     private void Start()
-    {
-        descriptionFrame = GameObject.FindGameObjectWithTag("DescriptionFrame");
-        desText = descriptionFrame.GetComponentInChildren<Text>();
-        Hide();
+    {         
+        Hide(); // 初始隐藏
     }
 
-    public void Show(Image tar  )
+    public void Show(Image img)
     {
-        SetPosition(tar);
+        // 
+        SetDescriptionFramePosition(img);
         descriptionFrame.SetActive(true);
     }
     public void Hide()
@@ -39,12 +40,12 @@ public class DescriptionCtrl : MonoBehaviour {
         descriptionFrame.SetActive(false);
     }
 
-    public void SetText(string descriptionText)
+    public void SetDescription(string descriptionText)
     {
-        desText.text = descriptionText;
+        this.descriptionText.text = descriptionText;
     }
 
-    private void SetPosition(Image tar)
+    private void SetDescriptionFramePosition(Image tar)
     {
         //Debug.Log("set position"+ tar.name);
 

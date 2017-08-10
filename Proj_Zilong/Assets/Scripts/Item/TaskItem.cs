@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskItem : ItemInfo {
+public class TaskItem : Item {
     public string testName;
 
     public TaskItem()

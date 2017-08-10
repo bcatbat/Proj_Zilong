@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TonicItem : ItemInfo {
+public class TonicItem : Item {
     public string testName;
     public Stats GrowthStats;       // 永久增加的属性值
 

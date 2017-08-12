@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class EquipmentItem : Item {
     public Stats AttachStats;    // 附加属性 
     public bool isEquipped;      // 装备标识符

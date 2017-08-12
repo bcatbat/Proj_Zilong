@@ -29,18 +29,20 @@ public class DescriptionManager : MonoBehaviour {
         Hide(); // 初始隐藏
     }
 
-    public void Show(Image img)
-    {
-        // 
-        SetDescriptionFramePosition(img);
+    // 显示. 带参数
+    public void Show(Image tarImg,string desc)
+    {        
+        SetDescriptionFramePosition(tarImg);
+        this.descriptionText.text = desc;
         descriptionFrame.SetActive(true);
     }
+
     public void Hide()
     {
         descriptionFrame.SetActive(false);
     }
 
-    public void SetDescription(string descriptionText)
+    private void SetDescription(string descriptionText)
     {
         this.descriptionText.text = descriptionText;
     }
@@ -52,8 +54,9 @@ public class DescriptionManager : MonoBehaviour {
         float tarX = tar.transform.position.x; 
         float tarY = tar.transform.position.y;
 
-        float tarWidth = tar.rectTransform.sizeDelta.x;
-        //Debug.Log(tarWidth);
+        //        float tarWidth = tar.GetComponentInParent<RectTransform>().sizeDelta.x;
+        float tarWidth = tar.transform.parent.GetComponent<RectTransform>().sizeDelta.x;       
+       // Debug.Log(tarWidth);       
 
         float frameWidth = descriptionFrame.GetComponent<Image>().rectTransform.sizeDelta.x;
         float frameHeight = descriptionFrame.GetComponent<Image>().rectTransform.sizeDelta.y;

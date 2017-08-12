@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 监听背包变化事件
+
+
 public class InventoryManager : MonoBehaviour {
     // 单例一下
     private static InventoryManager instance;
@@ -12,11 +15,19 @@ public class InventoryManager : MonoBehaviour {
 
     public Dictionary<Item, int> inventory;     // 背包键值对. 键-物品,值-数量
 
+
+    // todo:背包事件. 当IM增加,减小,销毁,排序时触发. 通知IP刷新
+    public delegate void InventoryChanged();
+    public event InventoryChanged OnItemChanged;    
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
         DontDestroyOnLoad(this);
+
+        inventory = new Dictionary<Item, int>();
+        CreateTestBags();
     }
 
     // 索引器
@@ -25,6 +36,20 @@ public class InventoryManager : MonoBehaviour {
         get { return inventory[index]; }
         set { inventory[index] = value; }
     }
+
+    // 根据物品id,返回当前背包内的该物品
+    public Item GetItemByID(int id)
+    {
+        foreach(var pair in inventory)
+        {
+            if(pair.Key.itemID == id)
+            {
+                return pair.Key;
+            }
+        }
+        return null;
+    }
+
     // 包裹总数
     public int Count
     {
@@ -46,18 +71,36 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-    // 增加一个物品
+    // todo:增加一个物品...装备类不堆叠. 药物材料任务品均可堆叠. 按照item id来进行区分.
     public void AddItem(Item item)
     {
         if (item == null) return;
-        if (inventory.ContainsKey(item))
+
+        if(item.itemType == ItemType.armor ||
+            item.itemType == ItemType.weapon||
+            item.itemType == ItemType.trinket)
         {
-            inventory[item]++;
+            // 装备类, 不可堆叠, 新添加一项
+            inventory.Add(item, 1);
         }
         else
         {
-            inventory.Add(item, 1);
+            // 其他类别,需要堆叠
+            if (ContainsItem(item))
+            {
+                // 如果包内有
+                Item existItem = GetItemByID(item.itemID);
+                inventory[existItem]++;
+            }
+            else
+            {
+                // 如果包内无
+                inventory.Add(item, 1);
+            }
         }
+        // 监听事件
+        if (OnItemChanged != null)
+            OnItemChanged();
     }
 
     // 消耗了一个物品(吃了一个...)
@@ -81,6 +124,10 @@ public class InventoryManager : MonoBehaviour {
         {
             Debug.Log("不存在该物品..");
         }
+
+        // 监听背包变化事件
+        if (OnItemChanged != null)
+            OnItemChanged();
     }
 
     // 移除现有物品. 整个移除
@@ -91,6 +138,23 @@ public class InventoryManager : MonoBehaviour {
             Debug.LogError("错误:物品数量不能为负");
         }
         inventory.Remove(item);
+
+        // 监听背包变化事件
+        if (OnItemChanged != null)
+            OnItemChanged();
+    }
+
+    // 是否存在相同物品
+    private bool ContainsItem(Item item)
+    {
+        foreach(var pair in inventory)
+        {
+            if(pair.Key.itemID == item.itemID)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     // 清理空物品,无效物品
@@ -135,17 +199,48 @@ public class InventoryManager : MonoBehaviour {
         return dict;
     }
 
-    // 返回一个纯装备表
+    // todo:返回一个纯装备表.
     public Dictionary<EquipmentItem,int> OnlyEquipmentDict()
     {
         Dictionary<EquipmentItem, int> equipmentDict = new Dictionary<EquipmentItem, int>();
         foreach(KeyValuePair<Item,int> pair in inventory)
         {
-            if(pair.Key.GetType() == typeof(EquipmentItem))
+            //if(pair.Key.GetType() == typeof(EquipmentItem))// 无法达成目标
+            if(pair.Key.GetType() == typeof(WeaponItem) ||
+                pair.Key.GetType() == typeof(ArmorItem)||
+                pair.Key.GetType() == typeof(TrinketItem))
             {
                 equipmentDict.Add(pair.Key as EquipmentItem, pair.Value);
             }
         }
         return equipmentDict;
     }   
+
+    // todo: [d]初始化一个测试背包.包含各种物品3个..
+    public void CreateTestBags()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Item c = new ConsumableItem(); c.itemID = 1;
+            Item to = new TonicItem(); to.itemID = 2;
+            Item m = new MaterialItem();m.itemID = 3;
+            Item ta = new TaskItem();ta.itemID = 4;
+
+            Item w = new WeaponItem(); w.itemID = 5;
+            Item a = new ArmorItem();a.itemID = 6;
+            Item tr = new TrinketItem();tr.itemID = 7;
+
+            AddItem(c);
+            AddItem(to);
+            AddItem(m);
+            AddItem(ta);
+            AddItem(w);
+            AddItem(a);
+            AddItem(tr);
+        }        
+        //foreach (var pair in inventory)
+        //{
+        //    Debug.Log(pair.Key + " " + pair.Value);
+        //}
+    }
 }

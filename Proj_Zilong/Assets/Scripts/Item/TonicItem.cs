@@ -10,6 +10,7 @@ public class TonicItem : Item {
     {
         testName = "Tonic";
         itemType = ItemType.tonic;
+        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;
     }
 
     public override void UseItem()

@@ -9,6 +9,7 @@ public class TaskItem : Item {
     {
         testName = "Task";
         itemType = ItemType.task;
+        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;
     }
     
     // 一些特殊的效果

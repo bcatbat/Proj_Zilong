@@ -33,7 +33,7 @@ public class Item:IComparable {
         itemID = 0; 
         itemName = "";
         itemIcon = null;
-        itemDes = "";        
+        itemDes = "";
     }
 
     public virtual void UseItem() { }

@@ -91,7 +91,7 @@ public class RoleInfo : MonoBehaviour {
     [Header("Action Probability")]
     [SerializeField][Range(0,1)] protected float dodgeProbability = 0.4f;
 
-    protected SkillInfo[] skills;       // 拥有技能-skillinfo.cs
+    protected Skill[] skills;       // 拥有技能-skillinfo.cs
 
     public List<Buff> buffPool;      // buff池. 相同的合并/刷新
     public List<Buff> debuffPool;    // debuff池. 

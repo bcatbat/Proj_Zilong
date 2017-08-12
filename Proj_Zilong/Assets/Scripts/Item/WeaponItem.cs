@@ -10,6 +10,7 @@ public class WeaponItem : EquipmentItem {
     public WeaponItem()
     {
         testName = "Weapon";
-        itemType = ItemType.weapon;    
+        itemType = ItemType.weapon;
+        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;
     }
 }

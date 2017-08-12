@@ -15,6 +15,7 @@ public class ConsumableItem : Item {
     {
         testName = "ConsumableItem";
         itemType = ItemType.consumable;
+        itemDes = "Test Description for Type:" + itemType + "\nID:" + itemID;
     }
 
     public override void UseItem()

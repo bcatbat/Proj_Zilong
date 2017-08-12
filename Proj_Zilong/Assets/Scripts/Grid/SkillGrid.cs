@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentGrid : Grid {
-    // 挂载装备(武器, 护甲, 饰品)
+public class SkillGrid : Grid {
+
+    // 只能挂载技能
+    public Skill skill;
 }

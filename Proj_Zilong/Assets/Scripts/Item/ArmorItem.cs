@@ -13,6 +13,7 @@ public class ArmorItem : EquipmentItem {
     public ArmorItem()
     {
         testName = "Armor";
-        itemType = ItemType.armor;        
+        itemType = ItemType.armor;
+        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;
     }
 }

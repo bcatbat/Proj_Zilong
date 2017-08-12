@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class SkillInfo : MonoBehaviour {
-    [SerializeField] private int m_skillID;         // id
-    [SerializeField] private string m_skillName;    // 名称
-    [SerializeField] private float m_skillCD;       // cd
-    [SerializeField] private Image m_skillIcon;     // 图标(命名等同于技能名)
+[Serializable]
+public class Skill {
+    [SerializeField] private int skillID;         // id
+    [SerializeField] private string skillName;    // 名称
+    [SerializeField] private float skillCD;       // cd
+    [SerializeField] private Image skillIcon;     // 图标(命名等同于技能名)
 
     [SerializeField] private List<Buff> m_OwnBuff;  // 给自己的buff/debuff
     [SerializeField] private List<Buff> m_TarBuff;  // 给目标的buff/debuff

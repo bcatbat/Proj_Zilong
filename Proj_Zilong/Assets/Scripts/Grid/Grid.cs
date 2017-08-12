@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class Grid : MonoBehaviour {
 #region membership
-    [SerializeField]private Image icon;             // 图标
-    [SerializeField]private Image cdBoard;          // 冷却板
-    [SerializeField]private Text mark;              // 角标
-    [SerializeField]private Text cdTick;            // 冷却时间    
+    [SerializeField]protected Image icon;             // 图标
+    [SerializeField]protected Image cdBoard;          // 冷却板
+    [SerializeField]protected Text mark;              // 角标
+    [SerializeField]protected Text cdTick;            // 冷却时间    
 #endregion
     private GameObject draggingIcon;    // 拖拽图标
 
@@ -17,6 +17,8 @@ public class Grid : MonoBehaviour {
     protected void Awake()
     {
         MouseEventRegister();
+        mark.text = "";
+        cdTick.text = "";
     }
 
     // todo:
@@ -106,19 +108,12 @@ public class Grid : MonoBehaviour {
 
     protected virtual void EventListener_OnMouseExit(GameObject gb)
     {
-        Debug.Log("Grid Event: Mouse Exit");
-        // 隐藏描述栏
-        //HideDescription();    
+        DescriptionManager.Instance.Hide();
     }
 
     protected virtual void EventListener_OnMouseEnter(GameObject gb)
     {
-        Debug.Log("Grid Event: Mouse Enter");
-        // 显示描述栏
-        //if (item.itemID != 0)
-        //{
-        //    ShowDescription();
-        //}
+        DescriptionManager.Instance.Show(icon, "<size=50>Hello</size>");
     }
 
     protected virtual void EventListener_OnMouseRightClick(GameObject gb)
@@ -208,8 +203,8 @@ public class Grid : MonoBehaviour {
         //DescriptionCtrl.Instance.Hide();
     }
 
-    // todo
-    private void UseItem()
+    // todo: 使用物品
+    public virtual void UseItem()
     {
         //// 右键点击触发. 物品数量减1,物品起作用->敌我等.
         //Debug.Log("eat: "+item.GetType() +item.itemID);
@@ -218,8 +213,7 @@ public class Grid : MonoBehaviour {
         //{
         //    ShowNumber();
         //}
-    }
-    
+    }    
 
     // todo:装备武器
     private void SetupWeapon()

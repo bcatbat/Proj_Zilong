@@ -16,12 +16,12 @@ public class ConsumableItem : Item {
         testName = "ConsumableItem";
         itemType = ItemType.consumable;
         itemDes = "Test Description for Type:" + itemType + "\nID:" + itemID;
+        //isUsable = true;
     }
 
     public override void UseItem()
     {
-        Debug.Log("Use:" + itemName + " -消耗品");
-        
+        Debug.Log("Use:" + itemID + " " + itemName + " -消耗品");
     }
 
     // 产生Buff:增加buff, 目标:自身

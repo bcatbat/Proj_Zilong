@@ -71,6 +71,13 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    public void Refresh()
+    {
+        // 监听事件
+        if (OnItemChanged != null)
+            OnItemChanged();
+    }
+
     // todo:增加一个物品...装备类不堆叠. 药物材料任务品均可堆叠. 按照item id来进行区分.
     public void AddItem(Item item)
     {
@@ -103,7 +110,7 @@ public class InventoryManager : MonoBehaviour {
             OnItemChanged();
     }
 
-    // 消耗了一个物品(吃了一个...)
+    // todo:消耗了一个物品(吃了一个...). 缺少判定
     public void ConsumeItem(Item item)
     {
         if (item == null) return;
@@ -145,7 +152,7 @@ public class InventoryManager : MonoBehaviour {
     }
 
     // 是否存在相同物品
-    private bool ContainsItem(Item item)
+    public bool ContainsItem(Item item)
     {
         foreach(var pair in inventory)
         {
@@ -222,6 +229,7 @@ public class InventoryManager : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             Item c = new ConsumableItem(); c.itemID = 1;
+            Item c2 = new ConsumableItem(); c2.itemID = 11;
             Item to = new TonicItem(); to.itemID = 2;
             Item m = new MaterialItem();m.itemID = 3;
             Item ta = new TaskItem();ta.itemID = 4;
@@ -231,13 +239,15 @@ public class InventoryManager : MonoBehaviour {
             Item tr = new TrinketItem();tr.itemID = 7;
 
             AddItem(c);
+            AddItem(c2);
             AddItem(to);
             AddItem(m);
             AddItem(ta);
             AddItem(w);
             AddItem(a);
             AddItem(tr);
-        }        
+        }
+       // Debug.Log("初始化背包完毕");
         //foreach (var pair in inventory)
         //{
         //    Debug.Log(pair.Key + " " + pair.Value);

@@ -11,6 +11,7 @@ public class TonicItem : Item {
         testName = "Tonic";
         itemType = ItemType.tonic;
         itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;
+        //isUsable = true;
     }
 
     public override void UseItem()

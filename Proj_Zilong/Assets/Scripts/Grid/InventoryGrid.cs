@@ -6,10 +6,7 @@ using System;
 public class InventoryGrid : Grid {
 
     // 只挂载物品.
-    public Item item;
-
-    // todo:事件. 物品 使用时, 销毁时, 贩卖时, 购买时, 拾取时触发
-    public event EventHandler InventoryChanged;
+    public Item item;  
 
     private new void Awake()
     {
@@ -18,58 +15,175 @@ public class InventoryGrid : Grid {
         // 同步item与image等信息.
     }
 
-    protected override void EventListener_OnMouseDrop(GameObject gb)
+    private void Start()
     {
-        // gb为被拖拽的grid,接收drop的为自身inventory grid. 可接收inventory grid
+        // 显示数量和图标.
+        RefreshMark();
+    }
 
-        var targetGrid = gb.GetComponent<InventoryGrid>();
-        if (targetGrid != null)
-        {
-            Debug.Log("释放物体是inventory格子,可继续");
-            item = targetGrid.item;
-        }        
+#region MouseEvent
+    
+    protected override void EventListener_OnMouseEndDrag(GameObject gb)
+    {
+        base.EventListener_OnMouseEndDrag(gb);
+    }
+
+    protected override void EventListener_OnMouseDrag(GameObject gb)
+    {
+        base.EventListener_OnMouseDrag(gb);
+    }
+
+    protected override void EventListener_OnMouseBeginDrag(GameObject gb)
+    {
+        base.EventListener_OnMouseBeginDrag(gb);
     }
 
     // 右击: 物品栏中点右键. 药品是使用, 装备是装上
     protected override void EventListener_OnMouseRightClick(GameObject gb)
     {
-        //if (tag == "Inventory")
-        //{
-        //    //Debug.Log(gb.name+"右键点击");
-        //    // 选框
-        //    InventoryControl.Instance.SetCurrentItem(this);
+        //Debug.Log("右键点击" + item.itemID);
+        if (item.itemType == ItemType.consumable || item.itemType == ItemType.tonic)
+        {
+            UseItem();
+        }
+        // 装备武器
+        if (item.itemType == ItemType.weapon)
+        {
+            SetupWeapon();
+        }
 
-        //    // 使用物品
-        //    if (item.itemType == ItemType.consumable || item.itemType == ItemType.tonic)
-        //    {
-        //        UseItem();
-        //    }
+        // 装备护甲
+        if (item.itemType == ItemType.armor)
+        {
+            SetupArmor();
+        }
 
-        //    // 装备武器
-        //    if (item.itemType == ItemType.weapon)
-        //    {
-        //        SetupWeapon();
-        //    }
-
-        //    // 装备护甲
-        //    if (item.itemType == ItemType.armor)
-        //    {
-        //        SetupArmor();
-        //    }
-
-        //    // 装备饰品
-        //    if (item.itemType == ItemType.trinket)
-        //    {
-        //        SetupTrinket();
-        //    }
-        //}
-
+        // 装备饰品
+        if (item.itemType == ItemType.trinket)
+        {
+            SetupTrinket();
+        }
+    }
+    #endregion
+    // 显示描述框
+    protected override void ShowDescription()
+    {
+        if (item.itemID != 0)
+        {
+            string s = item.itemID + "\n" +
+                item.itemName + "\n" +
+                item.itemType;
+            DescriptionManager.Instance.Show(icon, s);
+        }
     }
 
     // 使用物品
     public override void UseItem()
     {
-        base.UseItem();
-        // 类型检测.
+        // 物品起效果
+        item.UseItem();
+        // 数量减少
+        InventoryManager.Instance.ConsumeItem(item);
+        // 更新显示
+        UpdateNumber();
+    }
+
+    // todo:装备武器
+    private void SetupWeapon()
+    {
+        // 武器
+        if (item.GetType() == typeof(WeaponItem))
+        {
+            WeaponItem weapon = EquipmentManager.Instance.weapon as WeaponItem;
+
+            // 武器槽中是当前物品:卸下
+            if (weapon == item)
+            {
+                //Debug.Log("卸下武器!");
+                EquipmentManager.Instance.UnloadWeapon(item as WeaponItem);
+            }
+            else // 否则,武器槽中物品替换为当前物品
+            {
+                //Debug.Log("装备武器!");                
+                EquipmentManager.Instance.EquipWeapon(item as WeaponItem);
+            }
+            InventoryManager.Instance.Refresh();            
+        }
+    }
+
+    // todo:装备护甲
+    private void SetupArmor()
+    {
+        // 护甲
+        if (item.GetType() == typeof(ArmorItem))
+        {
+            ArmorItem armor = EquipmentManager.Instance.armor as ArmorItem;
+
+            if (armor == item)
+            {
+                //Debug.Log("卸下护甲");
+                EquipmentManager.Instance.UnloadArmor(item as ArmorItem);
+            }
+            else
+            {
+                //Debug.Log("装备护甲!");
+                EquipmentManager.Instance.EquipArmor(item as ArmorItem);                
+            }
+            InventoryManager.Instance.Refresh();
+        }
+    }
+
+    // todo:装备饰品
+    private void SetupTrinket()
+    {
+        //饰品
+        if (item.itemType == ItemType.trinket)
+        {
+            if (EquipmentManager.Instance.IsTrinketEquipped(item as TrinketItem))
+            {
+                // 装备栏中已有该物品
+                //Debug.Log("卸下饰品");
+                EquipmentManager.Instance.UnloadTrinket(item as TrinketItem);
+            }
+            else
+            {
+                //Debug.Log("装备饰品");
+                EquipmentManager.Instance.EquipTrinket(item as TrinketItem);                
+            }
+            InventoryManager.Instance.Refresh();
+        }
+    }
+        
+    private void UpdateNumber()
+    {
+        int num = InventoryManager.Instance.inventory[item];
+        if (num == 1)
+        {
+            mark.text = "";
+        }
+        else
+        {
+            if (num > 1)
+            {
+                mark.text = num + "";
+            }
+        }
+    }
+
+    // 显示标记
+   private void RefreshMark()
+    {
+        UpdateNumber();
+
+        if(item.GetType() == typeof(WeaponItem) ||
+            item.GetType() == typeof(ArmorItem) ||
+            item.GetType() == typeof(TrinketItem))
+        {
+            EquipmentItem ei = item as EquipmentItem;
+            if (ei.isEquipped)
+                mark.text = "E";
+            else
+                mark.text = "";
+        }
     }
 }

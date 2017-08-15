@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryPanelControl : MonoBehaviour {
 
-    public GameObject gridPrefab;                 // 物品格子的Prefab
+    public GameObject inventoryGridPrefab;           // 物品格子的Prefab
     public GameObject scrollList;           // 物品滚动列表
     public Image choiceFrame;               // 选择框. 默认不显示
     public List<InventoryGrid> grids;       // 物品列表    
@@ -20,46 +20,49 @@ public class InventoryPanelControl : MonoBehaviour {
 
     private void Start()
     {
-        InventoryManager.Instance.OnItemChanged += Inventory_OnItemChanged;        
+        InventoryManager.Instance.OnItemChanged += Inventory_OnItemChanged;
+        ReloadInventory();
     }
 
     private void Inventory_OnItemChanged()
     {
         Debug.Log("背包信息变化, 检查刷新");
-    }
-
-    // 检查是否变化, true=无变化, false= 有变化.
-    private bool CheckInventory()
-    {
-        if (grids.Count != InventoryManager.Instance.Count)
-            return false;
-        else
-        {
-            for(int i = 0; i < grids.Count; i++)
-            {
-                //
-            }
-        }
-        return false;
+        ReloadInventory();
     }
 
     // 重载背包
     private void ReloadInventory()
     {
-        
-    }
+        // 清空scrolllist中所有的子物体.
+        ClearScrollList();
 
-    
+        // 重新添加子物体
+        foreach (var pair in InventoryManager.Instance.inventory)
+        {
+            var newInventoryGrid = Instantiate(inventoryGridPrefab, scrollList.transform).GetComponent<InventoryGrid>();
+            //Item newItem = newInventoryGrid.GetComponent<InventoryGrid>().item;
+            //newItem = pair.Key;
+            newInventoryGrid.item = pair.Key;
+            grids.Add(newInventoryGrid);
+        }
+    }    
 
-    // 添加一个物品
-    private void AddItem()
-    {
-        var newObj = Instantiate<GameObject>(gridPrefab, scrollList.transform);
-        InventoryGrid grid = newObj.AddComponent<InventoryGrid>();
+    // 清空ScrollList里面的子物体
+    private void ClearScrollList()
+    {        
+        int childcount = scrollList.transform.childCount;
+        for(int i = 0; i < childcount; i++)
+        {
+            GameObject go = scrollList.transform.GetChild(i).gameObject;
+            Destroy(go);
+        }
 
+        // 清空物品列表 
+        grids.Clear();
     }
 
    /* #region filter function
+    * // 通过控制grid成员的active来控制显示.
     public void ShowEquipmentOnly()
     {
         foreach (var grid in grids)

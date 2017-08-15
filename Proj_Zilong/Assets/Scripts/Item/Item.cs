@@ -26,6 +26,7 @@ public class Item:IComparable {
     public string itemName;     // 名称
     public Image itemIcon;      // 图标
     public string itemDes;      // 物品描述
+    //public bool isUsable;       // 是否可以使用    
 
     public Item()
     {
@@ -34,9 +35,13 @@ public class Item:IComparable {
         itemName = "";
         itemIcon = null;
         itemDes = "";
+        //isUsable = false;
     }
 
-    public virtual void UseItem() { }
+    public virtual void UseItem()
+    {
+        Debug.Log("使用物品");
+    }
 
     public int CompareTo(object obj)
     {

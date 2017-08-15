@@ -14,6 +14,11 @@ public class EquipmentManager : MonoBehaviour {
     public TrinketItem trinket1;
     public TrinketItem trinket2;
 
+    public EquipmentGrid weaponSlot;       // 武器栏
+    public EquipmentGrid armorSlot;        // 护甲栏
+    public EquipmentGrid trinket1Slot;     // 饰品栏1
+    public EquipmentGrid trinket2Slot;     // 饰品栏2
+
     private void Awake()
     {
         if (instance == null)
@@ -29,6 +34,14 @@ public class EquipmentManager : MonoBehaviour {
         trinket2 = new TrinketItem();
     }
 
+    private void RefreshEquipment()
+    {
+        weaponSlot.equipmentItem = weapon;
+        armorSlot.equipmentItem = armor;
+        trinket1Slot.equipmentItem = trinket1;
+        trinket2Slot.equipmentItem = trinket2;
+    }
+
     public void EquipWeapon(WeaponItem desWeapon)
     {
         // 卸下原武器
@@ -36,6 +49,7 @@ public class EquipmentManager : MonoBehaviour {
         // 换武器
         weapon = desWeapon;
         weapon.isEquipped = true;
+        RefreshEquipment();
     }
 
     public void UnloadWeapon(WeaponItem desWeapon)
@@ -49,6 +63,7 @@ public class EquipmentManager : MonoBehaviour {
         {
             Debug.LogError("并未装备此武器");
         }
+        RefreshEquipment();
     }
 
     public void EquipArmor(ArmorItem desArmor)
@@ -56,6 +71,7 @@ public class EquipmentManager : MonoBehaviour {
         armor.isEquipped = false;
         armor = desArmor;
         armor.isEquipped = true;
+        RefreshEquipment();
     }
 
     public void UnloadArmor(ArmorItem desArmor)
@@ -69,6 +85,7 @@ public class EquipmentManager : MonoBehaviour {
         {
             Debug.LogError("并未装备此护甲!!!");
         }
+        RefreshEquipment();
     }
 
     public void EquipTrinket(TrinketItem desTrinket)
@@ -88,6 +105,7 @@ public class EquipmentManager : MonoBehaviour {
             trinket1 = desTrinket;
             trinket1.isEquipped = true;
         }
+        RefreshEquipment();
     }
 
     public void UnloadTrinket(TrinketItem desTrinket)
@@ -105,6 +123,7 @@ public class EquipmentManager : MonoBehaviour {
         {
             Debug.LogError("未装备该饰品!!!");
         }
+        RefreshEquipment();
     }
 
     public bool IsTrinketEquipped(TrinketItem trinket)

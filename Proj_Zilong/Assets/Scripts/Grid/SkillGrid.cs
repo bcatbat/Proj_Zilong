@@ -6,4 +6,7 @@ public class SkillGrid : Grid {
 
     // 只能挂载技能
     public Skill skill;
+
+#region MouseEvent
+    #endregion
 }

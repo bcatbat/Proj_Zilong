@@ -6,22 +6,33 @@ using System;
 
 [Serializable]
 public class Skill {
-    [SerializeField] private int skillID;         // id
-    [SerializeField] private string skillName;    // 名称
-    [SerializeField] private float skillCD;       // cd
-    [SerializeField] private Image skillIcon;     // 图标(命名等同于技能名)
+    public  int skillID;         // id
+    public string skillName;    // 名称
+    public float skillCD;       // cd
+    public Image skillIcon;     // 图标(命名等同于技能名)
 
-    [SerializeField] private List<Buff> m_OwnBuff;  // 给自己的buff/debuff
-    [SerializeField] private List<Buff> m_TarBuff;  // 给目标的buff/debuff
+    [SerializeField] private List<Buff> ownBuff;  // 给自己的buff/debuff
+    [SerializeField] private List<Buff> tarBuff;  // 给目标的buff/debuff
 
     private RoleInfo m_self;                        // 自身
     private RoleInfo[] m_targets;                   // 技能影响的目标们
+
+    public Skill()
+    {
+        skillID = 0;
+        skillName = "";
+        skillCD = float.MaxValue;
+        skillIcon = null;
+
+        ownBuff = new List<Buff>();
+        tarBuff = new List<Buff>();
+    }
 
     // 初始化   
 
     // 产生Buff:增加buff, 目标:自身
     public void AddBuff(RoleInfo self) {
-        foreach(Buff buff in m_OwnBuff)
+        foreach(Buff buff in ownBuff)
         {
             // 初始化buff中每个effect的方法
             foreach(var effect in buff.Effects)
@@ -36,7 +47,7 @@ public class Skill {
 
     // 产生buff:增加debuff, 目标:作用目标
     public void AddDebuf(RoleInfo target) {
-        foreach (var debuff in m_TarBuff)
+        foreach (var debuff in tarBuff)
         {
             // 初始化debuff中每个effect的方法
             foreach(var effect in debuff.Effects)

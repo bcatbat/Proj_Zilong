@@ -11,10 +11,10 @@ public class Grid : MonoBehaviour {
     [SerializeField]protected Text mark;              // 角标
     [SerializeField]protected Text cdTick;            // 冷却时间    
 #endregion
-    private GameObject draggingIcon;    // 拖拽图标
+    public GameObject draggingIcon;    // 拖拽图标
 
     // todo:初始化
-    protected void Awake()
+    protected virtual void Awake()
     {
         MouseEventRegister();
         mark.text = "";
@@ -43,7 +43,7 @@ public class Grid : MonoBehaviour {
 
     protected virtual void EventListener_OnMouseDrop(GameObject gb)
     {
-        Debug.Log("Grid Event: Drop "+gb.name);
+        // 默认什么都不接收.
     }
 
     protected virtual void EventListener_OnMouseEndDrag(GameObject gb)
@@ -108,12 +108,12 @@ public class Grid : MonoBehaviour {
 
     protected virtual void EventListener_OnMouseExit(GameObject gb)
     {
-        DescriptionManager.Instance.Hide();
+        HideDescription();
     }
 
     protected virtual void EventListener_OnMouseEnter(GameObject gb)
     {
-        DescriptionManager.Instance.Show(icon, "<size=50>Hello</size>");
+        ShowDescription();        
     }
 
     protected virtual void EventListener_OnMouseRightClick(GameObject gb)
@@ -184,23 +184,16 @@ public class Grid : MonoBehaviour {
     }
 #endregion 
 
-    // todo:显示数量标记. 非装备品可调用
-    public void ShowNumber()
-    {
-
-    }     
-
     // todo:显示描述框
-    private void ShowDescription()
-    {        
-        //DescriptionCtrl.Instance.SetText(item.itemDes);
-        //DescriptionCtrl.Instance.Show(itemIcon);
+    protected virtual void ShowDescription()
+    {
+        DescriptionManager.Instance.Show(icon, "<size=50>Hello</size>");
     }
 
     // todo:隐藏描述框
-    private void HideDescription()
+    protected virtual void HideDescription()
     {
-        //DescriptionCtrl.Instance.Hide();
+        DescriptionManager.Instance.Hide();
     }
 
     // todo: 使用物品
@@ -212,107 +205,6 @@ public class Grid : MonoBehaviour {
         //if (mark != null)
         //{
         //    ShowNumber();
-        //}
-    }    
-
-    // todo:装备武器
-    private void SetupWeapon()
-    {       
-        //// 武器
-        //if (item.GetType() == typeof(WeaponItem))
-        //{
-        //    WeaponItem weapon = EquipmentControl.Instance.weaponItem as WeaponItem;
-
-        //    // 武器槽中是当前物品:卸下
-        //    if(weapon == item)
-        //    {
-        //        //Debug.Log("卸下武器!");
-        //        EquipmentControl.Instance.UnloadWeapon(item as WeaponItem);
-        //        //WipeEquipedMark();
-        //    }
-        //    else // 否则,武器槽中物品替换为当前物品
-        //    {
-        //        //Debug.Log("装备武器!");
-        //        EquipmentControl.Instance.EquipWeapon(item as WeaponItem);
-        //        SetupEquipedMark();
-        //    }            
-        //}
-    }
-
-    // todo:装备护甲
-    private void SetupArmor()
-    {
-        //// 护甲
-        //if (item.GetType() == typeof(ArmorItem))
-        //{
-        //    ArmorItem armor = EquipmentControl.Instance.armorItem as ArmorItem;
-
-        //    if(armor == item)
-        //    {
-        //        //Debug.Log("卸下护甲");
-        //        EquipmentControl.Instance.UnloadArmor(item as ArmorItem);
-        //        //WipeEquipedMark();
-        //    }
-        //    else
-        //    {
-        //        //Debug.Log("装备护甲!");
-        //        EquipmentControl.Instance.EquipArmor(item as ArmorItem);
-        //        SetupEquipedMark();
-        //    }            
-        //}
-    }
-
-    // todo:装备饰品
-    private void SetupTrinket()
-    {
-        // 饰品
-        //if (item.itemType == ItemType.trinket)
-        //{
-        //    if(EquipmentControl.Instance.IsTrinketEquiped(item as TrinketItem))
-        //    {
-        //        // 装备栏中已有该物品
-        //        //Debug.Log("卸下饰品");
-        //        EquipmentControl.Instance.UnloadTrinket(item as TrinketItem);
-        //        //WipeEquipedMark();
-        //    }
-        //    else
-        //    {
-        //        //Debug.Log("装备饰品");
-        //        EquipmentControl.Instance.EquipTrinket(item as TrinketItem);
-        //        SetupEquipedMark();
-        //    }
-        //}
-    }
-
-    // todo:显示装备标记
-    public void SetupEquipedMark()
-    {
-        //if (itemNum == 1)
-        //{
-        //    mark.text = "E";
-        //}else if (itemNum > 1)
-        //{
-        //    Debug.LogError("错误:装备物品无法堆叠!!");
-        //}else
-        //{
-        //    Debug.LogError("错误:物品不存在!!");
-        //}
-    }
-
-    // todo:擦去装备标记
-    public void WipeEquipedMark()
-    {
-        //if (itemNum == 1)
-        //{
-        //    mark.text = "";
-        //}
-        //else if (itemNum > 1)
-        //{
-        //    Debug.LogError("错误:装备物品无法堆叠!!");
-        //}
-        //else
-        //{
-        //    Debug.LogError("错误:物品不存在!!");
         //}
     }
 }

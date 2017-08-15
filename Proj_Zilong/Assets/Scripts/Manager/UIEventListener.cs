@@ -54,8 +54,12 @@ public class UIEventListener : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        if (OnMouseBeginDrag != null)
-            OnMouseBeginDrag(gameObject);
+        // 只允许用左键拖拽
+        if (eventData.pointerId == -1)
+        {
+            if (OnMouseBeginDrag != null)
+                OnMouseBeginDrag(gameObject);
+        }
     }
 
     public void OnDrop(PointerEventData eventData)

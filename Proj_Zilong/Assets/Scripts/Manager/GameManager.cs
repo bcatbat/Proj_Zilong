@@ -27,10 +27,12 @@ public class GameManager : MonoBehaviour {
         if(mainMenuPanel.activeSelf == false)
         {
             mainMenuPanel.SetActive(true);
+            //Time.timeScale = 0;
         }
         else
         {
             mainMenuPanel.SetActive(false);
+            //Time.timeScale = 1f;
         }
     }
 

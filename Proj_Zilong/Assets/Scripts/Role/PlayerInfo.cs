@@ -5,24 +5,41 @@ using UnityEngine;
 public class PlayerInfo : RoleInfo {
 
     private static PlayerInfo m_instance;   // 单例
+    public static PlayerInfo Instance{get {return m_instance;}}
 
     private int m_UpExp;                // 经验上限
     private int m_Exp;                  // 当前经验
 
-    public WeaponItem WeaponSlots;      // 武器槽
-    public ArmorItem ArmorSlots;        // 护甲槽
-    public TrinketItem TrinketSlots1;   // 饰品槽1
-    public TrinketItem TrinketSlots2;   // 饰品槽2... 后续扩展数量
+    private EquipmentItem weaponSlots;      // 武器槽
+    private EquipmentItem armorSlots;        // 护甲槽
+    private EquipmentItem trinketSlots1;   // 饰品槽1
+    private EquipmentItem trinketSlots2;   // 饰品槽2... 后续扩展数量
 
-    public static PlayerInfo Instance{get {return m_instance;}}
-    public int UpExp { get { return m_UpExp; } set { this.m_UpExp = value; } }
-    public int Exp { get { return m_Exp; } set { this.m_Exp = value; } }
+    private float regenTick = float.MaxValue;        // 回复计时器
+    
+    public int UpExp {
+        get {
+            m_UpExp = 100 * level;
+            return m_UpExp;
+        }
+    }
+    public int Exp {
+        get { return m_Exp; }
+        set {             
+            this.m_Exp = value;
+            if(m_Exp >= UpExp)
+            {
+                m_Exp = m_Exp - UpExp;  // 经验重置
+                level++;    // 升级
+            }
+        }
+    }
 
     public override Stats ActualStats
     {
         get
         {
-            actualStats = basicStats + additionStats + permanentStats;
+            actualStats = BasicStats + AdditionStats + PermanentStats+TempStats;
             return actualStats;
         }
     }
@@ -31,6 +48,12 @@ public class PlayerInfo : RoleInfo {
     {
         get
         {
+            basicStats.UpHp = 100 + level * (level - 1);
+            basicStats.UpMp = 50 + 20 * level;
+            basicStats.Atk = 10 + (level - 2) * level / 10;
+            basicStats.Def = 10 + (level - 2) * level / 10;
+            basicStats.Spd = 10 + (level - 2) * level / 10;
+            basicStats.Luk = 10 + (level - 2) * level / 10;
             return basicStats;
         }
     }
@@ -39,11 +62,16 @@ public class PlayerInfo : RoleInfo {
     {
         get
         {
+            weaponSlots = EquipmentManager.Instance.weaponSlot.equipmentItem;
+            armorSlots = EquipmentManager.Instance.armorSlot.equipmentItem;
+            trinketSlots1 = EquipmentManager.Instance.trinket1Slot.equipmentItem;
+            trinketSlots2 = EquipmentManager.Instance.trinket2Slot.equipmentItem;
+
             additionStats =
-                WeaponSlots.AttachStats +
-                ArmorSlots.AttachStats +
-                TrinketSlots1.AttachStats +
-                TrinketSlots2.AttachStats;
+                weaponSlots.AttachStats +
+                armorSlots.AttachStats +
+                trinketSlots1.AttachStats +
+                trinketSlots2.AttachStats;
             return additionStats;
         }
     }
@@ -60,17 +88,46 @@ public class PlayerInfo : RoleInfo {
         }
     }
 
+    private void LevelUp()
+    {
+        level++;
+        hp = ActualStats.UpHp;
+    }
+
     private void Awake()
     {
         m_instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    protected override void Start()
     {
-        country = RoleBelonging.Shu;
+        base.Start();
+        country = RoleBelonging.Shu;    // 归属
+        allyCountry = RoleBelonging.Wu; // 友军
+        //Debug.Log(BasicStats);
+
+        // 初始化数值
+        Hp = BasicStats.UpHp;
+        Mp = BasicStats.UpMp;
     }
     // buff生效时,更新监视图标
 
     // debuff生效时,更新监视图标
+
+    protected override void Update()
+    {
+        base.Update();
+        regenTick += Time.deltaTime;
+        MpRegen(2);
+    }
+
+    private void MpRegen(int rate)
+    {
+        if (regenTick > 2.0f)
+        {
+            Mp += rate;
+            regenTick = 0f;
+        }
+    }
 }

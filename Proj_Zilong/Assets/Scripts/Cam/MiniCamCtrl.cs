@@ -29,6 +29,9 @@ public class MiniCamCtrl : MonoBehaviour {
 
     private void FollowTarget(float deltatime)
     {
-        transform.position = m_player.position + m_offset;
+        if (m_player != null)
+        {
+            transform.position = m_player.position + m_offset;
+        }
     }
 }

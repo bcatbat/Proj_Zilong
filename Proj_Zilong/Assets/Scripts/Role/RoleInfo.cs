@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public struct Stats
 {
     private int upHp;   // 生命上限
-    private int upMp;   // 能量上线
+    private int upMp;   // 能量上限
     private int atk;    // 攻击力
     private int def;    // 防御力
     private int spd;    // 移动速度
@@ -50,19 +50,35 @@ public struct Stats
             s1.Luk - s2.Luk
             );
     }
+    public override string ToString()
+    {
+        return "UpHp:" + upHp + " UpMp:" + upMp + " Atk:" + atk + " Def:" + def + " Spd:" + spd + " Luk:" + luk;
+    }
+}
+
+public enum RoleBelonging
+{
+    other,      // 其他-未知
+    Shu,        // 蜀汉
+    Wu,         // 东吴
+    Wei,        // 曹魏    
 }
 
 public class RoleInfo : MonoBehaviour {    
     [Header("Basic Info")]
     [SerializeField] protected int id;                   // ID
     [SerializeField] protected string roleName;          // 名称
-    [SerializeField] protected int level;                // 等级
-    [SerializeField] protected RoleBelonging country;    // 势力
+    [SerializeField] protected int level=1;                // 等级
+    public RoleBelonging country;                       // 势力
+    public RoleBelonging allyCountry;                   // 友军
 
     [SerializeField] protected int hp;                   // 当前-生命
     [SerializeField] protected int mp;                   // 当前-能量
 
     [SerializeField] protected Image portrait;           // 头像
+
+    public GameObject hpBarPrefab;                      // 随身血条预制
+    private GameObject hpBar;                           // 随身血条
 
     [Header("Enable")]
     [SerializeField] protected bool isControllable = true;  // 是否可控制. 用于ai控制, 或者是控制技能
@@ -71,7 +87,7 @@ public class RoleInfo : MonoBehaviour {
     [SerializeField] protected float idleDuration;          // 发呆时长
 
     [Header("Target")]
-    [SerializeField] protected Transform target;            // 目标位置
+    public Transform target;            // 目标位置
     [SerializeField] protected Transform guardTarget;       // 护卫/跟随目标
     [SerializeField] protected Transform orderTarget;       // 指令目标
     [SerializeField] private Transform captain;             // 队长
@@ -83,7 +99,7 @@ public class RoleInfo : MonoBehaviour {
     [SerializeField] protected Stats tempStats;          // 临时增加的属性 
 
     [Header("Range")]
-    [SerializeField] private float guardRange = 30f;
+    [SerializeField] private float guardRange = 10f;
     [SerializeField] private float skillRange = 5f;
     [SerializeField] private float slashRange = 2f;
     [SerializeField] private float dodgeRange = .8f;
@@ -100,7 +116,17 @@ public class RoleInfo : MonoBehaviour {
 
     public string Name { get { return roleName; } set { this.roleName = value; } }
 
-    public int Level { get { return level; } set { this.level = value; } }
+    public int Level {
+        get { return level; }
+        set
+        {
+            this.level = value;
+            if (value <= 0)
+                this.level = 1;
+            else if (value > 50)
+                this.level = 50;
+        }
+    }
 
     public bool IsControllable { get { return isControllable; } set { this.isControllable = value; } }
 
@@ -126,11 +152,12 @@ public class RoleInfo : MonoBehaviour {
         get { return hp; }
         set {
             this.hp = value;
-            if (hp > actualStats.UpHp)
-                hp = actualStats.UpHp;
+            if (hp > ActualStats.UpHp)
+                hp = ActualStats.UpHp;
             if (hp <= 0)
             {
                 hp = 0;
+                Die();
             }     
         }
     }
@@ -139,45 +166,44 @@ public class RoleInfo : MonoBehaviour {
         get { return mp; }
         set {
             this.mp = value;
-            if (mp > actualStats.UpMp)
-                mp = actualStats.UpMp;
+            if (mp > ActualStats.UpMp)
+                mp = ActualStats.UpMp;
             if (mp <= 0)
                 mp = 0;            
         }
     }
 
-    public enum RoleBelonging
-    {
-        Shu,        // 蜀汉
-        Wu,         // 东吴
-        Wei,        // 曹魏
-        Other       // 其他
-    }
-
+    // 实时属性值
     public virtual Stats ActualStats
     {
-        get { return actualStats; }
-        set { actualStats = value;}
+        get {
+            actualStats = BasicStats + AdditionStats + PermanentStats + TempStats;
+            return actualStats; }
+        set { actualStats = value; }
     }
 
+    // 基础属性值(成长)
     public virtual Stats BasicStats
     {
         get{return basicStats;}
         set {basicStats = value; }
     }
 
+    // 额外属性值(装备)
     public virtual Stats AdditionStats
     {
         get{return additionStats; }
         set { additionStats = value; }
     }
 
+    // 永久增加属性值(补品)
     public virtual Stats PermanentStats
     {
         get{return permanentStats; }
         set{ permanentStats = value;}
     }
 
+    // 临时属性值(Buff)
     public virtual Stats TempStats
     {
         get { return tempStats; }
@@ -189,23 +215,43 @@ public class RoleInfo : MonoBehaviour {
         // 升级的数值从文件读取, 或者是内嵌到代码中.
     }
 
-    private void Start()
+    protected virtual void Die()
     {
+        IsAlive = false;
+        Debug.Log("角色死亡");
+        Destroy(hpBar,1f);
+        Destroy(this.gameObject,1f);
+        
+    }
+
+    protected virtual void Start()
+    {
+        // 池
         buffPool = new List<Buff>();
         debuffPool = new List<Buff>();
 
+        // 代理
         roleAgent = GetComponent<NavMeshAgent>();   // 还得初始化agent的速度.
 
+        // 目标
         target = null;
         captain = null;
         guardTarget = null;
         orderTarget = null;
+
+        // 初始化一个血条
+        InitHpBar();
     }   
 
     private void FixedUpdate()
     {
         RunBuff(Time.deltaTime);
         RunDebuff(Time.deltaTime);
+    }
+    protected virtual void Update()
+    {
+        HpBarFollow();
+        HpBarRefresh();
     }
 
     // 向自身buff池中添加buff
@@ -270,5 +316,51 @@ public class RoleInfo : MonoBehaviour {
                 effect.EffectRunning(this, deltatime);
             }
         }        
-    }   
+    }
+
+    // 受伤
+    public void Hurt(int atkpower)
+    {
+        float ap = atkpower;
+        //Debug.Log(ap);
+        float hurt = ap * (1 + Mathf.Log10(ap / ActualStats.Def));
+        //Debug.Log(hurt);
+        Hp -= (int)hurt;
+    }
+
+    // 初始化血条
+    private void InitHpBar()
+    {
+        //Debug.Log(hpBarPrefab.name);
+        if (hpBarPrefab != null)
+        {
+            hpBar = Instantiate(hpBarPrefab);
+            hpBar.name = roleName+"hpBar";
+            hpBar.transform.parent = ShotCutManager.Instance.transform;
+            HpBarFollow();
+        }
+        else
+        {
+            Debug.Log(roleName+ "未开启血条");
+        }
+    }
+
+    private void HpBarFollow()
+    {
+        if(hpBarPrefab!=null)
+            hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position);
+    }
+
+    private void HpBarRefresh()
+    {
+        if (hpBarPrefab != null)
+        {
+            Slider slider = hpBar.GetComponent<Slider>();
+            if (slider == null)
+                Debug.Log("错误.");
+            slider.minValue = 0f;
+            slider.maxValue = ActualStats.UpHp;
+            slider.value = Hp;
+        }
+    }
 }

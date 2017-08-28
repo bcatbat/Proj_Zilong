@@ -63,7 +63,8 @@ public class CamFollower : MonoBehaviour {
             InitCamMode(camMode);
             prevMode = camMode;
         }
-        FollowTarget(Time.deltaTime,camMode);
+        if(m_Target!=null)
+            FollowTarget(Time.deltaTime,camMode);
 
         if (camMode == CamMode.Tps)
         {
@@ -75,6 +76,7 @@ public class CamFollower : MonoBehaviour {
     void FollowTarget(float deltaTime,CamMode mode)
     {
         // 跟踪玩家
+        
         Vector3 tarPos = new Vector3(m_Target.position.x, m_Pivot.localPosition.y, m_Target.position.z);
         m_Pivot.localPosition = Vector3.Lerp(m_Pivot.localPosition, tarPos, m_smooth*deltaTime);
     }      

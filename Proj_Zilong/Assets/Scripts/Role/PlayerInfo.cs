@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerInfo : RoleInfo {
 
     private static PlayerInfo m_instance;   // 单例
-    public static PlayerInfo Instance{get {return m_instance;}}
+    public static PlayerInfo Instance{get {return m_instance;}}    
 
-    private int m_UpExp;                // 经验上限
-    private int m_Exp;                  // 当前经验
+    [Header("Exp")]
+    [SerializeField]private int m_UpExp = 100;                // 经验上限
+    [SerializeField]private int m_Exp =0;                  // 当前经验
 
     private EquipmentItem weaponSlots;      // 武器槽
     private EquipmentItem armorSlots;        // 护甲槽
@@ -30,7 +31,7 @@ public class PlayerInfo : RoleInfo {
             if(m_Exp >= UpExp)
             {
                 m_Exp = m_Exp - UpExp;  // 经验重置
-                level++;    // 升级
+                LevelUp();
             }
         }
     }
@@ -92,6 +93,7 @@ public class PlayerInfo : RoleInfo {
     {
         level++;
         hp = ActualStats.UpHp;
+      //  Debug.Log(UpExp + "  " + Exp);
     }
 
     private void Awake()

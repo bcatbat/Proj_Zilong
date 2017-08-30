@@ -29,10 +29,18 @@ public class DescriptionManager : MonoBehaviour {
         Hide(); // 初始隐藏
     }
 
-    // 显示. 带参数
     public void Show(Image tarImg,string desc)
     {        
+        // tarImg: ui图标; desc:描述文字;
         SetDescriptionFramePosition(tarImg);
+        this.descriptionText.text = desc;
+        descriptionFrame.SetActive(true);
+    }
+
+   public void Show(Transform tar, string desc)
+    {
+        // tar:物体(非ui); desc:描述文字
+        SetDescriptionFramePosition(tar);
         this.descriptionText.text = desc;
         descriptionFrame.SetActive(true);
     }
@@ -66,4 +74,18 @@ public class DescriptionManager : MonoBehaviour {
 
         descriptionFrame.transform.position = new Vector3(frameX, frameY, 0f);
     }    
+
+    private void SetDescriptionFramePosition(Transform tar)
+    {
+        Vector3 worldPos = tar.position;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+
+        float frameWidth = descriptionFrame.GetComponent<Image>().rectTransform.sizeDelta.x;
+        float frameHeight = descriptionFrame.GetComponent<Image>().rectTransform.sizeDelta.y;
+
+        float frameX = screenPos.x + frameWidth / 2;
+        float frameY = screenPos.y + frameHeight / 2;
+
+        descriptionFrame.transform.position = new Vector3(frameX,frameY,0);
+    }
 }

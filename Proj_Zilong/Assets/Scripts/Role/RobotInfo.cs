@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RobotInfo : RoleInfo {
+    // shoot相关
+    [Header("Shoot Action")]
+    public Transform gunL; // 左枪口
+    public Transform gunR; // 右枪口
+    public GameObject bulletPrefab; // 子弹
+    public float atkTick = float.MaxValue;
+    public float gcdTime = 0.1f;
+    public float bulletVelocity = 5f;
+    public bool isLeftGun = true;
 
     public override Stats BasicStats
     {
@@ -33,5 +42,5 @@ public class RobotInfo : RoleInfo {
 
         Hp = BasicStats.UpHp;
         Mp = BasicStats.UpMp;
-    }
+    }    
 }

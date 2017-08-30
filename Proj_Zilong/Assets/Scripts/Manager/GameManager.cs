@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
         {
             mainMenuPanel.SetActive(false);
             //Time.timeScale = 1f;
+            DescriptionManager.Instance.Hide();
         }
     }
 

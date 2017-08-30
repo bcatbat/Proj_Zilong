@@ -30,7 +30,7 @@ public class InventoryPanelControl : MonoBehaviour {
         ReloadInventory();
     }
 
-    // 重载背包
+    // todo:重载背包. 过于繁杂,待修正
     private void ReloadInventory()
     {
         // 清空scrolllist中所有的子物体.

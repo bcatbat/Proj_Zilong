@@ -64,21 +64,27 @@ public enum RoleBelonging
     Wei,        // 曹魏    
 }
 
-public class RoleInfo : MonoBehaviour {    
+public class RoleInfo : MonoBehaviour {
     [Header("Basic Info")]
-    [SerializeField] protected int id;                   // ID
-    [SerializeField] protected string roleName;          // 名称
-    [SerializeField] protected int level=1;                // 等级
+    [SerializeField] protected int id;                  // ID
+    [SerializeField] protected string roleName;         // 名称
+    [SerializeField] protected int level=1;             // 等级
     public RoleBelonging country;                       // 势力
     public RoleBelonging allyCountry;                   // 友军
 
-    [SerializeField] protected int hp;                   // 当前-生命
-    [SerializeField] protected int mp;                   // 当前-能量
+    [SerializeField] protected int hp;                  // 当前-生命
+    [SerializeField] protected int mp;                  // 当前-能量    
+    [SerializeField] protected float baseSpeed = 4.5f;  // 角色基础移动速度
+    protected float moveSpeed;                          // 当前-移动速度
+    [SerializeField] protected int baseExp = 10;        // 击杀经验
 
     [SerializeField] protected Image portrait;           // 头像
 
+    [Header("Prefabs")]
     public GameObject hpBarPrefab;                      // 随身血条预制
     private GameObject hpBar;                           // 随身血条
+    public GameObject damagePopup;                      // 浮动伤害数字
+    public GameObject dropoutPrefab;                      // 掉落的物品
 
     [Header("Enable")]
     [SerializeField] protected bool isControllable = true;  // 是否可控制. 用于ai控制, 或者是控制技能
@@ -87,10 +93,10 @@ public class RoleInfo : MonoBehaviour {
     [SerializeField] protected float idleDuration;          // 发呆时长
 
     [Header("Target")]
-    public Transform target;            // 目标位置
-    [SerializeField] protected Transform guardTarget;       // 护卫/跟随目标
+    [SerializeField]protected Transform target;            // 目标位置
+    [SerializeField] protected Vector3 guardTarget;       // 护卫/跟随目标
     [SerializeField] protected Transform orderTarget;       // 指令目标
-    [SerializeField] private Transform captain;             // 队长
+    [SerializeField] protected Transform captain;             // 队长
     
     [SerializeField] protected Stats actualStats;        // 实时属性值
     [SerializeField] protected Stats basicStats;         // 基础属性值
@@ -109,6 +115,7 @@ public class RoleInfo : MonoBehaviour {
 
     protected Skill[] skills;       // 拥有技能-skillinfo.cs
 
+    [Header("Pool")]
     public List<Buff> buffPool;      // buff池. 相同的合并/刷新
     public List<Buff> debuffPool;    // debuff池. 
 
@@ -136,7 +143,7 @@ public class RoleInfo : MonoBehaviour {
     public float IdleDuration { get { return idleDuration; } }
 
     public Transform Target { get { return target; } set { this.target = value; } }
-    public Transform GuardTarget { get { return guardTarget; } }
+    public Vector3 GuardTarget { get { return guardTarget; } set { this.guardTarget = value; } }
     public Transform OrderTarget { get { return orderTarget; } set { orderTarget = value; } }
 
     public float GuardRange { get { return guardRange; } }
@@ -171,6 +178,16 @@ public class RoleInfo : MonoBehaviour {
             if (mp <= 0)
                 mp = 0;            
         }
+    }
+
+    public virtual int KillExp
+    {
+        get { return baseExp + level / 5; }
+    }
+
+    public float MoveSpeed
+    {
+        get { moveSpeed =  baseSpeed * ((float)ActualStats.Spd / 1000 + 1); return moveSpeed; }
     }
 
     // 实时属性值
@@ -215,15 +232,30 @@ public class RoleInfo : MonoBehaviour {
         // 升级的数值从文件读取, 或者是内嵌到代码中.
     }
 
-    protected virtual void Die()
+    // 死亡
+    public virtual void Die()
     {
+        // 经验值
+        if (country != PlayerInfo.Instance.country && country != PlayerInfo.Instance.allyCountry)
+        {
+            PlayerInfo.Instance.Exp += KillExp;
+        }
+
+        // 掉落
+        Dropout();
+
+        // 功能清理
         IsAlive = false;
-        Debug.Log("角色死亡");
-        Destroy(hpBar,1f);
-        Destroy(this.gameObject,1f);
-        
+        IsControllable = false;
+        Debug.Log(this.gameObject.name + "死亡");
+
+        // 消除组件
+        Destroy(hpBar);
+        GetComponent<Collider>().enabled = false;
+        Destroy(this.gameObject,1f);        
     }
 
+    #region System
     protected virtual void Start()
     {
         // 池
@@ -232,27 +264,36 @@ public class RoleInfo : MonoBehaviour {
 
         // 代理
         roleAgent = GetComponent<NavMeshAgent>();   // 还得初始化agent的速度.
+        if (roleAgent != null)
+            roleAgent.speed = MoveSpeed;
 
         // 目标
         target = null;
         captain = null;
-        guardTarget = null;
+        guardTarget = transform.position;       // 当前位置为默认防御点 
         orderTarget = null;
 
         // 初始化一个血条
         InitHpBar();
-    }   
+
+        // 显示一下各个范围
+        //DrawRange(GuardRange);
+        //DrawRange(SlashRange);
+        //DrawRange(skillRange);
+    }
 
     private void FixedUpdate()
     {
         RunBuff(Time.deltaTime);
         RunDebuff(Time.deltaTime);
     }
+
     protected virtual void Update()
     {
         HpBarFollow();
         HpBarRefresh();
     }
+    #endregion
 
     // 向自身buff池中添加buff
     public void AddBuff(Buff buff)
@@ -326,6 +367,17 @@ public class RoleInfo : MonoBehaviour {
         float hurt = ap * (1 + Mathf.Log10(ap / ActualStats.Def));
         //Debug.Log(hurt);
         Hp -= (int)hurt;
+
+        // 伤害浮动
+        if(damagePopup != null)
+        {
+            GameObject pd = Instantiate(damagePopup, transform.position, Quaternion.identity);
+            pd.GetComponent<DamagePopup>().damageValue = (int)hurt;
+        }
+        else
+        {
+            Debug.Log("没有浮动伤害组件");
+        }
     }
 
     // 初始化血条
@@ -336,7 +388,8 @@ public class RoleInfo : MonoBehaviour {
         {
             hpBar = Instantiate(hpBarPrefab);
             hpBar.name = roleName+"hpBar";
-            hpBar.transform.parent = ShotCutManager.Instance.transform;
+            hpBar.transform.parent = ShotCutManager.Instance.transform;            
+            hpBar.transform.SetAsFirstSibling();
             HpBarFollow();
         }
         else
@@ -347,13 +400,13 @@ public class RoleInfo : MonoBehaviour {
 
     private void HpBarFollow()
     {
-        if(hpBarPrefab!=null)
+        if(hpBarPrefab!=null && hpBar!=null)
             hpBar.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(transform.position);
     }
 
     private void HpBarRefresh()
     {
-        if (hpBarPrefab != null)
+        if (hpBarPrefab != null && hpBar!=null)
         {
             Slider slider = hpBar.GetComponent<Slider>();
             if (slider == null)
@@ -362,5 +415,115 @@ public class RoleInfo : MonoBehaviour {
             slider.maxValue = ActualStats.UpHp;
             slider.value = Hp;
         }
+    }
+
+    // 画圆. 范围指示用
+    private void DrawRange(float radius)
+    {
+        float theta_scale = 0.1f;
+        int size = (int)((2* Mathf.PI) / theta_scale);
+
+        LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+        // material
+        lineRenderer.startColor = Color.blue;
+        lineRenderer.endColor = Color.blue;
+        lineRenderer.startWidth = 0.2f;
+        lineRenderer.endWidth = 0.2f;
+        lineRenderer.positionCount = size;
+
+        int i = 0;
+        for(float theta = 0; theta<2*Mathf.PI;theta += theta_scale)
+        {
+            float x = radius * Mathf.Cos(theta);
+            float y = radius * Mathf.Sin(theta);
+
+            Vector3 pos = new Vector3(x, y, 0);
+            if (i < size)
+                lineRenderer.SetPosition(i, pos);
+            i += 1;
+        }
+    }
+    
+    //  扇形区域碰撞检测. angle-正面扇形角度,accurary-扫描精度(几根射线)
+    public bool Look(float angle, float accuracy)
+    {
+        float rotatePerSeconds = 90f;
+        // float accuracy = 3f;
+        //float angle = 360f;
+        float subAngle = angle / accuracy;
+
+        for (int i = 0; i < accuracy; i++)
+        {
+            if (LookAround(Quaternion.Euler(
+                0,
+                -angle / 2 + i * subAngle + Mathf.Repeat(rotatePerSeconds * Time.time, subAngle),
+                0)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool LookAround(Quaternion eulerAnger)
+    {
+        Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), eulerAnger * transform.forward * GuardRange, Color.blue);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), eulerAnger * transform.forward, out hit, GuardRange))
+        {
+            //   RoleInfo ri = hit.collider.gameObject.GetComponent<RoleInfo>();
+            RoleInfo ri = hit.collider.GetComponent<RoleInfo>();
+            //if(ri!=null)
+            //    Debug.Log(ri.name);
+
+            if (ri != null)
+            {
+                if (ri.country != country && ri.country != allyCountry)
+                {
+                    //Debug.Log(true);
+                    if(Target == null)
+                        Target = ri.transform;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // todo:物品掉落
+    void Dropout()
+    {
+        if(dropoutPrefab != null)
+        {
+            Debug.Log("有掉落");
+            // todo: test
+            GameObject dp =  Instantiate(dropoutPrefab, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
+            Item di = dp.GetComponent<DropoutGrid>().item;
+            di.itemID = 1;
+            di.itemName = "包子";
+            di.itemDes = "吃";
+            dp.GetComponent<Rigidbody>().AddForce(RandomDirection()*100);
+
+            dp = Instantiate(dropoutPrefab, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
+            di = dp.GetComponent<DropoutGrid>().item;
+            di.itemID = 3;
+            di.itemName = "气血丹";
+            di.itemDes = "吃吃看";
+            dp.GetComponent<Rigidbody>().AddForce(RandomDirection() * 100);
+        }
+        else
+        {
+            Debug.Log("无掉落..");
+        }        
+    }
+    // todo:从[掉落列表]中获取应该掉落的物品 
+
+    // 随机方向...↖,↗
+    static Vector3 RandomDirection()
+    {
+        Vector3 v = new Vector3();
+        v.y = 0;
+        v.x = Random.Range(-1f, 1f);
+        v.z = Random.Range(-1f, 1f);
+        return v.normalized;
     }
 }

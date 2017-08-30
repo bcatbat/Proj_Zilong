@@ -16,8 +16,7 @@ public class PlayerCtrl : MonoBehaviour {
 
     // move
     private float h;
-    private float v;
-    private float move_speed = 5f;    
+    private float v;    
     private Vector3 moveTar;
 
     // atk
@@ -27,17 +26,19 @@ public class PlayerCtrl : MonoBehaviour {
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();        
-    }
-		
+    }    
+
     // 每帧更新
-	void FixedUpdate () {
-        //MoveByKey();
-        MoveByMouse();
+    void FixedUpdate () {
+        if (PlayerInfo.Instance.IsControllable)
+        {
+            //MoveByKey();
+            MoveByMouse();
 
-        atkTick += Time.deltaTime;
-        //Debug.Log(atkTick);
-        Shot();
-
+            atkTick += Time.deltaTime;
+            //Debug.Log(atkTick);
+            Shot();
+        }
 	}    
 
     
@@ -55,6 +56,7 @@ public class PlayerCtrl : MonoBehaviour {
 
         // 移动位置(h,0,v)
         Vector3 curPos = transform.position;
+        float move_speed = PlayerInfo.Instance.MoveSpeed;
         Vector3 tarPos = curPos + new Vector3(h, 0, v).normalized * move_speed*Time.deltaTime;
         rb.MovePosition(tarPos);
 
@@ -98,6 +100,7 @@ public class PlayerCtrl : MonoBehaviour {
         Vector3 direction = moveTar - curPos;
         if (direction.magnitude > 0.1f)
         {
+            float move_speed = PlayerInfo.Instance.MoveSpeed;
             Vector3 tarPos = curPos + direction.normalized * move_speed * Time.deltaTime;            
             rb.MovePosition(tarPos);
             rb.rotation = Quaternion.LookRotation(direction);
@@ -149,17 +152,18 @@ public class PlayerCtrl : MonoBehaviour {
 
     void CreateBullet()
     {
-        // 消耗气力
-        if (PlayerInfo.Instance.Mp < 5) {
-            Debug.Log("没力气了");
-            return;
-        }
-        PlayerInfo.Instance.Mp -= 5;
+        //// 消耗气力
+        //if (PlayerInfo.Instance.Mp < 5) {
+        //    Debug.Log("没力气了");
+        //    return;
+        //}
+        //PlayerInfo.Instance.Mp -= 2;
 
         GameObject bullet = Instantiate(bulletPrefab, gunPos.position, new Quaternion());
         // 归属
         BulletControl bc = bullet.GetComponent<BulletControl>();
         bc.country = PlayerInfo.Instance.country;
+        bc.allyCountry = PlayerInfo.Instance.allyCountry;
 
         // 威力
         bc.atk = PlayerInfo.Instance.ActualStats.Atk;

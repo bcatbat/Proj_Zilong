@@ -14,6 +14,11 @@ public class ShotcutGrid : Grid {
         item = new Item();  //默认,id=0,空, todo:特别设定
     }
 
+    private void Start()
+    {
+        InventoryManager.Instance.OnItemChanged += Refresh;
+    }
+
     #region MouseEvent
     // 大部分接收...接收物品栏,技能栏,快捷栏. 仅接受可以使用的
     protected override void EventListener_OnMouseDrop(GameObject gb)
@@ -177,12 +182,15 @@ public class ShotcutGrid : Grid {
     public override void UseItem()
     {
         // 使用品
-        if (InventoryManager.Instance.ContainsItem(item) && InventoryManager.Instance[item] > 0)
+        if (InventoryManager.Instance.ContainsItem(item))
         {
-            // 物品起效果
-            item.UseItem();
-            // 数量减少
-            InventoryManager.Instance.ConsumeItem(item);
+            if (InventoryManager.Instance[item] > 0)
+            {
+                // 物品起效果
+                item.UseItem();
+                // 数量减少
+                InventoryManager.Instance.ConsumeItem(item);                
+            }
             // 更新显示
             Refresh();
         }       

@@ -23,6 +23,8 @@ public class BehaviorTreeNode {
     {
         nodeName = name;
         this.type = type;
+
+        children = new List<BehaviorTreeNode>();        
     }
 
     public void AddChild(BehaviorTreeNode node)
@@ -30,7 +32,10 @@ public class BehaviorTreeNode {
         if (children.Contains(node))
             return;
         else
+        {
             children.Add(node);
+            node.Parent = this;
+        }
     }
 
     public int IndexOfChild(BehaviorTreeNode node)

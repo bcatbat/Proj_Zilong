@@ -50,7 +50,17 @@ public class InventoryManager : MonoBehaviour {
         return null;
     }
 
-    // 包裹总数
+    // 根据物品id, 返回物品数量
+    public int GetNumByID(int id)
+    {
+        Item obj = GetItemByID(id);
+        if (obj == null)
+            return 0;
+        else
+            return inventory[obj];
+    }
+
+    // 包裹物品总数
     public int Count
     {
         get { return inventory.Count; }

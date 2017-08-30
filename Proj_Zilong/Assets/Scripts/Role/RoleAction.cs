@@ -42,6 +42,7 @@ public class RoleAction {
                 initialzeFunction(roleInfo);
             }
         }
+        Debug.Log(actionName + status);
         status = Status.RUNNING;
     }
 
@@ -56,7 +57,7 @@ public class RoleAction {
             if(updateFunction != null)
             {
                 status = updateFunction(roleInfo, deltaTime);
-                Debug.Log(status);
+                Debug.Log(actionName + status);
             }
             else
             {
@@ -76,5 +77,6 @@ public class RoleAction {
             }
         }
         status = Status.UNINITIALIZED;
+        Debug.Log(actionName + status);
     }    
 }

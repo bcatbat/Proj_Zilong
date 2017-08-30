@@ -80,12 +80,18 @@ public class InventoryGrid : Grid {
     // 使用物品
     public override void UseItem()
     {
-        // 物品起效果
-        item.UseItem();
-        // 数量减少
-        InventoryManager.Instance.ConsumeItem(item);
-        // 更新显示
-        UpdateNumber();
+        if (InventoryManager.Instance.ContainsItem(item))
+        {
+            if (InventoryManager.Instance[item] > 0)
+            {
+                // 物品起效果
+                item.UseItem();
+                // 数量减少
+                InventoryManager.Instance.ConsumeItem(item);
+            }
+            // 更新显示
+            Refresh();
+        }
     }
 
     // todo:装备武器
@@ -154,18 +160,21 @@ public class InventoryGrid : Grid {
         }
     }
         
-    private void UpdateNumber()
+    private void Refresh()
     {
-        int num = InventoryManager.Instance.inventory[item];
-        if (num == 1)
+        if (InventoryManager.Instance.ContainsItem(item))
         {
-            mark.text = "";
-        }
-        else
-        {
-            if (num > 1)
+            int num = InventoryManager.Instance.inventory[item];
+            if (num == 1)
             {
-                mark.text = num + "";
+                mark.text = "";
+            }
+            else
+            {
+                if (num > 1)
+                {
+                    mark.text = num + "";
+                }
             }
         }
     }
@@ -173,7 +182,7 @@ public class InventoryGrid : Grid {
     // 显示标记
    private void RefreshMark()
     {
-        UpdateNumber();
+        Refresh();
 
         if(item.GetType() == typeof(WeaponItem) ||
             item.GetType() == typeof(ArmorItem) ||

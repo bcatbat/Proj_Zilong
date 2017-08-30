@@ -19,7 +19,7 @@ public class DummyInfo : RoleInfo {
     }
 
     // 木桩打不死
-    protected override void Die()
+    public override void Die()
     {        
         hp = ActualStats.UpHp;
     }

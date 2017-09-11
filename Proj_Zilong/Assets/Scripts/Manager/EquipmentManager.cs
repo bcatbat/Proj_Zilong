@@ -9,15 +9,18 @@ public class EquipmentManager : MonoBehaviour {
         get { return instance; }
     }
 
-    public WeaponItem weapon;
-    public ArmorItem armor;
-    public TrinketItem trinket1;
-    public TrinketItem trinket2;
+    public EquipmentItem weapon;
+    public EquipmentItem armor;
+    public EquipmentItem trinket1;
+    public EquipmentItem trinket2;
 
     public EquipmentGrid weaponSlot;       // 武器栏
     public EquipmentGrid armorSlot;        // 护甲栏
     public EquipmentGrid trinket1Slot;     // 饰品栏1
     public EquipmentGrid trinket2Slot;     // 饰品栏2
+
+    private static Color DEFAULT_BG_COLOR = new Color(.8f, .8f, .8f, .8f);
+    private static Color ICON_BG_COLOR = Color.white;
 
     private void Awake()
     {
@@ -32,14 +35,59 @@ public class EquipmentManager : MonoBehaviour {
         armor = new ArmorItem();
         trinket1 = new TrinketItem();
         trinket2 = new TrinketItem();
+        
+        RefreshEquipment();
     }
 
     private void RefreshEquipment()
     {
         weaponSlot.equipmentItem = weapon;
-        armorSlot.equipmentItem = armor;
-        trinket1Slot.equipmentItem = trinket1;
-        trinket2Slot.equipmentItem = trinket2;
+        if(weapon.itemID != 0)
+        {
+            weaponSlot.icon.sprite = weapon.itemIcon;
+            weaponSlot.icon.color = ICON_BG_COLOR;
+        }
+        else
+        {
+            weaponSlot.icon.sprite = null;
+            weaponSlot.icon.color = DEFAULT_BG_COLOR;
+        }
+
+        armorSlot.equipmentItem = armor as EquipmentItem;
+        if(armor.itemID != 0)
+        {
+            armorSlot.icon.sprite = armor.itemIcon;
+            armorSlot.icon.color = ICON_BG_COLOR;
+        }
+        else
+        {
+            armorSlot.icon.sprite = null;
+            armorSlot.icon.color = DEFAULT_BG_COLOR;
+        }
+
+        trinket1Slot.equipmentItem = trinket1 as EquipmentItem;
+        if (trinket1.itemID != 0)
+        {
+            trinket1Slot.icon.sprite = trinket1.itemIcon;
+            trinket1Slot.icon.color = ICON_BG_COLOR;
+        }
+        else
+        {
+            trinket1Slot.icon.sprite = null;
+            trinket1Slot.icon.color = DEFAULT_BG_COLOR;
+        }
+
+        trinket2Slot.equipmentItem = trinket2 as EquipmentItem;
+        if (trinket2.itemID != 0)
+        {
+            trinket2Slot.icon.sprite = trinket2.itemIcon;
+            trinket2Slot.icon.color = ICON_BG_COLOR;
+        }
+        else
+        {
+            trinket2Slot.icon.sprite = null;
+            trinket2Slot.icon.color = DEFAULT_BG_COLOR;
+        }
     }
 
     public void EquipWeapon(WeaponItem desWeapon)
@@ -49,6 +97,8 @@ public class EquipmentManager : MonoBehaviour {
         // 换武器
         weapon = desWeapon;
         weapon.isEquipped = true;
+        desWeapon.isEquipped = true;
+
         RefreshEquipment();
     }
 
@@ -57,6 +107,7 @@ public class EquipmentManager : MonoBehaviour {
         if(weapon == desWeapon)
         {
             weapon.isEquipped = false;
+            desWeapon.isEquipped = false;
             weapon = new WeaponItem();
         }
         else
@@ -71,6 +122,8 @@ public class EquipmentManager : MonoBehaviour {
         armor.isEquipped = false;
         armor = desArmor;
         armor.isEquipped = true;
+        desArmor.isEquipped = true;
+
         RefreshEquipment();
     }
 
@@ -79,6 +132,7 @@ public class EquipmentManager : MonoBehaviour {
         if(armor == desArmor)
         {
             armor.isEquipped = false;
+            desArmor.isEquipped = false;
             armor = new ArmorItem();
         }
         else
@@ -90,33 +144,46 @@ public class EquipmentManager : MonoBehaviour {
 
     public void EquipTrinket(TrinketItem desTrinket)
     {
+        // 饰品孔1为空, 装在1上
         if(trinket1.itemID == 0)
         {
             trinket1 = desTrinket;
             trinket1.isEquipped = true;
-        }else if(trinket2.itemID == 0)
+            desTrinket.isEquipped = true;
+        }
+        // 或者 饰品孔1不为空 孔2为空, 装在2上
+        else if(trinket2.itemID == 0)
         {
             trinket2 = desTrinket;
             trinket2.isEquipped = true;
+            desTrinket.isEquipped = true;
         }
+        // 或者 饰品孔两个都不为空, 替换在1上
         else
         {
             trinket1.isEquipped = false;
             trinket1 = desTrinket;
             trinket1.isEquipped = true;
+            desTrinket.isEquipped = true;
         }
+
         RefreshEquipment();
     }
 
     public void UnloadTrinket(TrinketItem desTrinket)
     {
+        // 目标饰品装备在孔1上.
         if(trinket1 == desTrinket)
         {
-            trinket1.isEquipped = false;            
+            trinket1.isEquipped = false;
+            desTrinket.isEquipped = false;
             trinket1 = new TrinketItem();
-        }else if(trinket2 == desTrinket)
+        }
+        // 或者 目标饰品装备在孔2上
+        else if(trinket2 == desTrinket)
         {
             trinket2.isEquipped = false;
+            desTrinket.isEquipped = false;
             trinket2 = new TrinketItem();
         }
         else

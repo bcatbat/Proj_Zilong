@@ -17,8 +17,9 @@ public class InventoryGrid : Grid {
 
     private void Start()
     {
-        // 显示数量和图标.
         RefreshMark();
+
+        icon.sprite = item.itemIcon;        
     }
 
 #region MouseEvent
@@ -69,13 +70,10 @@ public class InventoryGrid : Grid {
     protected override void ShowDescription()
     {
         if (item.itemID != 0)
-        {
-            string s = item.itemID + "\n" +
-                item.itemName + "\n" +
-                item.itemType;
-            DescriptionManager.Instance.Show(icon, s);
+        {               
+            DescriptionManager.Instance.Show(icon, item.itemDes);
         }
-    }
+    }   
 
     // 使用物品
     public override void UseItem()
@@ -86,20 +84,18 @@ public class InventoryGrid : Grid {
             {
                 // 物品起效果
                 item.UseItem();
-                // 数量减少
-                InventoryManager.Instance.ConsumeItem(item);
             }
             // 更新显示
-            Refresh();
+            RefreshMark();
         }
     }
 
-    // todo:装备武器
+    // todo:装卸武器
     private void SetupWeapon()
-    {
+    { 
         // 武器
-        if (item.GetType() == typeof(WeaponItem))
-        {
+        if (item.itemType == ItemType.weapon)
+        {            
             WeaponItem weapon = EquipmentManager.Instance.weapon as WeaponItem;
 
             // 武器槽中是当前物品:卸下
@@ -113,15 +109,16 @@ public class InventoryGrid : Grid {
                 //Debug.Log("装备武器!");                
                 EquipmentManager.Instance.EquipWeapon(item as WeaponItem);
             }
-            InventoryManager.Instance.Refresh();            
+            InventoryManager.Instance.Refresh();
+            RefreshMark();
         }
     }
 
-    // todo:装备护甲
+    // todo:装卸护甲
     private void SetupArmor()
-    {
+    {        
         // 护甲
-        if (item.GetType() == typeof(ArmorItem))
+        if (item.itemType == ItemType.armor)
         {
             ArmorItem armor = EquipmentManager.Instance.armor as ArmorItem;
 
@@ -136,12 +133,13 @@ public class InventoryGrid : Grid {
                 EquipmentManager.Instance.EquipArmor(item as ArmorItem);                
             }
             InventoryManager.Instance.Refresh();
+            RefreshMark();
         }
     }
 
-    // todo:装备饰品
+    // todo:装卸饰品
     private void SetupTrinket()
-    {
+    {        
         //饰品
         if (item.itemType == ItemType.trinket)
         {
@@ -157,6 +155,7 @@ public class InventoryGrid : Grid {
                 EquipmentManager.Instance.EquipTrinket(item as TrinketItem);                
             }
             InventoryManager.Instance.Refresh();
+            RefreshMark();
         }
     }
         
@@ -165,16 +164,12 @@ public class InventoryGrid : Grid {
         if (InventoryManager.Instance.ContainsItem(item))
         {
             int num = InventoryManager.Instance.inventory[item];
-            if (num == 1)
+            if(num == 1)
             {
                 mark.text = "";
-            }
-            else
+            }else if (num > 1)
             {
-                if (num > 1)
-                {
-                    mark.text = num + "";
-                }
+                mark.text = num + "";
             }
         }
     }
@@ -183,16 +178,14 @@ public class InventoryGrid : Grid {
    private void RefreshMark()
     {
         Refresh();
-
         if(item.GetType() == typeof(WeaponItem) ||
             item.GetType() == typeof(ArmorItem) ||
             item.GetType() == typeof(TrinketItem))
-        {
-            EquipmentItem ei = item as EquipmentItem;
-            if (ei.isEquipped)
+        {            
+            if ((item as EquipmentItem).isEquipped)
                 mark.text = "E";
             else
-                mark.text = "";
+                mark.text = " ";
         }
     }
 }

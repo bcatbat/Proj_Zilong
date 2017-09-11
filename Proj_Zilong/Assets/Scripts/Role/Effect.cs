@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public enum EffectType
 {
     NA = 0,
@@ -27,8 +28,8 @@ public class Effect{
     private int m_tickValue = 0;        // 每一跳的数值(默认:1s 1跳)
     private float m_duration = 3600f;       // 总持续时间
 
-    [SerializeField]private EffectType m_effectType;       // 效果类型
-    [SerializeField]private int m_effectValue = 0;          // 效果数值
+    [SerializeField]private EffectType effectType;       // 效果类型
+    [SerializeField]private int effectValue = 0;          // 效果数值
     
     public EffectDelegate EffectRunning;
     public bool isRunning = false;        // 是否生效
@@ -48,7 +49,7 @@ public class Effect{
     // 初始化
     public void InitEffect()
     {           
-        string enumName = m_effectType.ToString();
+        string enumName = effectType.ToString();
         MethodInfo mi = typeof(Effect).GetMethod(enumName);
         EffectRunning = (EffectDelegate)Delegate.CreateDelegate(typeof(EffectDelegate), this, mi);
     }
@@ -60,7 +61,7 @@ public class Effect{
         m_tickTime = 0;                 // 每跳计时器
         m_leftTime = m_duration;        // 剩余时间
 
-        m_tickValue =(int)( m_effectValue / m_duration);      // 初始化每跳值
+        m_tickValue =(int)( effectValue / m_duration);      // 初始化每跳值
 
         isRunning = false;      // 不起作用
     }    
@@ -72,7 +73,7 @@ public class Effect{
     private void DirectHealling(RoleInfo role,float deltatime) {
         if (isRunning)
         {
-            role.Hp += m_effectValue;
+            role.Hp += effectValue;
             Reset();
         }
         else
@@ -86,7 +87,7 @@ public class Effect{
     {
         if (isRunning)
         {
-            role.Hp -= m_effectValue;
+            role.Hp -= effectValue;
             Reset();
         }
         else
@@ -152,7 +153,7 @@ public class Effect{
         {            
             // 生效后执行一次, 后面的时间保持.
             if (m_leftTime == m_duration)
-                role.TempStats += new Stats(0, 0, m_effectValue, 0, 0, 0);
+                role.TempStats += new Stats(0, 0, effectValue, 0, 0, 0);
 
             m_tickTime += deltatime;    // 每跳计时器
             m_leftTime -= deltatime;    // 剩余计时器
@@ -160,7 +161,7 @@ public class Effect{
             // 到期后回归原状
             if (m_leftTime < 0)
             {
-                role.TempStats -= new Stats(0, 0, m_effectValue, 0, 0, 0);
+                role.TempStats -= new Stats(0, 0, effectValue, 0, 0, 0);
                 Reset();
             }
         }
@@ -176,7 +177,7 @@ public class Effect{
         {
             // 生效后执行一次, 后面的时间保持.
             if (m_leftTime == m_duration)
-                role.TempStats -= new Stats(0, 0, m_effectValue, 0, 0, 0);
+                role.TempStats -= new Stats(0, 0, effectValue, 0, 0, 0);
 
             m_tickTime += deltatime;    // 每跳计时器
             m_leftTime -= deltatime;    // 剩余计时器
@@ -184,7 +185,7 @@ public class Effect{
             // 到期后回归原状
             if (m_leftTime < 0)
             {
-                role.TempStats += new Stats(0, 0, m_effectValue, 0, 0, 0);
+                role.TempStats += new Stats(0, 0, effectValue, 0, 0, 0);
                 Reset();
             }
         }
@@ -201,7 +202,7 @@ public class Effect{
         {
             // 生效后执行一次, 后面的时间保持.
             if (m_leftTime == m_duration)
-                role.TempStats += new Stats(0, 0, 0, m_effectValue, 0, 0);
+                role.TempStats += new Stats(0, 0, 0, effectValue, 0, 0);
 
             m_tickTime += deltatime;    // 每跳计时器
             m_leftTime -= deltatime;    // 剩余计时器
@@ -209,7 +210,7 @@ public class Effect{
             // 到期后回归原状
             if (m_leftTime < 0)
             {
-                role.TempStats -= new Stats(0, 0, 0, m_effectValue, 0, 0);
+                role.TempStats -= new Stats(0, 0, 0, effectValue, 0, 0);
                 Reset();
             }
         }
@@ -226,7 +227,7 @@ public class Effect{
         {
             // 生效后执行一次, 后面的时间保持.
             if (m_leftTime == m_duration)
-                role.TempStats -= new Stats(0, 0, 0, m_effectValue, 0, 0);
+                role.TempStats -= new Stats(0, 0, 0, effectValue, 0, 0);
 
             m_tickTime += deltatime;    // 每跳计时器
             m_leftTime -= deltatime;    // 剩余计时器
@@ -234,7 +235,7 @@ public class Effect{
             // 到期后回归原状
             if (m_leftTime < 0)
             {
-                role.TempStats += new Stats(0, 0, 0, m_effectValue, 0, 0);
+                role.TempStats += new Stats(0, 0, 0, effectValue, 0, 0);
                 Reset();
             }
         }
@@ -250,14 +251,14 @@ public class Effect{
         if (isRunning)
         {
             if (m_leftTime == m_duration)
-                role.TempStats += new Stats(0, 0, 0, 0, m_effectValue, 0);
+                role.TempStats += new Stats(0, 0, 0, 0, effectValue, 0);
 
             m_tickTime += deltatime;    // 每跳计时器
             m_leftTime -= deltatime;    // 剩余计时器
 
             if (m_leftTime < 0)
             {
-                role.TempStats -= new Stats(0, 0, 0, 0, m_effectValue, 0);
+                role.TempStats -= new Stats(0, 0, 0, 0, effectValue, 0);
                 Reset();
             }
         }
@@ -273,14 +274,14 @@ public class Effect{
         if (isRunning)
         {
             if (m_leftTime == m_duration)
-                role.TempStats -= new Stats(0, 0, 0, 0, m_effectValue, 0);
+                role.TempStats -= new Stats(0, 0, 0, 0, effectValue, 0);
 
             m_tickTime += deltatime;    // 每跳计时器
             m_leftTime -= deltatime;    // 剩余计时器
 
             if (m_leftTime < 0)
             {
-                role.TempStats += new Stats(0, 0, 0, 0, m_effectValue, 0);
+                role.TempStats += new Stats(0, 0, 0, 0, effectValue, 0);
                 Reset();
             }
         }

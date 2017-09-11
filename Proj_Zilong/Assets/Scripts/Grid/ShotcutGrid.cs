@@ -6,7 +6,10 @@ public class ShotcutGrid : Grid {
     public int shotcutIndex;    // 数量固定, 给个编号.
     // 可以挂载物品(药物,补品,装备),技能,装备(与装备不同则更换, 相同则使用附加的技能). 仅仅一个有效
     public Skill skill;
-    public Item item;    
+    public Item item;
+
+    private static Color DEFAULT_BG_COLOR = new Color(.8f,.8f,.8f,.8f);
+    private static Color ICON_BG_COLOR = Color.white;
 
     protected override void Awake()
     {
@@ -143,42 +146,46 @@ public class ShotcutGrid : Grid {
     // todo: 修改一下显示内容
     protected override void ShowDescription()
     {
-        if(item.itemID != 0)
+        if (item.itemID != 0)
         {
-            string s = item.itemName + "\n" + item.itemType + "\n" + item.itemID;
-            DescriptionManager.Instance.Show(icon, s);
+            DescriptionManager.Instance.Show(icon, item.itemDes);
         }
     }
 
     // todo:刷新图标
     public void Refresh()
-    {
+    {        
         if(skill.skillID != 0)
         {
             // todo:设定技能图示
-        }
+            return;
+        }        
         if(item.itemID != 0)
         {
             // todo:设定物品图示
-            //icon = item.itemIcon;
-            //cdBoard = null;
+            icon.sprite = item.itemIcon;            
+            
             if (InventoryManager.Instance.ContainsItem(item))
             {
-                mark.text = "" + InventoryManager.Instance[item];
-                cdTick.text = "";
+                mark.text = "" + InventoryManager.Instance[item];   // 数量标记
+                cdTick.text = "";   // cd文字
+                icon.color = ICON_BG_COLOR; // 背景颜色
             }
             else
             {
-                mark.text = "0";
+                mark.text = "0";    // 数量标记
+                icon.color = DEFAULT_BG_COLOR;// 背景颜色
             }
+            return;
         }
-        else
-        {
-            mark.text = "";
-        }
+
+        // 其他情况,为空项目
+        mark.text = "";     // 数量标记
+        icon.sprite = null; // 图标
+        icon.color = DEFAULT_BG_COLOR;// 背景颜色
     }
 
-    // 使用物品
+     // 使用物品
     public override void UseItem()
     {
         // 使用品
@@ -188,8 +195,6 @@ public class ShotcutGrid : Grid {
             {
                 // 物品起效果
                 item.UseItem();
-                // 数量减少
-                InventoryManager.Instance.ConsumeItem(item);                
             }
             // 更新显示
             Refresh();

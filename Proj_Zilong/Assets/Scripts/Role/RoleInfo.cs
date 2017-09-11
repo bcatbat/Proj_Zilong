@@ -520,10 +520,12 @@ public class RoleInfo : MonoBehaviour {
     // 随机方向...↖,↗
     static Vector3 RandomDirection()
     {
-        Vector3 v = new Vector3();
-        v.y = 0;
-        v.x = Random.Range(-1f, 1f);
-        v.z = Random.Range(-1f, 1f);
+        Vector3 v = new Vector3()
+        {
+            y = 0,
+            x = Random.Range(-1f, 1f),
+            z = Random.Range(-1f, 1f)
+        };
         return v.normalized;
     }
 }

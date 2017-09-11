@@ -1,0 +1,359 @@
+{
+    "buffList": [
+        {
+            "buffID": "0",
+            "buffName": "空",
+            "buffDuration": "0",
+            "buffEffects": [
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "食物"
+        },
+        {
+            "buffID": "1",
+            "buffName": "包子",
+            "buffDuration": "20",
+            "buffEffects": [
+                {
+                    "effectType": "DirectHealling",
+                    "effectValue": "30"
+                },
+                {
+                    "effectType": "HealingOverTimes",
+                    "effectValue": "6"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "食物"
+        },
+        {
+            "buffID": "2",
+            "buffName": "烧鸡",
+            "buffDuration": "25",
+            "buffEffects": [
+                {
+                    "effectType": "DirectHealling",
+                    "effectValue": "50"
+                },
+                {
+                    "effectType": "HealingOverTimes",
+                    "effectValue": "7"
+                },
+
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ]
+        },
+        {
+            "buffID": "3",
+            "buffName": "烤猪",
+            "buffDuration": "30",
+            "buffEffects": [
+                {
+                    "effectType": "DirectHealling",
+                    "effectValue": "70"
+                },
+                {
+                    "effectType": "HealingOverTimes",
+                    "effectValue": "8"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ]
+        },
+        {
+            "buffID": "4",
+            "buffName": "绷带",
+            "buffDuration": "5",
+            "buffEffects": [
+                {
+                    "effectType": "HealingOverTimes",
+                    "effectValue": "20"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "刀伤药"
+        },
+        {
+            "buffID": "5",
+            "buffName": "草药",
+            "buffDuration": "6",
+            "buffEffects": [
+                {
+                    "effectType": "HealingOverTimes",
+                    "effectValue": "30"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ]
+        },
+        {
+            "buffID": "6",
+            "buffName": "白药",
+            "buffDuration": "7",
+            "buffEffects": [
+                {
+                    "effectType": "HealingOverTimes",
+                    "effectValue": "40"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ]
+        },
+        {
+            "buffID": "7",
+            "buffName": "气血丹",
+            "buffDuration": "9",
+            "buffEffects": [
+                {
+                    "effectType": "DirectHealling",
+                    "effectValue": "50"
+                },
+                {
+                    "effectType": "DirectManaRecover",
+                    "effectValue": "50"
+                },
+                {
+                    "effectType": "ManaRecoverOverTimes",
+                    "effectValue": "15"
+                }
+            ],
+            "buffDescription": "丹药"
+        },
+        {
+            "buffID": "8",
+            "buffName": "大还丹",
+            "buffDuration": "12",
+            "buffEffects": [
+                {
+                    "effectType": "DirectHealling",
+                    "effectValue": "75"
+                },
+                {
+                    "effectType": "DirectManaRecover",
+                    "effectValue": "75"
+                },
+                {
+                    "effectType": "ManaRecoverOverTimes",
+                    "effectValue": "20"
+                }
+            ]
+        },
+        {
+            "buffID": "9",
+            "buffName": "还魂丹",
+            "buffDuration": "15",
+            "buffEffects": [
+                {
+                    "effectType": "DirectHealling",
+                    "effectValue": "100"
+                },
+                {
+                    "effectType": "DirectManaRecover",
+                    "effectValue": "100"
+                },
+                {
+                    "effectType": "ManaRecoverOverTimes",
+                    "effectValue": "25"
+                }
+            ]
+        },
+        {
+            "buffID": "10",
+            "buffName": "遁身符",
+            "buffDuration": "60",
+            "buffEffects": [
+                {
+                    "effectType": "SpeedIncrease",
+                    "effectValue": "50"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "自身移速大量增加"
+        },
+        {
+            "buffID": "11",
+            "buffName": "烟雾弹",
+            "buffDuration": "6",
+            "buffEffects": [
+                {
+                    "effectType": "SpeedDecrease",
+                    "effectValue": "60"
+                },
+                {
+                    "effectType": "DefenseDecrease",
+                    "effectValue": "30"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "群体短期减速减防"
+        },
+        {
+            "buffID": "12",
+            "buffName": "飞石",
+            "buffDuration": "1",
+            "buffEffects": [
+                {
+                    "effectType": "Stun",
+                    "effectValue": "1"
+                },
+                {
+                    "effectType": "DirectDamage",
+                    "effectValue": "10"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "单体伤害"
+        },
+        {
+            "buffID": "13",
+            "buffName": "地雷",
+            "buffDuration": "3",
+            "buffEffects": [
+                {
+                    "effectType": "Stun",
+                    "effectValue": "3"
+                },
+                {
+                    "effectType": "DirectDamage",
+                    "effectValue": "30"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "触发, 伤害, 击飞"
+        },
+        {
+            "buffID": "14",
+            "buffName": "铁蒺藜",
+            "buffDuration": "6",
+            "buffEffects": [
+                {
+                    "effectType": "DamageOverTimes",
+                    "effectValue": "5"
+                },
+                {
+                    "effectType": "SpeedDecrease",
+                    "effectValue": "40"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "范围减速流血"
+        },
+        {
+            "buffID": "15",
+            "buffName": "滋养",
+            "buffDuration": "120",
+            "buffEffects": [
+                {
+                    "effectType": "HealingOverTimes",
+                    "effectValue": "2"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                },
+                {
+                    "effectType": "NA",
+                    "effectValue": "0"
+                }
+            ],
+            "buffDescription": "大补良药的附加效果"
+        },
+        {
+            "buffID": "16",
+            "buffName": "暴怒",
+            "buffDuration": "10",
+            "buffEffects": [
+                {
+                    "effectType": "AttackIncrease",
+                    "effectValue": "30"
+                },
+                {
+                    "effectType": "SpeedIncrease",
+                    "effectValue": "30"
+                },
+                {
+                    "effectType": "DefenseDecrease",
+                    "effectValue": "30"
+                }
+            ],
+            "buffDescription": "残血狂暴, 攻击及速度上升, 防御下降"
+        },
+        {
+            "buffID": "17",
+            "buffName": "溃散",
+            "buffDuration": "10",
+            "buffEffects": [
+                {
+                    "effectType": "ManaDamage",
+                    "effectValue": "10"
+                },
+                {
+                    "effectType": "DefenseDecrease",
+                    "effectValue": "30"
+                },
+                {
+                    "effectType": "SpeedDecrease",
+                    "effectValue": "30"
+                }
+            ],
+            "buffDescription": "残血溃逃, 速度上升, 防御降低, 体力迅速流失"
+        }
+    ]
+}

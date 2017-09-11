@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TonicItem : Item {
     public string testName;
-    public Stats GrowthStats;       // 永久增加的属性值
+    public Stats growthStats;       // 永久增加的属性值
 
     public TonicItem()
     {
@@ -17,6 +17,7 @@ public class TonicItem : Item {
     public override void UseItem()
     {
         Debug.Log("Use:" + itemName + " -滋补品");
-        PlayerInfo.Instance.PermanentStats += GrowthStats;
+        PlayerInfo.Instance.PermanentStats += growthStats;
+        InventoryManager.Instance.ConsumeItem(this);
     }
 }

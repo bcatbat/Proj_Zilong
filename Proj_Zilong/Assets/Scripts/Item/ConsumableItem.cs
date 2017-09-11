@@ -22,6 +22,7 @@ public class ConsumableItem : Item {
     public override void UseItem()
     {
         Debug.Log("Use:" + itemID + " " + itemName + " -消耗品");
+        InventoryManager.Instance.ConsumeItem(this);
     }
 
     // 产生Buff:增加buff, 目标:自身

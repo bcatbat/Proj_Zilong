@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+  },
+  "frameworks": {
+    "net35-unity subset v3.5": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

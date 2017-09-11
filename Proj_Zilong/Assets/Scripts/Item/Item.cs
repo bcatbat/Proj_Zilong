@@ -18,14 +18,15 @@ public enum ItemType
 }
 
 [Serializable]
-public class Item:IComparable {
-
-    public ItemType itemType;   // 类型
+public class Item:IComparable {    
     [Header("基本属性")]
     public int itemID;          // ID
     public string itemName;     // 名称
-    public Image itemIcon;      // 图标
+    public ItemType itemType;   // 类型
     public string itemDes;      // 物品描述
+    public Sprite itemIcon;      // 图标
+    public int buffID;          // 携带的buffid, 0为空
+
     //public bool isUsable;       // 是否可以使用    
 
     public Item()
@@ -41,6 +42,8 @@ public class Item:IComparable {
     public virtual void UseItem()
     {
         Debug.Log("使用物品");
+        // 数量减少
+        InventoryManager.Instance.ConsumeItem(this);
     }
 
     public int CompareTo(object obj)

@@ -12,7 +12,7 @@ public class PlayerCtrl : MonoBehaviour {
     private Rigidbody rb;    
 
     // bullet
-    private float bulletVelocity = 20f;    
+    public float bulletVelocity = 20f;    
 
     // move
     private float h;
@@ -21,7 +21,7 @@ public class PlayerCtrl : MonoBehaviour {
 
     // atk
     private float atkTick = float.MaxValue;
-    private float gcdTime = 0.3f;
+    public float gcdTime = 0.1f;
     
     private void Awake()
     {

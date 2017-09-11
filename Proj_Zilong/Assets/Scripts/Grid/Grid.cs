@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class Grid : MonoBehaviour {
 #region membership
-    [SerializeField]protected Image icon;             // 图标
-    [SerializeField]protected Image cdBoard;          // 冷却板
-    [SerializeField]protected Text mark;              // 角标
-    [SerializeField]protected Text cdTick;            // 冷却时间    
+    public Image icon;             // 图标
+    public Image cdBoard;          // 冷却板
+    public Text mark;              // 角标
+    public Text cdTick;            // 冷却时间    
 #endregion
     public GameObject draggingIcon;    // 拖拽图标
 

@@ -9,7 +9,7 @@ public class TrinketItem : EquipmentItem {
     {
         testName = "Trinket";
         itemType = ItemType.trinket;
-        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;
+        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;    // todo: 测试描述, 待删除
     }
 
     // 其他的一些特殊效果. 如重生后破碎等.

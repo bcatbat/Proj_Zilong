@@ -33,6 +33,7 @@ public class DescriptionManager : MonoBehaviour {
     {        
         // tarImg: ui图标; desc:描述文字;
         SetDescriptionFramePosition(tarImg);
+        descriptionText.supportRichText = true;
         this.descriptionText.text = desc;
         descriptionFrame.SetActive(true);
     }

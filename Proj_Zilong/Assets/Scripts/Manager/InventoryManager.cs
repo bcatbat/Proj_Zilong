@@ -27,6 +27,12 @@ public class InventoryManager : MonoBehaviour {
         DontDestroyOnLoad(this);
 
         inventory = new Dictionary<Item, int>();
+
+        XmlDataProcessor.ReadItemData();
+    }
+
+    private void Start()
+    {
         CreateTestBags();
     }
 
@@ -238,25 +244,42 @@ public class InventoryManager : MonoBehaviour {
     {
         for (int i = 0; i < 3; i++)
         {
-            Item c = new ConsumableItem(); c.itemID = 1;
-            Item c2 = new ConsumableItem(); c2.itemID = 11;
-            Item to = new TonicItem(); to.itemID = 2;
-            Item m = new MaterialItem();m.itemID = 3;
-            Item ta = new TaskItem();ta.itemID = 4;
+            //Item c = new ConsumableItem(); c.itemID = 1;
+            //Item c2 = new ConsumableItem(); c2.itemID = 11;
+            //Item to = new TonicItem(); to.itemID = 2;
+            //Item m = new MaterialItem();m.itemID = 3;
+            //Item ta = new TaskItem();ta.itemID = 4;
 
-            Item w = new WeaponItem(); w.itemID = 5;
-            Item a = new ArmorItem();a.itemID = 6;
-            Item tr = new TrinketItem();tr.itemID = 7;
+            //Item w = new WeaponItem(); w.itemID = 5;
+            //Item a = new ArmorItem();a.itemID = 6;
+            //Item tr = new TrinketItem();tr.itemID = 7;
 
-            AddItem(c);
-            AddItem(c2);
-            AddItem(to);
-            AddItem(m);
-            AddItem(ta);
-            AddItem(w);
-            AddItem(a);
-            AddItem(tr);
+            //AddItem(c);
+            //AddItem(c2);
+            //AddItem(to);
+            //AddItem(m);
+            //AddItem(ta);
+            //AddItem(w);
+            //AddItem(a);
+            //AddItem(tr);
+
+            // 消耗品3样
+            Item c1 = XmlDataProcessor.GetItemByID(2);AddItem(c1);
+            Item c2 = (6).GetItemByID();AddItem(c2);
+            Item c3 = (9).GetItemByID();AddItem(c3);
+
+            // 补品1样
+            Item t1 = (15).GetItemByID();AddItem(t1);
+
+            // 装备各1样
+            Item e1 = (20).GetItemByID();AddItem(e1);
+            Item e2 = (27).GetItemByID();AddItem(e2);
+            Item e3 = (34).GetItemByID();AddItem(e3);
+
+            // 任务品1样
         }
+        Item q1 = (44).GetItemByID();AddItem(q1);
+
        // Debug.Log("初始化背包完毕");
         //foreach (var pair in inventory)
         //{

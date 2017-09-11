@@ -6,7 +6,7 @@ public class EquipmentGrid : Grid {
     // 挂载装备(武器, 护甲, 饰品)
     public EquipmentItem equipmentItem;
 
-#region MouseEvent
+    #region MouseEvent
     // 只接收物品栏. 快捷栏上使用就是装备->使用
     protected override void EventListener_OnMouseDrop(GameObject gb)
     {
@@ -28,6 +28,7 @@ public class EquipmentGrid : Grid {
         {
             EquipmentManager.Instance.UnloadTrinket(equipmentItem as TrinketItem);
         }
+        InventoryManager.Instance.Refresh();
     }
 
     protected override void EventListener_OnMouseLeftClick(GameObject gb)
@@ -37,14 +38,12 @@ public class EquipmentGrid : Grid {
 #endregion
     protected override void ShowDescription()
     {
-        string s = equipmentItem.itemID + "\n" +
-            equipmentItem.itemName + "\n" +
-            equipmentItem.itemType;
-        DescriptionManager.Instance.Show(icon, s);
+        DescriptionManager.Instance.Show(icon, equipmentItem.itemDes);
     }
 
     public override void UseItem()
     {
         // todo:使用装备附加技能
+        Debug.Log("此装备无可用技能");
     }
 }

@@ -11,6 +11,11 @@ public class DropoutGrid : Grid {
         MouseEventRegister();
     }
 
+    private void Start()
+    {
+        item = item.itemID.GetItemByID();
+    }
+
     #region MouseEvent
     protected override void EventListener_OnMouseBeginDrag(GameObject gb)
     {
@@ -43,10 +48,7 @@ public class DropoutGrid : Grid {
     {
         if (item.itemID != 0)
         {
-            string s = item.itemID + "\n" +
-                item.itemName + "\n" +
-                item.itemType;
-            DescriptionManager.Instance.Show(this.transform, s);
+            DescriptionManager.Instance.Show(this.transform, item.itemDes);
         }
     }
 }

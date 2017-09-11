@@ -1,0 +1,545 @@
+{
+    "itemList": [
+      {
+        "itemID": "0",
+        "itemName": "空",
+        "buffID": "0"
+      },
+      {
+        "itemID": "1",
+        "itemName": "包子",
+        "itemType": "consumable",
+        "buffID": "1",
+        "description": "薄皮儿, 大馅儿, 十八个褶儿..."
+      },
+      {
+        "itemID": "2",
+        "itemName": "烧鸡",
+        "itemType": "consumable",
+        "buffID": "2",
+        "description": "蜜汁烧鸡, 肥而不腻, 酥香软烂…"
+      },
+      {
+        "itemID": "3",
+        "itemName": "烤猪",
+        "itemType": "consumable",
+        "buffID": "3",
+        "description": "不多废话, 绝对管饱. 店家表示还没有见过一只喂不饱的主"
+      },
+      {
+        "itemID": "4",
+        "itemName": "绷带",
+        "itemType": "consumable",
+        "buffID": "4",
+        "description": "包扎止血, 简单处理, 先这么对付一下吧.."
+      },
+      {
+        "itemID": "5",
+        "itemName": "草药",
+        "itemType": "consumable",
+        "buffID": "5",
+        "description": "山间草药平无奇, 跌打扭伤得而愈"
+      },
+  
+      {
+        "itemID": "6",
+        "itemName": "白药",
+        "itemType": "consumable",
+        "buffID": "6",
+        "description": "这平平无奇的白色粉末, 实际上是时间最为著名的刀斧金创药."
+      },
+  
+      {
+        "itemID": "7",
+        "itemName": "气血丹",
+        "itemType": "consumable",
+        "buffID": "7",
+        "description": "胆气萦怀, 一往无前."
+      },
+  
+      {
+        "itemID": "8",
+        "itemName": "大还丹",
+        "itemType": "consumable",
+        "buffID": "8",
+        "description": "山间野道炼制的丹药, 可以提供很强很持久的恢复力, 常人完全无法理解"
+      },
+  
+      {
+        "itemID": "9",
+        "itemName": "还魂丹",
+        "itemType": "consumable",
+        "buffID": "9",
+        "specialEffect": "死亡时自动消耗. 长时间超高回复. 永久增加全属",
+        "description": "起死回生, 有如神助… 这是仙药, 为什么会在人间出现呢?"
+      },
+  
+      {
+        "itemID": "10",
+        "itemName": "遁身符",
+        "itemType": "consumable",
+        "buffID": "10",
+        "specialEffect": "自身移速大量增加",
+        "description": "山间野道炼制的符咒, 初衷是为了节省体力加快越野速度. 能够加快身形."
+      },
+  
+      {
+        "itemID": "11",
+        "itemName": "烟雾弹",
+        "itemType": "consumable",
+        "buffID": "11",
+        "specialEffect": "群体短期减速减防",
+        "description": "爆炸以后会散布大量粉尘, 用来迟滞敌方行动, 迷惑双眼."
+      },
+  
+      {
+        "itemID": "12",
+        "itemName": "飞石",
+        "itemType": "consumable",
+        "buffID": "12",
+        "specialEffect": "单体伤害",
+        "description": "棱角被打磨的十分锋利, 具体作战效果还得取决于使用者自身"
+      },
+  
+      {
+        "itemID": "13",
+        "itemName": "地雷",
+        "itemType": "consumable",
+        "buffID": "13",
+        "specialEffect": "触发, 伤害, 击飞",
+        "description": "山间野道为了保护自身免遭野兽侵害, 特地炼制的陷阱道具, 踩之即爆, 冲击力很强. "
+      },
+  
+      {
+        "itemID": "14",
+        "itemName": "铁蒺藜",
+        "itemType": "consumable",
+        "buffID": "14",
+        "specialEffect": "范围减速流血",
+        "description": "一包淬毒的小钉子."
+      },
+  
+      {
+        "itemID": "15",
+        "itemName": "龙肝",
+        "itemType": "tonic",
+        "buffID": "15",
+        "growthStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "10",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "永久加攻, 回血大量",
+        "description": "神秘之物. 不知道能不能吃"
+      },
+  
+      {
+        "itemID": "16",
+        "itemName": "凤胆",
+        "itemType": "tonic",
+        "buffID": "15",
+        "growthStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "10",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "永久加防, 回血大量",
+        "description": "神秘之物. 不知道能不能吃"
+      },
+  
+      {
+        "itemID": "17",
+        "itemName": "熊掌",
+        "itemType": "tonic",
+        "buffID": "15",
+        "growthStats": {
+          "UpHp": "100",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "永久加血, 回血中量",
+        "description": "神秘之物. 不知道能不能吃"
+      },
+  
+      {
+        "itemID": "18",
+        "itemName": "驼峰",
+        "itemType": "tonic",
+        "buffID": "15",
+        "growthStats": {
+          "UpHp": "0",
+          "UpMp": "40",
+          "Atk": "0",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "永久加气, 回血中量",
+        "description": "神秘之物. 不知道能不能吃"
+      },
+  
+      {
+        "itemID": "19",
+        "itemName": "麒麟舌",
+        "itemType": "tonic",
+        "buffID": "15",
+        "growthStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "10"
+        },
+        "specialEffect": "永久加运, 回血少量",
+        "description": "神秘之物. 不知道能不能吃"
+      },
+  
+      {
+        "itemID": "20",
+        "itemName": "桃木枪",
+        "itemType": "weapon",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "14",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "采集山间桃木削制而成. 是很好的练习枪, 用来上阵厮杀就有些困难了. 据说还有驱邪的功效."
+      },
+  
+      {
+        "itemID": "21",
+        "itemName": "蜡杆枪",
+        "itemType": "weapon",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "31",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "构造简单, 成本低廉. 枪杆韧性不错, 就是有点儿软…使用略需技巧"
+      },
+  
+      {
+        "itemID": "22",
+        "itemName": "镔铁枪",
+        "itemType": "weapon",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "56",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "通体镔铁打造, 重量惊人, 普通人端起都费劲, 只有那些猛将才会熟练使用."
+      },
+  
+      {
+        "itemID": "23",
+        "itemName": "点钢枪",
+        "itemType": "weapon",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "95",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "枪头极其锋利, 即便是百炼精钢也能一点即破."
+      },
+  
+      {
+        "itemID": "24",
+        "itemName": "亮银枪",
+        "itemType": "weapon",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "145",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "破甲",
+        "description": "枪头雪白如银, 枪杆层层复合, 做工极其复杂, 造价极其昂贵, 是时代最强技艺的体现"
+      },
+  
+      {
+        "itemID": "25",
+        "itemName": "凤翅枪",
+        "itemType": "weapon",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "182",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "附带火属性",
+        "description": "淬炼凤骨为身, 叠缀凤翅为枪头, 似枪似刀, 锋利无比."
+      },
+  
+      {
+        "itemID": "26",
+        "itemName": "龙骨枪",
+        "itemType": "weapon",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "198",
+          "Def": "0",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "大量吸血",
+        "description": "据说是神人抽取了上古神龙的脊柱作为材料, 而炼制的一把神枪. 可谓是无坚不摧."
+      },
+  
+      {
+        "itemID": "27",
+        "itemName": "镶钉铠",
+        "itemType": "armor",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "10",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "普通士兵的制式铠甲. 层层甲片用甲钉镶连而成."
+      },
+  
+      {
+        "itemID": "28",
+        "itemName": "明光铠",
+        "itemType": "armor",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "20",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "普通将领的制式铠甲. 胸前后背的圆护打磨如镜, 太阳之下发出耀眼明光, 故名."
+      },
+  
+      {
+        "itemID": "29",
+        "itemName": "镔铁铠",
+        "itemType": "armor",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "41",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "通体镔铁打造, 重量惊人. 防御力值得信赖, 但是移动会受到影响. 非制式装备."
+      },
+  
+      {
+        "itemID": "30",
+        "itemName": "白银铠",
+        "itemType": "armor",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "78",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "description": "通体雪白如银, 防御力很强而又不影响行动. 代表着军中良匠的最高水平."
+      },
+  
+      {
+        "itemID": "31",
+        "itemName": "黄金铠",
+        "itemType": "armor",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "116",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "降低流矢伤害",
+        "description": "这么夸张的作品, 不知道出自于哪位贵族的手笔"
+      },
+  
+      {
+        "itemID": "32",
+        "itemName": "凤羽甲",
+        "itemType": "armor",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "155",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "重生, 10min cd; 自愈",
+        "description": "凤羽编织, 充满了荒野的气息. 这不是人间的平凡物件. 能够给予穿戴者浴火重生般的能力"
+      },
+  
+      {
+        "itemID": "33",
+        "itemName": "龙骨甲",
+        "itemType": "armor",
+        "buffID": "0",
+        "attachStats": {
+          "UpHp": "0",
+          "UpMp": "0",
+          "Atk": "0",
+          "Def": "170",
+          "Spd": "0",
+          "Luk": "0"
+        },
+        "specialEffect": "自动回气",
+        "description": "据说是使用龙骨打造的宝甲, 它的第一任主人恐怕是上古时代的传奇人物了.."
+      },
+  
+      {
+        "itemID": "34",
+        "itemName": "煞气符",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "增加气力回复",
+        "description": "传说这个物件被凶神附体了. 气力源源而来"
+      },
+  
+      {
+        "itemID": "35",
+        "itemName": "护心镜",
+        "itemType": "trinket",
+        "buffID": "0",
+        "specialEffect": "降低流矢伤害",
+        "description": "防护要害, 谨防暗箭."
+      },
+  
+      {
+        "itemID": "36",
+        "itemName": "飞翼靴",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "增加移速",
+        "description": "这双鞋子仿佛掌上了翅膀, 穿上以后人都轻飘飘的"
+      },
+  
+      {
+        "itemID": "37",
+        "itemName": "好运符",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "增加掉率",
+        "description": "得到师父和主公双重加持的护符, 好运挡都挡不住…"
+      },
+  
+      {
+        "itemID": "38",
+        "itemName": "风痕石",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "攻击范围增加",
+        "description": "戴上以后, 举手投足之间仿佛都有阵风拂过.."
+      },
+  
+      {
+        "itemID": "39",
+        "itemName": "天命石",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "减少全技能冷却",
+        "description": "如同天命所归, 一身武艺愈发纯熟了."
+      },
+  
+      {
+        "itemID": "40",
+        "itemName": "玄武甲",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "增加防御力",
+        "description": "玄武护体, 不动如山"
+      },
+  
+      {
+        "itemID": "41",
+        "itemName": "白虎牙",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "增加攻击力",
+        "description": "白虎牙齿联缀而成的trinket, 在荒野气息的熏陶下, 佩戴者激发出嗜血的本能"
+      },
+  
+      {
+        "itemID": "42",
+        "itemName": "朱雀翼",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "增加生命上限",
+        "description": "生命之焰, 熊熊燃烧."
+      },
+  
+      {
+        "itemID": "43",
+        "itemName": "青龙胆",
+        "itemType": "trinket",
+        "buffID": "0",
+        "attachStats": "20",
+        "specialEffect": "增加气力",
+        "description": "胆气如龙, 气贯长虹."
+      },
+  
+      {
+        "itemID": "44",
+        "itemName": "乾坤袋",
+        "itemType": "task",
+        "buffID": "0",
+        "specialEffect": "内有乾坤",
+        "description": "得高人传授的宝物, 内有乾坤, 可容纳海量物品(背包)…."
+      }
+    ]
+  }

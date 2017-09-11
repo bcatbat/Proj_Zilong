@@ -11,6 +11,6 @@ public class WeaponItem : EquipmentItem {
     {
         testName = "Weapon";
         itemType = ItemType.weapon;
-        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;
+        itemDes = "Test Description for Type:" + itemType + " ID:" + itemID;    // todo: 测试描述, 待删除
     }
 }

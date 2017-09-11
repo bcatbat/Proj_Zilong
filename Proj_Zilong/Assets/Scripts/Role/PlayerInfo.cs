@@ -69,10 +69,10 @@ public class PlayerInfo : RoleInfo {
             trinketSlots2 = EquipmentManager.Instance.trinket2Slot.equipmentItem;
 
             additionStats =
-                weaponSlots.AttachStats +
-                armorSlots.AttachStats +
-                trinketSlots1.AttachStats +
-                trinketSlots2.AttachStats;
+                weaponSlots.attachStats +
+                armorSlots.attachStats +
+                trinketSlots1.attachStats +
+                trinketSlots2.attachStats;
             return additionStats;
         }
     }

@@ -5,12 +5,12 @@ using System;
 
 [Serializable]
 public class EquipmentItem : Item {
-    public Stats AttachStats;    // 附加属性 
+    public Stats attachStats;    // 附加属性 
     public bool isEquipped;      // 装备标识符
 
     public EquipmentItem()
-    {
-        AttachStats = new Stats();
+    {        
+        attachStats = new Stats();
         isEquipped = false;
     }
 

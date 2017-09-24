@@ -1,39 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    public GameObject mainMenuPanel;    // 主菜单框
-
-    // Update is called once per frame
-    void Update () {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            SetupMainMenuPanel();
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ShutdownWindows();
-        }
-	}
-
-    private void SetupMainMenuPanel()
+    private GameManager instance;
+    public GameManager Instance
     {
-        if(mainMenuPanel.activeSelf == false)
-        {
-            mainMenuPanel.SetActive(true);
-            //Time.timeScale = 0;
-        }
-        else
-        {
-            mainMenuPanel.SetActive(false);
-            //Time.timeScale = 1f;
-            DescriptionManager.Instance.Hide();
-        }
+        get { return instance; }
     }
 
-    private void ShutdownWindows()
+    private void Awake()
     {
-        mainMenuPanel.SetActive(false);
+        DontDestroyOnLoad(this);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();        
+    }
+
+    public void StartGame()
+    {
+        GlobalInfo.nextScene = "base";
+        SceneManager.LoadScene("loading01");
+        //SceneManager.LoadScene("base");
+    }
+
+    public void MiniGame()
+    {
+        GlobalInfo.nextScene = "hacking game";
+        SceneManager.LoadScene("loading01");
     }
 }

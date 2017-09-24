@@ -99,6 +99,7 @@ public class EquipmentManager : MonoBehaviour {
         weapon.isEquipped = true;
         desWeapon.isEquipped = true;
 
+        MsgControl.Instance.Log("装备" + "<color=blue>" + weapon.itemName + "</color>");
         RefreshEquipment();
     }
 
@@ -106,6 +107,7 @@ public class EquipmentManager : MonoBehaviour {
     {
         if(weapon == desWeapon)
         {
+            MsgControl.Instance.Log("卸下" + "<color=blue>" + weapon.itemName+"</color>");
             weapon.isEquipped = false;
             desWeapon.isEquipped = false;
             weapon = new WeaponItem();
@@ -124,6 +126,7 @@ public class EquipmentManager : MonoBehaviour {
         armor.isEquipped = true;
         desArmor.isEquipped = true;
 
+        MsgControl.Instance.Log("装备" + "<color=blue>" + armor.itemName + "</color>");
         RefreshEquipment();
     }
 
@@ -131,6 +134,7 @@ public class EquipmentManager : MonoBehaviour {
     {
         if(armor == desArmor)
         {
+            MsgControl.Instance.Log("卸下" + "<color=blue>" + armor.itemName + "</color>");
             armor.isEquipped = false;
             desArmor.isEquipped = false;
             armor = new ArmorItem();
@@ -149,7 +153,7 @@ public class EquipmentManager : MonoBehaviour {
         {
             trinket1 = desTrinket;
             trinket1.isEquipped = true;
-            desTrinket.isEquipped = true;
+            desTrinket.isEquipped = true;            
         }
         // 或者 饰品孔1不为空 孔2为空, 装在2上
         else if(trinket2.itemID == 0)
@@ -166,7 +170,7 @@ public class EquipmentManager : MonoBehaviour {
             trinket1.isEquipped = true;
             desTrinket.isEquipped = true;
         }
-
+        MsgControl.Instance.Log("装备" + "<color=blue>" + desTrinket.itemName + "</color>");
         RefreshEquipment();
     }
 
@@ -175,6 +179,7 @@ public class EquipmentManager : MonoBehaviour {
         // 目标饰品装备在孔1上.
         if(trinket1 == desTrinket)
         {
+            MsgControl.Instance.Log("卸下" + "<color=blue>" + trinket1.itemName + "</color>");
             trinket1.isEquipped = false;
             desTrinket.isEquipped = false;
             trinket1 = new TrinketItem();
@@ -182,6 +187,7 @@ public class EquipmentManager : MonoBehaviour {
         // 或者 目标饰品装备在孔2上
         else if(trinket2 == desTrinket)
         {
+            MsgControl.Instance.Log("卸下" + "<color=blue>" + trinket2.itemName + "</color>");
             trinket2.isEquipped = false;
             desTrinket.isEquipped = false;
             trinket2 = new TrinketItem();

@@ -93,6 +93,7 @@ public class PlayerInfo : RoleInfo {
     {
         level++;
         hp = ActualStats.UpHp;
+        MsgControl.Instance.Log("升级到" +"<color=blue><b>" +level+ "</b></color>"+ "了!");
       //  Debug.Log(UpExp + "  " + Exp);
     }
 

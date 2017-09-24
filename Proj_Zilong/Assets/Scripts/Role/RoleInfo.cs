@@ -367,6 +367,7 @@ public class RoleInfo : MonoBehaviour {
         float hurt = ap * (1 + Mathf.Log10(ap / ActualStats.Def));
         //Debug.Log(hurt);
         Hp -= (int)hurt;
+        MsgControl.Instance.Log(roleName + "受到了" + "<color=red>" + (int)hurt + "</color>" + "伤害");
 
         // 伤害浮动
         if(damagePopup != null)
@@ -494,20 +495,22 @@ public class RoleInfo : MonoBehaviour {
     {
         if(dropoutPrefab != null)
         {
-            Debug.Log("有掉落");
+            //Debug.Log("有掉落");
             // todo: test
             GameObject dp =  Instantiate(dropoutPrefab, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
             Item di = dp.GetComponent<DropoutGrid>().item;
-            di.itemID = 1;
-            di.itemName = "包子";
-            di.itemDes = "吃";
+            //di.itemID = 1;
+            //di.itemName = "包子";
+            //di.itemDes = "吃";
+            di = (1).GetItemByID();
             dp.GetComponent<Rigidbody>().AddForce(RandomDirection()*100);
 
             dp = Instantiate(dropoutPrefab, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
             di = dp.GetComponent<DropoutGrid>().item;
-            di.itemID = 3;
-            di.itemName = "气血丹";
-            di.itemDes = "吃吃看";
+            //di.itemID = 3;
+            //di.itemName = "气血丹";
+            //di.itemDes = "吃吃看";
+            di = (3).GetItemByID();
             dp.GetComponent<Rigidbody>().AddForce(RandomDirection() * 100);
         }
         else

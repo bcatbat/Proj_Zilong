@@ -141,7 +141,7 @@ public class InventoryManager : MonoBehaviour {
             {
                 Remove(item);
             }
-            
+            MsgControl.Instance.Log("消耗了" + "<color=green>"+item.itemName +"</color>");
         }
         else
         {

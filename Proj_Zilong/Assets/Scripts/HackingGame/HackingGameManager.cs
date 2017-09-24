@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HackingGameManager : MonoBehaviour {
     // singleton
@@ -34,6 +35,19 @@ public class HackingGameManager : MonoBehaviour {
         //enemyList = new List<HackingEnemyControl>();
 
         InitEnvironment(iWidth,iHeight);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            ResetGame();
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            ExitGame();
+        }
     }
 
     private void InitEnvironment(int width, int height  )
@@ -126,4 +140,15 @@ public class HackingGameManager : MonoBehaviour {
 
     // 退出 or 胜利.
 
+    // 重开
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("hacking game");
+    }
+
+    // 退出
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("0-StartTitle");
+    }
 }

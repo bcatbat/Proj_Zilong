@@ -36,6 +36,7 @@ public class DropoutGrid : Grid {
     protected override void EventListener_OnMouseLeftClick(GameObject gb)
     {
         // 捡取
+        MsgControl.Instance.Log("拾取了" + "<color=green>"+item.itemName+"</color>");
         InventoryManager.Instance.AddItem(item);
         // 声音
         HideDescription();

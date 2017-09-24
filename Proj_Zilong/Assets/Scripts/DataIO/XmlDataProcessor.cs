@@ -28,7 +28,7 @@ public static class XmlDataProcessor {
         //itemList = new XElement(XElement.Load(itemFile));
         //itemList = XElement.Load(itemFile);
         itemList = XElement.Load(itemPath);
-        Debug.Log("itemlist读取完毕");
+        //Debug.Log("itemlist读取完毕");
     }
 
     // 读取Buff
@@ -89,7 +89,6 @@ public static class XmlDataProcessor {
 
             var tarItemType = (ItemType)Enum.Parse(typeof(ItemType), (string)it.Element("itemType"));
 
-
             string destype;
             int tarItemID = (int)it.Element("itemID");
             string tarItemName = (string)it.Element("itemName");
@@ -97,12 +96,12 @@ public static class XmlDataProcessor {
             var tarItemIcon = LoadImage(id, (string)it.Element("itemName"));
 
             Func<string, string> GetTypeDesText = (d) =>
-             {
+            {
                  return "<size=20><color=blue>" + tarItemName + "</color></size>\n" +
                  "<size=15><color=green>" + d + "</color></size>\n" +
                  "<size=15><color=white>" + (string)it.Element("specialEffect") + "</color></size>" + "\n" +
                  "<size=15><color=yellow>" + "\"" + (string)it.Element("description") + "\"</color></size>";
-             };
+            };
             switch (tarItemType)
             {
                 case ItemType.consumable:
@@ -207,7 +206,7 @@ public static class XmlDataProcessor {
             Debug.LogError("未找到图标");
             return null;
         }
-        Debug.Log(id+"图标找到了");
+        //Debug.Log(id+"图标找到了");
         FileStream fileStream = new FileStream(filePath, FileMode.Open,FileAccess.Read);
         fileStream.Seek(0, SeekOrigin.Begin);
         byte[] imgByte = new byte[fileStream.Length];
@@ -218,9 +217,9 @@ public static class XmlDataProcessor {
 
         int width = 320; int height = 320;
         Texture2D tx = new Texture2D(width, height);
-        Debug.Log(imgByte.Count());
+        //Debug.Log(imgByte.Count());
         tx.LoadImage(imgByte);      // png/jpg格式方可, bmp格式未知错误.        
-        Debug.Log(tx.format);
+       // Debug.Log(tx.format);
        
         Sprite sprite = Sprite.Create(tx, new Rect(0, 0, tx.width, tx.height), new Vector2(0.5f, 0.5f));        
         sprite.name = id + "-" + name;

@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
+
+#if UNITY_EDITOR
+using UnityEditor;
 [Serializable]
 public class ColorPoint
 {
@@ -178,3 +180,4 @@ public enum EditorListOption
     NoElementLabels = ListSize | ListLabel,
     All = Default | Buttons
 }
+#endif

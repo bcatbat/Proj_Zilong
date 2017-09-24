@@ -26,7 +26,7 @@ public class InventoryPanelControl : MonoBehaviour {
 
     private void Inventory_OnItemChanged()
     {
-        Debug.Log("背包信息变化, 检查刷新");
+        //Debug.Log("背包信息变化, 检查刷新");
         ReloadInventory();
     }
 

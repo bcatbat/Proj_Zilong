@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<itemList>
+	<item>
+		<itemID>0</itemID>
+		<itemName>空</itemName>
+		<buffID>0</buffID>
+	</item>
+	<item>
+		<itemID>1</itemID>
+		<itemName>包子</itemName>
+		<itemType>consumable</itemType>
+		<buffID>1</buffID>
+		<description>薄皮儿, 大馅儿, 十八个褶儿...</description>
+	</item>
+	<item>
+		<itemID>2</itemID>
+		<itemName>烧鸡</itemName>
+		<itemType>consumable</itemType>
+		<buffID>2</buffID>
+		<description>蜜汁烧鸡, 肥而不腻, 酥香软烂…</description>
+	</item>
+	<item>
+		<itemID>3</itemID>
+		<itemName>烤猪</itemName>
+		<itemType>consumable</itemType>
+		<buffID>3</buffID>
+		<description>不多废话, 绝对管饱. 店家表示还没有见过一只喂不饱的主</description>
+	</item>
+	<item>
+		<itemID>4</itemID>
+		<itemName>绷带</itemName>
+		<itemType>consumable</itemType>
+		<buffID>4</buffID>
+		<description>包扎止血, 简单处理, 先这么对付一下吧..</description>
+	</item>
+	<item>
+		<itemID>5</itemID>
+		<itemName>草药</itemName>
+		<itemType>consumable</itemType>
+		<buffID>5</buffID>
+		<description>山间草药平无奇, 跌打扭伤得而愈</description>
+	</item>
+	<item>
+		<itemID>6</itemID>
+		<itemName>白药</itemName>
+		<itemType>consumable</itemType>
+		<buffID>6</buffID>
+		<description>这平平无奇的白色粉末, 实际上是时间最为著名的刀斧金创药.</description>
+	</item>
+	<item>
+		<itemID>7</itemID>
+		<itemName>气血丹</itemName>
+		<itemType>consumable</itemType>
+		<buffID>7</buffID>
+		<description>胆气萦怀, 一往无前.</description>
+	</item>
+	<item>
+		<itemID>8</itemID>
+		<itemName>大还丹</itemName>
+		<itemType>consumable</itemType>
+		<buffID>8</buffID>
+		<description>山间野道炼制的丹药, 可以提供很强很持久的恢复力, 常人完全无法理解</description>
+	</item>
+	<item>
+		<itemID>9</itemID>
+		<itemName>还魂丹</itemName>
+		<itemType>consumable</itemType>
+		<buffID>9</buffID>
+		<specialEffect>死亡时自动消耗. 长时间超高回复. 永久增加全属</specialEffect>
+		<description>起死回生, 有如神助… 这是仙药, 为什么会在人间出现呢?</description>
+	</item>
+	<item>
+		<itemID>10</itemID>
+		<itemName>遁身符</itemName>
+		<itemType>consumable</itemType>
+		<buffID>10</buffID>
+		<specialEffect>自身移速大量增加</specialEffect>
+		<description>山间野道炼制的符咒, 初衷是为了节省体力加快越野速度. 能够加快身形.</description>
+	</item>
+	<item>
+		<itemID>11</itemID>
+		<itemName>烟雾弹</itemName>
+		<itemType>consumable</itemType>
+		<buffID>11</buffID>
+		<specialEffect>群体短期减速减防</specialEffect>
+		<description>爆炸以后会散布大量粉尘, 用来迟滞敌方行动, 迷惑双眼.</description>
+	</item>
+	<item>
+		<itemID>12</itemID>
+		<itemName>飞石</itemName>
+		<itemType>consumable</itemType>
+		<buffID>12</buffID>
+		<specialEffect>单体伤害</specialEffect>
+		<description>棱角被打磨的十分锋利, 具体作战效果还得取决于使用者自身</description>
+	</item>
+	<item>
+		<itemID>13</itemID>
+		<itemName>地雷</itemName>
+		<itemType>consumable</itemType>
+		<buffID>13</buffID>
+		<specialEffect>触发, 伤害, 击飞</specialEffect>
+		<description>山间野道为了保护自身免遭野兽侵害, 特地炼制的陷阱道具, 踩之即爆, 冲击力很强. </description>
+	</item>
+	<item>
+		<itemID>14</itemID>
+		<itemName>铁蒺藜</itemName>
+		<itemType>consumable</itemType>
+		<buffID>14</buffID>
+		<specialEffect>范围减速流血</specialEffect>
+		<description>一包淬毒的小钉子.</description>
+	</item>
+	<item>
+		<itemID>15</itemID>
+		<itemName>龙肝</itemName>
+		<itemType>tonic</itemType>
+		<buffID>15</buffID>
+		<growthStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>10</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</growthStats>
+		<specialEffect>永久加攻, 回血大量</specialEffect>
+		<description>神秘之物. 不知道能不能吃</description>
+	</item>
+	<item>
+		<itemID>16</itemID>
+		<itemName>凤胆</itemName>
+		<itemType>tonic</itemType>
+		<buffID>15</buffID>
+		<growthStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>10</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</growthStats>
+		<specialEffect>永久加防, 回血大量</specialEffect>
+		<description>神秘之物. 不知道能不能吃</description>
+	</item>
+	<item>
+		<itemID>17</itemID>
+		<itemName>熊掌</itemName>
+		<itemType>tonic</itemType>
+		<buffID>15</buffID>
+		<growthStats>
+			<UpHp>100</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</growthStats>
+		<specialEffect>永久加血, 回血中量</specialEffect>
+		<description>神秘之物. 不知道能不能吃</description>
+	</item>
+	<item>
+		<itemID>18</itemID>
+		<itemName>驼峰</itemName>
+		<itemType>tonic</itemType>
+		<buffID>15</buffID>
+		<growthStats>
+			<UpHp>0</UpHp>
+			<UpMp>40</UpMp>
+			<Atk>0</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</growthStats>
+		<specialEffect>永久加气, 回血中量</specialEffect>
+		<description>神秘之物. 不知道能不能吃</description>
+	</item>
+	<item>
+		<itemID>19</itemID>
+		<itemName>麒麟舌</itemName>
+		<itemType>tonic</itemType>
+		<buffID>15</buffID>
+		<growthStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>10</Luk>
+		</growthStats>
+		<specialEffect>永久加运, 回血少量</specialEffect>
+		<description>神秘之物. 不知道能不能吃</description>
+	</item>
+	<item>
+		<itemID>20</itemID>
+		<itemName>桃木枪</itemName>
+		<itemType>weapon</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>14</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>采集山间桃木削制而成. 是很好的练习枪, 用来上阵厮杀就有些困难了. 据说还有驱邪的功效.</description>
+	</item>
+	<item>
+		<itemID>21</itemID>
+		<itemName>蜡杆枪</itemName>
+		<itemType>weapon</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>31</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>构造简单, 成本低廉. 枪杆韧性不错, 就是有点儿软…使用略需技巧</description>
+	</item>
+	<item>
+		<itemID>22</itemID>
+		<itemName>镔铁枪</itemName>
+		<itemType>weapon</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>56</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>通体镔铁打造, 重量惊人, 普通人端起都费劲, 只有那些猛将才会熟练使用.</description>
+	</item>
+	<item>
+		<itemID>23</itemID>
+		<itemName>点钢枪</itemName>
+		<itemType>weapon</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>95</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>枪头极其锋利, 即便是百炼精钢也能一点即破.</description>
+	</item>
+	<item>
+		<itemID>24</itemID>
+		<itemName>亮银枪</itemName>
+		<itemType>weapon</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>145</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<specialEffect>破甲</specialEffect>
+		<description>枪头雪白如银, 枪杆层层复合, 做工极其复杂, 造价极其昂贵, 是时代最强技艺的体现</description>
+	</item>
+	<item>
+		<itemID>25</itemID>
+		<itemName>凤翅枪</itemName>
+		<itemType>weapon</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>182</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<specialEffect>附带火属性</specialEffect>
+		<description>淬炼凤骨为身, 叠缀凤翅为枪头, 似枪似刀, 锋利无比.</description>
+	</item>
+	<item>
+		<itemID>26</itemID>
+		<itemName>龙骨枪</itemName>
+		<itemType>weapon</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>198</Atk>
+			<Def>0</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<specialEffect>大量吸血</specialEffect>
+		<description>据说是神人抽取了上古神龙的脊柱作为材料, 而炼制的一把神枪. 可谓是无坚不摧.</description>
+	</item>
+	<item>
+		<itemID>27</itemID>
+		<itemName>镶钉铠</itemName>
+		<itemType>armor</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>10</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>普通士兵的制式铠甲. 层层甲片用甲钉镶连而成.</description>
+	</item>
+	<item>
+		<itemID>28</itemID>
+		<itemName>明光铠</itemName>
+		<itemType>armor</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>20</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>普通将领的制式铠甲. 胸前后背的圆护打磨如镜, 太阳之下发出耀眼明光, 故名.</description>
+	</item>
+	<item>
+		<itemID>29</itemID>
+		<itemName>镔铁铠</itemName>
+		<itemType>armor</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>41</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>通体镔铁打造, 重量惊人. 防御力值得信赖, 但是移动会受到影响. 非制式装备.</description>
+	</item>
+	<item>
+		<itemID>30</itemID>
+		<itemName>白银铠</itemName>
+		<itemType>armor</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>78</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<description>通体雪白如银, 防御力很强而又不影响行动. 代表着军中良匠的最高水平.</description>
+	</item>
+	<item>
+		<itemID>31</itemID>
+		<itemName>黄金铠</itemName>
+		<itemType>armor</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>116</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<specialEffect>降低流矢伤害</specialEffect>
+		<description>这么夸张的作品, 不知道出自于哪位贵族的手笔</description>
+	</item>
+	<item>
+		<itemID>32</itemID>
+		<itemName>凤羽甲</itemName>
+		<itemType>armor</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>155</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<specialEffect>重生, 10min cd; 自愈</specialEffect>
+		<description>凤羽编织, 充满了荒野的气息. 这不是人间的平凡物件. 能够给予穿戴者浴火重生般的能力</description>
+	</item>
+	<item>
+		<itemID>33</itemID>
+		<itemName>龙骨甲</itemName>
+		<itemType>armor</itemType>
+		<buffID>0</buffID>
+		<attachStats>
+			<UpHp>0</UpHp>
+			<UpMp>0</UpMp>
+			<Atk>0</Atk>
+			<Def>170</Def>
+			<Spd>0</Spd>
+			<Luk>0</Luk>
+		</attachStats>
+		<specialEffect>自动回气</specialEffect>
+		<description>据说是使用龙骨打造的宝甲, 它的第一任主人恐怕是上古时代的传奇人物了..</description>
+	</item>
+	<item>
+		<itemID>34</itemID>
+		<itemName>煞气符</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>增加气力回复</specialEffect>
+		<description>传说这个物件被凶神附体了. 气力源源而来</description>
+	</item>
+	<item>
+		<itemID>35</itemID>
+		<itemName>护心镜</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<specialEffect>降低流矢伤害</specialEffect>
+		<description>防护要害, 谨防暗箭.</description>
+	</item>
+	<item>
+		<itemID>36</itemID>
+		<itemName>飞翼靴</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>增加移速</specialEffect>
+		<description>这双鞋子仿佛掌上了翅膀, 穿上以后人都轻飘飘的</description>
+	</item>
+	<item>
+		<itemID>37</itemID>
+		<itemName>好运符</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>增加掉率</specialEffect>
+		<description>得到师父和主公双重加持的护符, 好运挡都挡不住…</description>
+	</item>
+	<item>
+		<itemID>38</itemID>
+		<itemName>风痕石</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>攻击范围增加</specialEffect>
+		<description>戴上以后, 举手投足之间仿佛都有阵风拂过..</description>
+	</item>
+	<item>
+		<itemID>39</itemID>
+		<itemName>天命石</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>减少全技能冷却</specialEffect>
+		<description>如同天命所归, 一身武艺愈发纯熟了.</description>
+	</item>
+	<item>
+		<itemID>40</itemID>
+		<itemName>玄武甲</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>增加防御力</specialEffect>
+		<description>玄武护体, 不动如山</description>
+	</item>
+	<item>
+		<itemID>41</itemID>
+		<itemName>白虎牙</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>增加攻击力</specialEffect>
+		<description>白虎牙齿联缀而成的trinket, 在荒野气息的熏陶下, 佩戴者激发出嗜血的本能</description>
+	</item>
+	<item>
+		<itemID>42</itemID>
+		<itemName>朱雀翼</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>增加生命上限</specialEffect>
+		<description>生命之焰, 熊熊燃烧.</description>
+	</item>
+	<item>
+		<itemID>43</itemID>
+		<itemName>青龙胆</itemName>
+		<itemType>trinket</itemType>
+		<buffID>0</buffID>
+		<attachStats>20</attachStats>
+		<specialEffect>增加气力</specialEffect>
+		<description>胆气如龙, 气贯长虹.</description>
+	</item>
+	<item>
+		<itemID>44</itemID>
+		<itemName>乾坤袋</itemName>
+		<itemType>task</itemType>
+		<buffID>0</buffID>
+		<specialEffect>内有乾坤</specialEffect>
+		<description>得高人传授的宝物, 内有乾坤, 可容纳海量物品(背包)….</description>
+	</item>
+</itemList>

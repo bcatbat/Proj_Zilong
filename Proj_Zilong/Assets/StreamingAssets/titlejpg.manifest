@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 1407687719
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2797131c6649a902b7cef6088598236f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 36c33a819640bead83b84b1645a12e6d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- "Assets/RawSprite/\u8F7D\u5165\u753B\u9762-\u6728\u4EBA\u9635.jpg"
+- "Assets/RawSprite/\u8F7D\u5165\u753B\u9762-\u7EC3\u6869\u7F6E\u820D.jpg"
+- "Assets/RawSprite/\u8F7D\u5165\u753B\u9762-\u7B14\u5F55\u7ECF\u53F2.jpg"
+- "Assets/RawSprite/\u9898\u5934-\u767E\u9E1F\u671D\u51E4.jpg"
+Dependencies: []

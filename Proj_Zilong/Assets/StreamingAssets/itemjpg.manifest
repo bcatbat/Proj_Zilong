@@ -1,0 +1,61 @@
+ManifestFileVersion: 0
+CRC: 2906899837
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9237676306fffafc022577d1843006c7
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 36c33a819640bead83b84b1645a12e6d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- "Assets/RawItemJpg/37-\u597D\u8FD0\u7B26.jpg"
+- "Assets/RawItemJpg/27-\u9576\u9489\u94E0.jpg"
+- "Assets/RawItemJpg/19-\u9E92\u9E9F\u820C.jpg"
+- "Assets/RawItemJpg/15-\u9F99\u809D.jpg"
+- "Assets/RawItemJpg/41-\u767D\u864E\u7259.jpg"
+- "Assets/RawItemJpg/14-\u94C1\u84BA\u85DC.jpg"
+- "Assets/RawItemJpg/10-\u9041\u8EAB\u7B26.jpg"
+- "Assets/RawItemJpg/23-\u70B9\u94A2\u67AA.jpg"
+- "Assets/RawItemJpg/34-\u715E\u6C14\u7B26.jpg"
+- "Assets/RawItemJpg/44-\u4E7E\u5764\u888B.jpg"
+- "Assets/RawItemJpg/36-\u98DE\u7FFC\u9774.jpg"
+- "Assets/RawItemJpg/38-\u98CE\u75D5\u77F3.jpg"
+- "Assets/RawItemJpg/21-\u8721\u6746\u67AA.jpg"
+- "Assets/RawItemJpg/2-\u70E7\u9E21.jpg"
+- "Assets/RawItemJpg/16-\u51E4\u80C6.jpg"
+- "Assets/RawItemJpg/4-\u7EF7\u5E26.jpg"
+- "Assets/RawItemJpg/17-\u718A\u638C.jpg"
+- "Assets/RawItemJpg/24-\u4EAE\u94F6\u67AA.jpg"
+- "Assets/RawItemJpg/42-\u6731\u96C0\u7FFC.jpg"
+- "Assets/RawItemJpg/31-\u9EC4\u91D1\u94E0.jpg"
+- "Assets/RawItemJpg/13-\u5730\u96F7.jpg"
+- "Assets/RawItemJpg/43-\u9752\u9F99\u80C6.jpg"
+- "Assets/RawItemJpg/25-\u51E4\u7FC5\u67AA.jpg"
+- "Assets/RawItemJpg/7-\u6C14\u8840\u4E39.jpg"
+- "Assets/RawItemJpg/40-\u7384\u6B66\u7532.jpg"
+- "Assets/RawItemJpg/20-\u6843\u6728\u67AA.jpg"
+- "Assets/RawItemJpg/6-\u767D\u836F.jpg"
+- "Assets/RawItemJpg/22-\u9554\u94C1\u67AA.jpg"
+- "Assets/RawItemJpg/5-\u8349\u836F.jpg"
+- "Assets/RawItemJpg/26-\u9F99\u9AA8\u67AA.jpg"
+- "Assets/RawItemJpg/9-\u8FD8\u9B42\u4E39.jpg"
+- "Assets/RawItemJpg/12-\u98DE\u77F3.jpg"
+- "Assets/RawItemJpg/3-\u70E4\u732A.jpg"
+- "Assets/RawItemJpg/11-\u70DF\u96FE\u5F39.jpg"
+- "Assets/RawItemJpg/29-\u9554\u94C1\u94E0.jpg"
+- "Assets/RawItemJpg/35-\u62A4\u5FC3\u955C.jpg"
+- "Assets/RawItemJpg/18-\u9A7C\u5CF0.jpg"
+- "Assets/RawItemJpg/30-\u767D\u94F6\u94E0.jpg"
+- "Assets/RawItemJpg/28-\u660E\u5149\u94E0.jpg"
+- "Assets/RawItemJpg/1-\u5305\u5B50.jpg"
+- "Assets/RawItemJpg/39-\u5929\u547D\u77F3.jpg"
+- "Assets/RawItemJpg/32-\u51E4\u7FBD\u7532.jpg"
+- "Assets/RawItemJpg/8-\u5927\u8FD8\u4E39.jpg"
+- "Assets/RawItemJpg/33-\u9F99\u9AA8\u7532.jpg"
+Dependencies: []

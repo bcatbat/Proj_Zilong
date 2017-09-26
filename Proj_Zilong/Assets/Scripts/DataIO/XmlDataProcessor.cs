@@ -11,12 +11,13 @@ using System.Reflection;
 public static class XmlDataProcessor {
     private static XElement itemList;   // 物品库缓存
     private static XElement buffList;   // 增益库缓存
+    private static AssetBundle itemSpriteAssetBundle;
 
-	// 读取Item
+    // 读取Item
     public static void ReadItemData()
-    {
-        // 检索文件是否存在
-        string itemPath = Application.dataPath + "/RawData/itemlist.xml";
+    {        
+        // 检索文件是否存在        
+        string itemPath = Application.streamingAssetsPath + "/itemListXml.xml";
         var itemFile = File.ReadAllText(itemPath);
         if (!File.Exists(itemPath))
         {
@@ -29,12 +30,15 @@ public static class XmlDataProcessor {
         //itemList = XElement.Load(itemFile);
         itemList = XElement.Load(itemPath);
         //Debug.Log("itemlist读取完毕");
+        InitItemSpriteAssetBundle();
     }
 
     // 读取Buff
     public static void ReadBuffData()
     {
-        var buffFile = File.ReadAllText(Application.dataPath + "/RawData/bufflist.xml");
+        // todo
+        string buffPath = Application.streamingAssetsPath + "/buffListXml.xml";
+        var buffFile = File.ReadAllText(buffPath);
         if(buffFile == null)
         {
             Debug.LogError("Not found buffList file!");
@@ -93,7 +97,8 @@ public static class XmlDataProcessor {
             int tarItemID = (int)it.Element("itemID");
             string tarItemName = (string)it.Element("itemName");
             int tarBuffID = (int)it.Element("buffID");
-            var tarItemIcon = LoadImage(id, (string)it.Element("itemName"));
+            //var tarItemIcon = LoadImageFromJpgFiles(id, (string)it.Element("itemName"));
+            var tarItemIcon = LoadImageFromAssetBundle(id, (string)it.Element("itemName"));
 
             Func<string, string> GetTypeDesText = (d) =>
             {
@@ -196,8 +201,9 @@ public static class XmlDataProcessor {
     }
     
     // 读取id-name.bmp图片
-    private static Sprite LoadImage(int id,string name)
+    private static Sprite LoadImageFromJpgFiles(int id,string name)
     {
+        //string fileName = id + "-" + name;
         var filePath = Application.dataPath +
             "/RawItemJpg/" +
             id + "-" + name + ".jpg"; // e.g. "1-包子.bmp"
@@ -227,6 +233,26 @@ public static class XmlDataProcessor {
         return sprite;
     }  
 
+    private static Sprite LoadImageFromAssetBundle(int id, string name)
+    {
+        string fileName = id + "-" + name;
+        if(itemSpriteAssetBundle == null)
+        {
+            Debug.LogError("item sprite asset bundle not found!!");
+            return null;
+        }
+        var loadedSprite = itemSpriteAssetBundle.LoadAsset<Sprite>(fileName);
+        return loadedSprite;
+    }
+
+    private static void InitItemSpriteAssetBundle()
+    {
+        if (itemSpriteAssetBundle == null)
+        {
+            itemSpriteAssetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/itemjpg");
+        }
+    }
+
     // 从id读取增益效果
     public static Buff GetBuffByID(int id)
     {
@@ -239,5 +265,13 @@ public static class XmlDataProcessor {
     {
         Debug.Log("GetSkillByID没写");
         return default(Skill);
+    }
+
+    // 释放
+    public static void Release()
+    {
+        itemList = null;
+        buffList = null;
+        itemSpriteAssetBundle.Unload(true);
     }
 }

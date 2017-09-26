@@ -1,0 +1,952 @@
+<?xmlversion="1.0"encoding="UTF-8"?>
+<story>
+  <chapter>
+    <chapterID>0</chapterID>
+    <chapterName>前言</chapterName>
+    <episode>
+      <episodeID>0</episodeID>
+      <episodeName>前言</episodeName>
+      <mainParagraph>
+        <dialog>
+          <id>1</id>
+          <role></role>
+          <content>
+            东汉末年,自桓灵始,纲纪松弛,朝政败坏.又偏逢年年天灾,百姓苦不堪言.群盗趁势而起,使得百姓生活更加水深火热.
+            在常山国,一个小山村里,年幼的赵云正被兄长及嫂嫂的带领下,前往后山山洞,以躲避即将到来的山贼侵扰.
+          </content>
+        </dialog>
+      </mainParagraph>
+    </episode>
+  </chapter>
+  <chapter>
+    <chapterID>1</chapterID>
+    <chapterName>拜师学艺</chapterName>
+    <episode>
+      <episodeID>1</episodeID>
+      <episodeName>避难</episodeName>
+      <title>后山山洞</title>
+      <mainParagraph>
+        <dialog>
+          <id>1</id>
+          <role>大嫂</role>
+          <content>这群天杀的强盗,这个月都来第三次了,东西都被抢光了.在这么下去,村里人恐怕要饿死了.	</content>
+        </dialog>
+        <dialog>
+          <id>2</id>
+          <role>大哥</role>
+          <content>也幸亏他们只抢东西,没有真的来进攻我们,不然以这里的防御,恐怕也挡不住他们..	</content>
+        </dialog>
+        <dialog>
+          <id>3</id>
+          <role>大嫂</role>
+          <content>抢了这么多次,下一次基本上没什么可抢的了.怕是要真打,到时候该怎么办啊.</content>
+        </dialog>
+        <dialog>
+          <id>4</id>
+          <role>大哥</role>
+          <content>且宽心些吧.你丈夫我还是很强壮的,到时候看我来教训他们.	</content>
+        </dialog>
+        <dialog>
+          <id>5</id>
+          <role>赵云</role>
+          <content>大哥,到时候我帮你一起保护大家.	</content>
+        </dialog>
+        <dialog>
+          <id>6</id>
+          <role>大哥</role>
+          <content>哈哈哈哈,你看我这小弟,真让人放心了.	</content>
+        </dialog>
+        <dialog>
+          <id>7</id>
+          <role>大嫂</role>
+          <content>小云日后肯定比你有出息.(眼中阴霾渐渐被慈爱的笑容掩盖)	</content>
+        </dialog>
+        <dialog>
+          <id>8</id>
+          <role>赵云</role>
+          <content>大哥,为什么每次强盗过来,我们只能躲在洞里,官家们都不管吗?	</content>
+        </dialog>
+        <dialog>
+          <id>9</id>
+          <role>大哥</role>
+          <content>子龙,现在世道不太平呀.朝廷腐败透顶,已经好多年没有管过我们百姓生计了.官家们恐怕只在收赋税的时候才会想起我们.	</content>
+        </dialog>
+        <dialog>
+          <id>10</id>
+          <role>大嫂</role>
+          <content>也多亏这些年我们这里没有遭过灾,收成还算的过得去,其他地方遭了旱的,好多人都过不下去了.不少都上山当了强盗.	</content>
+        </dialog>
+        <dialog>
+          <id>11</id>
+          <role>赵云</role>
+          <content>嫂嫂是说这些抢我们东西的人,很多都是外地逃灾的老百姓?	</content>
+        </dialog>
+        <dialog>
+          <id>12</id>
+          <role>大哥</role>
+          <content>唉,世道不好,也怨不得他们去落草.不过这一帮经常来抢我们东西的人,倒也不全是流民.	</content>
+        </dialog>
+        <dialog>
+          <id>13</id>
+          <role>大哥</role>
+          <content>象那个强盗首领,盘踞在山里已经很久了,只不过最近阵势壮大了不少.所以一再的我侵扰我们.	</content>
+        </dialog>
+        <dialog>
+          <id>14</id>
+          <role>赵云</role>
+          <content>那贼众势大,官家又不来管我们,我们该怎么办啊?难道一直都要受他们欺负吗?	</content>
+        </dialog>
+        <dialog>
+          <id>15</id>
+          <role>大哥</role>
+          <content>唉,乱世纷纷,只能祈求上天降下来一位既有本事有很仁慈的人来保护我们喽.	</content>
+        </dialog>
+        <dialog>
+          <id>16</id>
+          <role>赵云</role>
+          <content>难道不能召集大伙去把他们肃清吗?	</content>
+        </dialog>
+        <dialog>
+          <id>17</id>
+          <role>大哥</role>
+          <content>唉,镇上的豪强不会帮我们出头,村里的多是些手无寸铁的百姓,也没有哪位本领高强的好汉来出头带领,怕是很难啊.	</content>
+        </dialog>
+        <dialog>
+          <id>18</id>
+          <role>赵云</role>
+          <content>(默默的点点头)	</content>
+        </dialog>
+        <dialog>
+          <id>19</id>
+          <role>大哥</role>
+          <content>哈哈,不过也不要灰心.小云好好学本事,日后来为乡亲们出头啊.	</content>
+        </dialog>
+        <dialog>
+          <id>20</id>
+          <role>赵云</role>
+          <content>(用力的不住点头)	</content>
+        </dialog>
+        <dialog>
+          <id>21</id>
+          <role>大哥</role>
+          <content>前些日子教你的几路枪棒学的怎么样了?	</content>
+        </dialog>
+        <dialog>
+          <id>22</id>
+          <role>赵云</role>
+          <content>大哥,早就烂熟于胸了.我来耍给你看看..	</content>
+        </dialog>
+        <dialog>
+          <id>23</id>
+          <role>赵云</role>
+          <content>	(拿起自己的棍棒,开始耍大哥传授的枪法,竟是虎虎生风)	</content>
+        </dialog>
+        <dialog>
+          <id>24</id>
+          <role>众人</role>
+          <content>好!子龙真有出息呀!	</content>
+        </dialog>
+      </mainParagraph>
+    </episode>
+    <episode>
+      <episodeID>2</episodeID>
+      <episodeName>回村</episodeName>
+      <title>村子</title>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	众人	</role>
+          <content>(看着眼前破败的场景,一群人沉默不语)	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	赵云	</role>
+          <content>(小小的双拳紧握着,眼中透出了愤怒和不甘)	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	大哥	</role>
+          <content>(拍了一下赵云的后背)好了,先收拾一下吧.有本事才能不被欺负啊	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	赵云	</role>
+          <content>(重重的点了点头)	</content>
+        </dialog>
+      </mainParagraph>
+    </episode>
+    <episode>
+      <episodeID>3</episodeID>
+      <episodeName>神仙传言</episodeName>
+      <title>村子</title>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>		</role>
+          <content>	(某一天)	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	赵云	</role>
+          <content>	(自言自语)村子总算是恢复了.可是下次再来呢.还得躲在一旁,眼睁睁看着大家的东西都被抢走.我一定要练好本事,将来保护村子里人,把那些强盗都打跑.	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	赵云	</role>
+          <content>	(有些沮丧的样子)唉.大哥最近都不教我新招了,陪我练习,打不了几回合就不和我打了.这样怎么才能进步啊.	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>		</role>
+          <content>	(前方很热闹的样子)	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	赵云	</role>
+          <content>	咦?村口怎么这么热闹啊?难道那群坏人刚走没几天又打过来了?	</content>
+        </dialog>
+      </mainParagraph>
+      <splitParagraph>
+        <boundingRole>阿兰</boundingRole>
+        <dialog>
+          <id>1</id>
+          <role>阿兰</role>
+          <content>阿云,你听见没!神仙呐!</content>
+        </dialog>
+      </splitParagraph>
+      <splitParagraph>
+        <boundingRole>张大娘</boundingRole>
+        <dialog>
+          <id>1</id>
+          <role>张大娘</role>
+          <content>神仙保佑!神仙保佑!</content>
+        </dialog>
+      </splitParagraph>
+      <splitParagraph>
+        <boundingRole>吴大爷</boundingRole>
+        <dialog>
+          <id>1</id>
+          <role>吴大爷</role>
+          <content>后山来了神仙,日后强盗们怕是不敢来抢劫了.好事啊!哈哈哈哈</content>
+        </dialog>
+      </splitParagraph>
+      <splitParagraph>
+        <boundingRole>王大哥</boundingRole>
+        <dialog>
+          <id>1</id>
+          <role>王大哥</role>
+          <content>真想看看神仙是什么模样的.既然神仙说了,还是不去打扰了.我可不想躺在地上起不来..</content>
+        </dialog>
+      </splitParagraph>
+      <splitParagraph>
+        <boundingRole>猎户</boundingRole>
+        <dialog>
+          <id>	1	</id>
+          <role>	赵云	</role>
+          <content>	大叔,你还好吗?出什么大事儿了吗?是不是强盗们要来了?	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	猎户	</role>
+          <content>	哦,是小云呀.大叔我可好着呢.(很得意的样子)告诉一件事儿,大叔我今天遇到仙人了.	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	赵云	</role>
+          <content>	啊?仙人?(一脸的不相信)	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	猎户	</role>
+          <content>	今天我去山里打猎,哪知回来的路上遇到了一伙强盗,当时我心里凉了半截,心想这次要交代在这里了.	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	赵云	</role>
+          <content>	咦?您这不是好好的嘛?	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	猎户	</role>
+          <content>	是啊.今天真是撞了大运.那群强盗围住我以后,正要动手,突然来了一个仙人.	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	赵云	</role>
+          <content>	仙人?	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	猎户	</role>
+          <content>	对呀,仙人!(一脸崇拜的样子)那个仙人三下五下就把一伙强盗打倒了,还很威严的对那群人说	</content>
+        </dialog>
+        <dialog>
+          <id>	9	</id>
+          <role>	猎户	</role>
+          <content>	咳咳(清清嗓子,演道).念尔等原本也是良民,这次且留下尔等性命.贫道今日刚来此处洞府,日后休要再来扰我清净.否则定然将尔等扫灭干净.滚吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	10	</id>
+          <role>	赵云	</role>
+          <content>	(目瞪口呆,一脸不可思议的望着猎户)	</content>
+        </dialog>
+        <dialog>
+          <id>	11	</id>
+          <role>	猎户	</role>
+          <content>	(仿佛对赵云的样子很满意的样子).哈哈哈,你是不知道,那伙盗贼一个一个软倒在地上,口里高喊求饶,却没有一个能爬起来的.刚才那几下交手,看不出竟然威力十足.	</content>
+        </dialog>
+        <dialog>
+          <id>	12	</id>
+          <role>	赵云	</role>
+          <content>	(双眼放光,一脸羡慕的样子)真是仙人呐,我要是能有那么大本事该多好.	</content>
+        </dialog>
+        <dialog>
+          <id>	13	</id>
+          <role>	猎户	</role>
+          <content>	哈哈,小云你人又机灵,骨骼又强壮.日后肯定能有出息的.兴许哪天被仙人看上收做徒弟了…哈哈哈…	</content>
+        </dialog>
+        <dialog>
+          <id>	14	</id>
+          <role>	猎户	</role>
+          <content>	(止住笑声,严肃起来)哦,对了.哪位仙人救了我之后,叮嘱我说,让我跟村里人说尽量不要打扰他.你以后也要注意啊	</content>
+        </dialog>
+        <dialog>
+          <id>	15	</id>
+          <role>	赵云	</role>
+          <content>	嗯,好的.	</content>
+        </dialog>
+        <dialog>
+          <id>	16	</id>
+          <role>	赵云	</role>
+          <content>	(听大叔这么一讲,原来这个世上真的有这种本领高强的人啊.如果真能拜他为师,那该多好啊)	</content>
+        </dialog>
+        <dialog>
+          <id>	17	</id>
+          <role>	赵云	</role>
+          <content>	(我想去找仙人拜师,不知道大哥大嫂能不能同意,且回家问问)	</content>
+        </dialog>
+      </splitParagraph>
+    </episode>
+    <episode>
+      <episodeID>4</episodeID>
+      <episodeName>决议百世</episodeName>
+      <title>赵家</title>
+      <mainParagrph>
+        <dialog>
+          <id>	1	</id>
+          <role>	赵云	</role>
+          <content>	大哥!你回来啦?快来陪我过两招?	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	大哥	</role>
+          <content>	别…你小子把我那几下子全都学走了.跟你打太吃亏了.	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	赵云	</role>
+          <content>	大哥,要是你都不陪我练习,我还怎么进步啊?	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	大哥	</role>
+          <content>	唉.你小子真是天才,天生习武的料.想当年我练了那么久,结果你这么快就学完了.看来我这个师傅是没什么好教你了.	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	大嫂	</role>
+          <content>	你们听说了没?张猎户今天遇到神仙了.看他那激动的样子,兴许是真的呢.	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	大哥	</role>
+          <content>	是啊,听说了.即便不是仙人,也是世外高人.看来往后的日子看来会好过一些,那群匪盗估计也不敢过来了.	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	大嫂	</role>
+          <content>	要真是这样就太好了.那就真是我们的福分了.	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	赵云	</role>
+          <content>	大哥大嫂.我想去找仙人学本事!	</content>
+        </dialog>
+        <dialog>
+          <id>	9	</id>
+          <role>	大哥大嫂	</role>
+          <content>	神马!!	</content>
+        </dialog>
+        <dialog>
+          <id>	10	</id>
+          <role>	赵云	</role>
+          <content>	(怯生生而又坚定的)大哥大嫂,我想去找仙人学本事,往后来保护大家.	</content>
+        </dialog>
+        <dialog>
+          <id>	11	</id>
+          <role>	大哥大嫂	</role>
+          <content>	(可怕的沉默…持续了很久)	</content>
+        </dialog>
+        <dialog>
+          <id>	12	</id>
+          <role>	大哥	</role>
+          <content>	(突然大笑起来)啊哈哈哈哈,小云啊,你真是有胆量有志气.你大哥我支持你.	</content>
+        </dialog>
+        <dialog>
+          <id>	13	</id>
+          <role>	大嫂	</role>
+          <content>	小云还这么小,你就这么同意了?	</content>
+        </dialog>
+        <dialog>
+          <id>	14	</id>
+          <role>	大哥	</role>
+          <content>	你且莫要小看小云呐.最近我俩对练的场景你可是全瞧在眼里,现在的我已经不是小云的对手了,即便让他出去闯荡江湖,都没什么不放心的,何况只是到附近拜师?	</content>
+        </dialog>
+        <dialog>
+          <id>	15	</id>
+          <role>	大哥	</role>
+          <content>	再说,小云的资质强我百倍,如果能够得高人指点,日后拜将封侯恐怕都不是难事.更喜的是他素来心思活络,而又性格沉稳.能够说出拜师的事来,想必是经过深思熟虑了.做大哥的当然全力支持啊.	</content>
+        </dialog>
+        <dialog>
+          <id>	16	</id>
+          <role>	大嫂	</role>
+          <content>	好好好,我说不过你.小云呐,你哥哥都支持了,嫂嫂我也不反对.我去准备些吃的,明儿带上.希望阿云能够赶上这场造化.如果访不到仙人,也得完好的回来	</content>
+        </dialog>
+        <dialog>
+          <id>	17	</id>
+          <role>	大哥	</role>
+          <content>	家里还剩些许财物,明儿带上,一部分给张猎户做为指路的答谢,一部分就当作拜师礼吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	18	</id>
+          <role>	赵云	</role>
+          <content>	(喜极而泣)大哥大嫂.谢谢你们支持我.明日我就向猎户大叔请教,寻访仙人前去拜师!	</content>
+        </dialog>
+      </mainParagrph>
+    </episode>
+    <episode>
+      <episodeID>5</episodeID>
+      <episodeName>问路</episodeName>
+      <title>村子</title>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	赵云	</role>
+          <content>(自言自语)天还没亮,这个时候猎户大叔应该还没出村呢.得快点儿找他,仙人的行踪只有他知晓.</content>
+        </dialog>
+      </mainParagraph>
+      <splitParagraph>
+        <boundingRole>猎户</boundingRole>
+        <dialog>
+          <id>	1	</id>
+          <role>	赵云	</role>
+          <content>	大叔!	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	猎户	</role>
+          <content>	咦?这不是小云嘛?怎么起这么早呀?	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	赵云	</role>
+          <content>	大叔您现在是要外出打猎嘛?	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	猎户	</role>
+          <content>	是啊.怎么了?哈哈,是不是又想我带你一起去?那行,一起来吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	赵云	</role>
+          <content>	(摇摇头)是这样的…(赵云向猎户讲述了他打算拜师的决定,并将大哥大嫂的托付及答谢礼物交给了猎户)	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	猎户	</role>
+          <content>	(沉默了一下)你找我是为了这事儿?	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	猎户	</role>
+          <content>	(突然狠狠的拍了拍赵云肩膀)哈哈,你小子果然有志气,我果然没看错你.既然这样,那我就带上你一起吧.不过我也只是知道个大致位置.准备好出发了就和我说一声.	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	猎户	</role>
+          <content>	准备好出发了吗?	</content>
+        </dialog>
+      </splitParagraph>
+    </episode>
+    <episode>
+      <episodeID>6</episodeID>
+      <episodeName>寻访仙踪</episodeName>
+      <title>后山山路</title>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	猎户	</role>
+          <content>	上次我就是在这里遇到仙人的,当时仙人离开的时候,我还特地目送了他半晌.这附近的路好像就前面这一条,我们一起去探探吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	赵云	</role>
+          <content>	好的,这次多亏大叔了.	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	猎户	</role>
+          <content>	哈哈,说的哪里话,我哪儿能收了礼不干事..	</content>
+        </dialog>
+      </mainParagraph>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	赵云	</role>
+          <content>	前面怎么有这么多人?	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	猎户	</role>
+          <content>	唉,糟了,又是那伙儿强盗,怕是来找神仙寻仇的.	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	赵云	</role>
+          <content>	不过怎么感觉他们被那几个木头人揍了...</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	猎户	</role>
+          <content>	哈哈哈,神仙手段,层出不穷啊.这货坏人又碰上麻烦了.	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	山贼甲	</role>
+          <content>	大哥,这几个木人甚是厉害啊,兄弟们大半儿都挂了彩了.	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	首领	</role>
+          <content>	他娘的,你们当时怎么跟我说的,就一个糟老头子,这些木人是怎么回事儿!!!	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	山贼乙	</role>
+          <content>	大哥啊,天地作证,当时确实只有一个口气狂妄的老头啊.	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	山贼丙	</role>
+          <content>	大哥,我看那些木人就只会守在那里,我们不去惹他们,他们便不会打我们,要不撤吧?	</content>
+        </dialog>
+        <dialog>
+          <id>	9	</id>
+          <role>	首领	</role>
+          <content>	撤?被区区几块木头拦住,就泄气了?看我来..等下!谁在哪儿!	</content>
+        </dialog>
+        <dialog>
+          <id>	10	</id>
+          <role>	山贼乙	</role>
+          <content>	大哥,那个人就是我们那天拦住的猎户,旁边的那个娃娃倒是没见过.	</content>
+        </dialog>
+        <dialog>
+          <id>	11	</id>
+          <role>	首领	</role>
+          <content>	正巧省了一番功夫,你们仨,去把他俩拿下.	</content>
+        </dialog>
+        <dialog>
+          <id>	12	</id>
+          <role>	山贼甲乙丙	</role>
+          <content>	是!	</content>
+        </dialog>
+        <dialog>
+          <id>	13	</id>
+          <role>	赵云	</role>
+          <content>	大叔!!他们好像冲我们过来了.	</content>
+        </dialog>
+        <dialog>
+          <id>	14	</id>
+          <role>	猎户	</role>
+          <content>	他娘的!小云,你快跑,我来挡住他们.	</content>
+        </dialog>
+        <dialog>
+          <id>	15	</id>
+          <role>	赵云	</role>
+          <content>	大叔讲的什么话,一同进退(说话间抄出木棒)	</content>
+        </dialog>
+      </mainParagraph>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	首领	</role>
+          <content>	一群废物,连个娃娃都拿不下来!	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	猎户	</role>
+          <content>	(剧烈的喘息...)阿云啊…你…你小子…身手可真不错..	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	赵云	</role>
+          <content>	(强忍着喘息…)都是靠大叔照顾…	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	猎户	</role>
+          <content>	大爷的…他们又上了…还撑得住吗?	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	赵云	</role>
+          <content>	(深吸一口气…)尽人事安天命了…	</content>
+        </dialog>
+      </mainParagraph>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	猎户	</role>
+          <content>	(眼中充满喜色)仙人终于来了.	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	赵云	</role>
+          <content>	(满脸震惊的神色)好厉害…	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	神仙	</role>
+          <content>	(直奔赵云而来)小兄弟呀,年纪轻轻身手不错啊,我有一事问你,可否为老夫解惑?	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	赵云	</role>
+          <content>	(作揖道)老神仙有事请问,小子知无不言.	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	神仙	</role>
+          <content>	你这身武艺跟哪位师傅学的?学了多久了?	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	赵云	</role>
+          <content>	回老神仙的话,小子随家兄练习枪棒,已近半年了.然而小子愚钝,进展迟缓,对此十分愁闷.	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	猎户	</role>
+          <content>	(忍不住插嘴…)小云你谦虚什么,你老哥现在根本就打不过你,你以为相亲了都不知道吗...	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	神仙	</role>
+          <content>	(惊诧一下,随即激动起来)小兄弟,我欲收你为徒,将我这一身本领传授于你…	</content>
+        </dialog>
+        <dialog>
+          <id>	9	</id>
+          <role>	赵云/猎户	</role>
+          <content>	(面面相觑,同时大叫道)神马!	</content>
+        </dialog>
+        <dialog>
+          <id>	10	</id>
+          <role>	赵云	</role>
+          <content>	(赵云纳头便拜,三拜之后,将二人来意对老神仙一一说明,老神仙听后更是喜不自胜...)	</content>
+        </dialog>
+        <dialog>
+          <id>	11	</id>
+          <role>	神仙	</role>
+          <content>	哈哈哈哈,好好好,山野礼仪从简,从今日起你便是老夫的徒儿了.	</content>
+        </dialog>
+        <dialog>
+          <id>	12	</id>
+          <role>	神仙	</role>
+          <content>	哈哈哈哈,老道有福啊.王猎户,劳烦你护送小徒前来,万分感谢.趁着这些人还没醒来,你且先行回去吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	13	</id>
+          <role>	神仙	</role>
+          <content>	帮老夫带个话给小赵夫妇,小云这徒儿我收下了.另外跟乡里人传一声话,有老夫在此一日,保你们一日周全.	</content>
+        </dialog>
+        <dialog>
+          <id>	14	</id>
+          <role>	猎户	</role>
+          <content>	(大喜过望,激动的当即跪下)谢老神仙庇护!	</content>
+        </dialog>
+        <dialog>
+          <id>	15	</id>
+          <role>	神仙	</role>
+          <content>	有事来告我知,无事不必费心.	</content>
+        </dialog>
+        <dialog>
+          <id>	16	</id>
+          <role>	赵云	</role>
+          <content>	大叔,这一路多亏您了.烦劳给我大哥大嫂传个话,阿云一定会跟师父好好学本事的,将来学成了以后保护大家.	</content>
+        </dialog>
+        <dialog>
+          <id>	17	</id>
+          <role>	猎户	</role>
+          <content>	哈哈,放心好了,话一定带到,大叔我看好你哟.我走啦.	</content>
+        </dialog>
+      </mainParagraph>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	赵云	</role>
+          <content>	师父,这群人还活着吗?	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	师父	</role>
+          <content>	没死,只是伤了筋骨,养上几个月就好了.小云呐,要是你,你会怎么处置这些人,杀了?还是放了?	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	赵云	</role>
+          <content>	大哥说过,这些强盗大部分都是活不下的流民,即便是杀了一批,还有下一批,靠杀人解决不了问题.	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	赵云	</role>
+          <content>	今天这一仗,师父大显神威,一次性打败了他们这么多人.如果杀掉了,除了我们三人又有谁知道?如果放了,就能起到震慑敌胆的目的.这样他们这一伙山贼,日后就不敢来骚扰师父了,而师父保护的我们村子,他们想要去洗劫,恐怕也要先掂量一下.	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	赵云	</role>
+          <content>	不过…放了他们,还有一种不好的可能性.连续在师父受伤吃了两次亏,他们恐怕知道即便找更多人来也是无济于事.也因此,他们可能会突然袭击村子进行报复,然后把乡亲们作为人质来要挟师父.虽然可能性很小,但是不得不防.	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	神仙	</role>
+          <content>	(满脸笑容的看着赵云,暗想)(此子不光根骨绝佳,更难得的是小小年纪思虑如此纯熟.老夫这一身所学,终是找到托付之处了.真乃三生之幸也…)	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	赵云	</role>
+          <content>	(看着师父对着自己不停的笑,心中有些发怵,弱弱问道)师父,弟子那里说的不对嘛?	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	师父	</role>
+          <content>	额.分析的很好啊.(竟然在徒弟面前失了神,定力修养还是不够啊…惭愧惭愧)..	</content>
+        </dialog>
+        <dialog>
+          <id>	9	</id>
+          <role>	师父	</role>
+          <content>	(转头朝向躺在地上的一众山贼)你们几个不用装死了…刚才我徒弟说的话,你们怕是都听到了吧..	</content>
+        </dialog>
+        <dialog>
+          <id>	10	</id>
+          <role>	山贼众	</role>
+          <content>	(纷纷爬起,不住磕头求饶)听到了听到了..	</content>
+        </dialog>
+        <dialog>
+          <id>	11	</id>
+          <role>	师父	</role>
+          <content>	听到了就好.那就回去给你们头领带个话,你们已经是第二次打扰老夫清修了,本当直接将尔等斩杀,然而老夫今日收徒是件乐事,再者有爱徒替你们求情,便再饶过一次.不然会死好多人的..	</content>
+        </dialog>
+        <dialog>
+          <id>	12	</id>
+          <role>	山贼众	</role>
+          <content>	(求饶声更加凄厉)不敢不敢,求老神仙饶命.	</content>
+        </dialog>
+        <dialog>
+          <id>	13	</id>
+          <role>	师父	</role>
+          <content>	我徒儿担心你们抓乡人来要挟老夫..哼哼,老夫正愁你们不这么做呢…尽管去做好了,嘿嘿嘿…(语气中突冒寒意)在老夫改变心意之前,赶紧滚吧..	</content>
+        </dialog>
+        <dialog>
+          <id>	14	</id>
+          <role>	山贼众	</role>
+          <content>	是是是,小的们这就走,这就走..	</content>
+        </dialog>
+      </mainParagraph>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	山贼甲	</role>
+          <content>	好悬啊…大哥,您还好吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	首领	</role>
+          <content>	他娘的,当时是那个混帐东西说只是一个糟老头子的…幸好他们不知道我就是首领,不然今次肯定交代在这儿了.	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	山贼乙	</role>
+          <content>	大哥,要不我们回去多召集些人手,把场子找回来?	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	山贼丙	</role>
+          <content>	对啊,或者象那个娃娃说的,直接把那些村户全部抓起来,报仇!	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	首领	</role>
+          <content>	回去以后跟所有的兄弟讲,日后行动远离此处方位,不要与此件高人,还有他那个徒弟,对了,还有他那个村子里的人起任何冲突.违令者,另寻山头安身吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	山贼甲	</role>
+          <content>	大哥,至于这么示弱嘛?	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	首领	</role>
+          <content>	你懂什么.这个老头是世外高人,我们惹不起的.他刚收的那个徒弟也非常人,年纪这么小你们几个都不是他的对手,再长大些怕是比这个老头还难对付.现在与他们示好,日后不光少一大敌,危急时候也多一些出路.	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	首领	</role>
+          <content>	对了,前几次清洗他们村子,还有很多剩下的财物吧?	</content>
+        </dialog>
+        <dialog>
+          <id>	9	</id>
+          <role>	山贼乙	</role>
+          <content>	日常消耗大半,还剩下些.	</content>
+        </dialog>
+        <dialog>
+          <id>	10	</id>
+          <role>	首领	</role>
+          <content>	剩下的回去以后,找些弟兄一并送回去,再多加一些赔礼.	</content>
+        </dialog>
+        <dialog>
+          <id>	11	</id>
+          <role>	山贼甲	</role>
+          <content>	唉,这次亏大发了.	</content>
+        </dialog>
+        <dialog>
+          <id>	12	</id>
+          <role>	首领	</role>
+          <content>	你懂什么,这一对师徒可是大靠山,亏得这一时,日后我等性命算是保全了.留得青山在,去其他地方吧.	</content>
+        </dialog>
+        <dialog>
+          <id>	13	</id>
+          <role>	山贼众	</role>
+          <content>	(一众喽啰面面相觑,原本只想插翅远离此间是非的他们,哪曽想到一贯霸道的头领这一次会这么通情达理.暗暗地都长舒一口气)	</content>
+        </dialog>
+        <dialog>
+          <id>	14	</id>
+          <role>	首领	</role>
+          <content>	怎么?是不是觉得我这么处置不对?	</content>
+        </dialog>
+        <dialog>
+          <id>	15	</id>
+          <role>	众人	</role>
+          <content>	岂敢岂敢,头领英明!	</content>
+        </dialog>
+        <dialog>
+          <id>	16	</id>
+          <role>	山贼众	</role>
+          <content>	(这一众山贼就这样互相搀扶着回去了,第二天,果然排出几十号人来归还所劫掠财物,并带上赔礼.村里诸人愈发感念老神仙之德..	</content>
+        </dialog>
+      </mainParagraph>
+    </episode>
+    <episode>
+      <episodeID>7</episodeID>
+      <episodeName>学习纲要</episodeName>
+      <title>洞府</title>
+      <mainParagraph>
+        <dialog>
+          <id>	1	</id>
+          <role>	师父	</role>
+          <content>	徒儿啊,为师一声,飘零江湖,也曾收过几个徒弟,但都只能习得为师所学一二.如今迟暮之年,本欲终老山林,却不曾想天降我一徒儿,看来老夫毕生所学终于可以有所托付了.	</content>
+        </dialog>
+        <dialog>
+          <id>	2	</id>
+          <role>	赵云	</role>
+          <content>	师父乃是世外神仙,能够垂青弟子,是弟子的造化,哪能得师父如此赞誉,真是谬杀小子了.	</content>
+        </dialog>
+        <dialog>
+          <id>	3	</id>
+          <role>	师父	</role>
+          <content>	哈哈,神仙只是俗人谬称,然而老夫相人无数,未有不准者,这点儿信心还是有的.为师对你期待很高,你可要好好努力啊.	</content>
+        </dialog>
+        <dialog>
+          <id>	4	</id>
+          <role>	赵云	</role>
+          <content>	师父放心,无论多少苦,弟子都吃得.不知师父欲教弟子些什么?	</content>
+        </dialog>
+        <dialog>
+          <id>	5	</id>
+          <role>	师父	</role>
+          <content>	你骨骼清奇,心思灵敏,处事不慌,多谋果断,堪称大将之才.修道之人,本常怀济世之念,如今乱象初现,为师所学可助你匡扶乱世,救济民生,进可拜将封侯,退可保境安民.	</content>
+        </dialog>
+        <dialog>
+          <id>	6	</id>
+          <role>	师父	</role>
+          <content>	为师这一身武艺,分刀枪弓马四字.为师先传你基本功法,再适时进阶.以你的资质,日后定能青出于蓝.	</content>
+        </dialog>
+        <dialog>
+          <id>	7	</id>
+          <role>	赵云	</role>
+          <content>	(欣喜若狂)能得师父武艺一二,弟子大喜过望,不能自已.	</content>
+        </dialog>
+        <dialog>
+          <id>	8	</id>
+          <role>	师父	</role>
+          <content>	呵呵呵,武艺可保自身周全,然于战阵之上,不可无勇,不可徒逞匹夫之勇.因此,为师要传你兵法,分形势权谋两种.由一人而至万人,退可充实武艺,进可阵前破敌.	</content>
+        </dialog>
+        <dialog>
+          <id>	9	</id>
+          <role>	赵云	</role>
+          <content>	(喃喃重复道)由一人而至万人…	</content>
+        </dialog>
+        <dialog>
+          <id>	10	</id>
+          <role>	师父	</role>
+          <content>	三才天地人.因天象而起,凭地势而动,为师要传你天文地理之道,如此兵法方可大成.	</content>
+        </dialog>
+        <dialog>
+          <id>	11	</id>
+          <role>	赵云	</role>
+          <content>	(细细回味)	</content>
+        </dialog>
+        <dialog>
+          <id>	12	</id>
+          <role>	师父	</role>
+          <content>	文武不可偏废.乱世用武,治世宜文,为师要传你经史要义,下可教化一方百姓,中可修身齐家,上可劝谏明主.	</content>
+        </dialog>
+        <dialog>
+          <id>	13	</id>
+          <role>	赵云	</role>
+          <content>	(一脸肃穆)	</content>
+        </dialog>
+        <dialog>
+          <id>	14	</id>
+          <role>	师父	</role>
+          <content>	最后,老夫本是修道之人,通晓一些奇门道法,虽不足凭恃,但偶尔也是有些用的.	</content>
+        </dialog>
+        <dialog>
+          <id>	15	</id>
+          <role>	赵云	</role>
+          <content>	(眼前一亮)看向木人阵…	</content>
+        </dialog>
+        <dialog>
+          <id>	16	</id>
+          <role>	师父	</role>
+          <content>	不错,这木人阵可是很精妙的,到时候你就知道了..	</content>
+        </dialog>
+        <dialog>
+          <id>	17	</id>
+          <role>	赵云	</role>
+          <content>	师父,这么多东西,弟子愚钝,不知能否承师父重托…	</content>
+        </dialog>
+        <dialog>
+          <id>	18	</id>
+          <role>	师父	</role>
+          <content>	嘿嘿嘿嘿,那得看我调教的手段了…	</content>
+        </dialog>
+        <dialog>
+          <id>	19	</id>
+          <role>	赵云	</role>
+          <content>	(听着师父的笑声,顿觉瘆得慌…看来有好日子过了…)	</content>
+        </dialog>
+      </mainParagraph>
+    </episode>
+  </chapter>
+</story>

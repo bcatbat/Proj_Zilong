@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 1065536798
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: itemjpg
+      Dependencies: {}
+    Info_1:
+      Name: titlejpg
+      Dependencies: {}
+    Info_2:
+      Name: rawdata
+      Dependencies: {}

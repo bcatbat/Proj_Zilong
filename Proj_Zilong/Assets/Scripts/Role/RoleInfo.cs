@@ -4,66 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-// 属性列表
-public struct Stats
-{
-    private int upHp;   // 生命上限
-    private int upMp;   // 能量上限
-    private int atk;    // 攻击力
-    private int def;    // 防御力
-    private int spd;    // 移动速度
-    private int luk;    // 幸运值
-
-    public int UpHp { get { return upHp; } set { this.upHp = value; } }
-    public int UpMp { get { return upMp; } set { this.upMp = value; } }
-    public int Atk { get { return atk; } set { this.atk = value; } }
-    public int Def { get { return def; } set { this.def = value; } }
-    public int Spd { get { return spd; } set { this.spd = value; } }
-    public int Luk { get { return luk; } set { this.luk = value; } }
-
-    public Stats(int uphp, int upmp, int atk, int def, int spd, int luk)
-    {
-        upHp = uphp;upMp = upmp;
-        this.atk = atk;
-        this.def = def;
-        this.spd = spd; this.luk = luk;
-    }
-
-    public static Stats operator + (Stats s1, Stats s2)
-    {
-        return new Stats(s1.UpHp+s2.UpHp,
-            s1.UpMp+s2.UpMp,
-            s1.Atk+s2.Atk,
-            s1.Def+s2.Def,
-            s1.Spd+s2.Spd,
-            s1.Luk+s2.Luk
-            );
-    }
-
-    public static Stats operator -(Stats s1, Stats s2)
-    {
-        return new Stats(s1.UpHp - s2.UpHp,
-            s1.UpMp - s2.UpMp,
-            s1.Atk - s2.Atk,
-            s1.Def - s2.Def,
-            s1.Spd - s2.Spd,
-            s1.Luk - s2.Luk
-            );
-    }
-    public override string ToString()
-    {
-        return "UpHp:" + upHp + " UpMp:" + upMp + " Atk:" + atk + " Def:" + def + " Spd:" + spd + " Luk:" + luk;
-    }
-}
-
-public enum RoleBelonging
-{
-    other,      // 其他-未知
-    Shu,        // 蜀汉
-    Wu,         // 东吴
-    Wei,        // 曹魏    
-}
-
 public class RoleInfo : MonoBehaviour {
     [Header("Basic Info")]
     [SerializeField] protected int id;                  // ID

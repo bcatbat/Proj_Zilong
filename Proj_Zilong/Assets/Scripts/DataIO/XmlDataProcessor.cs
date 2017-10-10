@@ -8,38 +8,22 @@ using System.IO;
 using System;
 using System.Reflection;
 
+/// <summary>
+/// xml文档处理. [已废弃]
+/// </summary>
 public static class XmlDataProcessor {
-    private static XElement itemList;   // 物品库缓存
+
+    #region buffProcessor
+
     private static XElement buffList;   // 增益库缓存
-    private static AssetBundle itemSpriteAssetBundle;
 
-    // 读取Item
-    public static void ReadItemData()
-    {        
-        // 检索文件是否存在        
-        string itemPath = Application.streamingAssetsPath + "/itemListXml.xml";
-        var itemFile = File.ReadAllText(itemPath);
-        if (!File.Exists(itemPath))
-        {
-            Debug.LogError("没找到文件");
-            return;
-        }
-
-        // 读取为XElement
-        //itemList = new XElement(XElement.Load(itemFile));
-        //itemList = XElement.Load(itemFile);
-        itemList = XElement.Load(itemPath);
-        //Debug.Log("itemlist读取完毕");
-        InitItemSpriteAssetBundle();
-    }
-
-    // 读取Buff
+    // todo:读取Buff,根据xml文件
     public static void ReadBuffData()
     {
         // todo
         string buffPath = Application.streamingAssetsPath + "/buffListXml.xml";
         var buffFile = File.ReadAllText(buffPath);
-        if(buffFile == null)
+        if (buffFile == null)
         {
             Debug.LogError("Not found buffList file!");
             return;
@@ -48,230 +32,26 @@ public static class XmlDataProcessor {
         buffList = XElement.Load(buffFile);
     }
 
-    // 读取Skill
-    public static void ReadSkillData()
-    {
-        
-    }
-
-    // 写入背包
-
-    // 写入装备
-
-    // 从id读取物品
-    public static Item GetItemByID(this int id)
-    {
-        // 找到库中对应项
-        if (itemList == null)
-        {
-            Debug.LogError("未读取列表");
-            return null;
-        }
-        if (id < 0)
-        {
-            Debug.LogError("物品id小于0.");
-            return null;
-        }
-
-        IEnumerable<XElement> queryItem = from el in itemList.Elements("item")
-                                          where (int)el.Element("itemID") == id
-                                          select el;
-        var itemCount = queryItem.Count();
-        if (itemCount < 1)
-        {
-            Debug.Log("未找到物品,id错误");
-            return null;
-        }
-        else if (itemCount > 1)
-        {
-            Debug.Log("物品库错误, id重复");
-            return null;
-        }
-        else
-        {
-            var it = queryItem.First();
-
-            var tarItemType = (ItemType)Enum.Parse(typeof(ItemType), (string)it.Element("itemType"));
-
-            string destype;
-            int tarItemID = (int)it.Element("itemID");
-            string tarItemName = (string)it.Element("itemName");
-            int tarBuffID = (int)it.Element("buffID");
-            //var tarItemIcon = LoadImageFromJpgFiles(id, (string)it.Element("itemName"));
-            var tarItemIcon = LoadImageFromAssetBundle(id, (string)it.Element("itemName"));
-
-            Func<string, string> GetTypeDesText = (d) =>
-            {
-                 return "<size=20><color=blue>" + tarItemName + "</color></size>\n" +
-                 "<size=15><color=green>" + d + "</color></size>\n" +
-                 "<size=15><color=white>" + (string)it.Element("specialEffect") + "</color></size>" + "\n" +
-                 "<size=15><color=yellow>" + "\"" + (string)it.Element("description") + "\"</color></size>";
-            };
-            switch (tarItemType)
-            {
-                case ItemType.consumable:
-                    destype = "消耗品";
-                    Item consumableItem = new ConsumableItem()
-                    {
-                        itemID = tarItemID,
-                        itemName = tarItemName,
-                        itemType = tarItemType,
-                        buffID = tarBuffID,
-                        itemIcon = tarItemIcon,
-                        itemDes = GetTypeDesText(destype)
-                    };
-                    return consumableItem;
-                case ItemType.tonic:
-                    destype = "大补品";
-                    Item tonicItem = new TonicItem()
-                    {
-                        itemID = tarItemID,
-                        itemName = tarItemName,
-                        itemType = tarItemType,
-                        buffID = tarBuffID,
-                        itemIcon = tarItemIcon,
-                        itemDes = GetTypeDesText(destype)
-                    };
-                    return tonicItem;
-                case ItemType.weapon:
-                    destype = "武器";
-                    Item weaponItem = new WeaponItem()
-                    {
-                        itemID = tarItemID,
-                        itemName = tarItemName,
-                        itemType = tarItemType,
-                        buffID = tarBuffID,
-                        itemIcon = tarItemIcon,
-                        itemDes = GetTypeDesText(destype)
-                    };
-                    return weaponItem;
-                case ItemType.armor:
-                    destype = "护具";
-                    Item armorItem = new ArmorItem()
-                    {
-                        itemID = tarItemID,
-                        itemName = tarItemName,
-                        itemType = tarItemType,
-                        buffID = tarBuffID,
-                        itemIcon = tarItemIcon,
-                        itemDes = GetTypeDesText(destype)
-                    };
-                    return armorItem;
-                case ItemType.trinket:
-                    destype = "饰品";
-                    Item trinketItem = new TrinketItem()
-                    {
-                        itemID = tarItemID,
-                        itemName = tarItemName,
-                        itemType = tarItemType,
-                        buffID = tarBuffID,
-                        itemIcon = tarItemIcon,
-                        itemDes = GetTypeDesText(destype)
-                    };
-                    return trinketItem;
-                case ItemType.material:
-                    destype = "材料";
-                    Item materialItem = new MaterialItem()
-                    {
-                        itemID = tarItemID,
-                        itemName = tarItemName,
-                        itemType = tarItemType,
-                        buffID = tarBuffID,
-                        itemIcon = tarItemIcon,
-                        itemDes = GetTypeDesText(destype)
-                    };
-                    return materialItem;
-                case ItemType.task:
-                    destype = "任务物品";
-                    Item taskItem = new TaskItem()
-                    {
-                        itemID = tarItemID,
-                        itemName = tarItemName,
-                        itemType = tarItemType,
-                        buffID = tarBuffID,
-                        itemIcon = tarItemIcon,
-                        itemDes = GetTypeDesText(destype)
-                    };
-                    return taskItem;
-                default:
-                    destype = "";
-                    return tonicItem = new Item();
-            }
-        }
-    }
-    
-    // 读取id-name.bmp图片
-    private static Sprite LoadImageFromJpgFiles(int id,string name)
-    {
-        //string fileName = id + "-" + name;
-        var filePath = Application.dataPath +
-            "/RawItemJpg/" +
-            id + "-" + name + ".jpg"; // e.g. "1-包子.bmp"
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError("未找到图标");
-            return null;
-        }
-        //Debug.Log(id+"图标找到了");
-        FileStream fileStream = new FileStream(filePath, FileMode.Open,FileAccess.Read);
-        fileStream.Seek(0, SeekOrigin.Begin);
-        byte[] imgByte = new byte[fileStream.Length];
-        fileStream.Read(imgByte, 0, (int)fileStream.Length);
-        fileStream.Close();
-        fileStream.Dispose();
-        fileStream = null;
-
-        int width = 320; int height = 320;
-        Texture2D tx = new Texture2D(width, height);
-        //Debug.Log(imgByte.Count());
-        tx.LoadImage(imgByte);      // png/jpg格式方可, bmp格式未知错误.        
-       // Debug.Log(tx.format);
-       
-        Sprite sprite = Sprite.Create(tx, new Rect(0, 0, tx.width, tx.height), new Vector2(0.5f, 0.5f));        
-        sprite.name = id + "-" + name;
-        //Debug.Log("图标名为:"+sprite.name);
-        return sprite;
-    }  
-
-    private static Sprite LoadImageFromAssetBundle(int id, string name)
-    {
-        string fileName = id + "-" + name;
-        if(itemSpriteAssetBundle == null)
-        {
-            Debug.LogError("item sprite asset bundle not found!!");
-            return null;
-        }
-        var loadedSprite = itemSpriteAssetBundle.LoadAsset<Sprite>(fileName);
-        return loadedSprite;
-    }
-
-    private static void InitItemSpriteAssetBundle()
-    {
-        if (itemSpriteAssetBundle == null)
-        {
-            itemSpriteAssetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/itemjpg");
-        }
-    }
-
-    // 从id读取增益效果
+    // todo:从id读取增益效果
     public static Buff GetBuffByID(int id)
     {
         Debug.Log("GetBuffByID没写");
         return default(Buff);
     }
+#endregion
 
-    // 从id读取技能
+    #region skillProcessor
+    // todo:从id读取技能
     public static Skill GetSkillByID(int id)
     {
         Debug.Log("GetSkillByID没写");
         return default(Skill);
     }
 
-    // 释放
-    public static void Release()
+    // todo:读取Skill,根据xml文件
+    public static void ReadSkillData()
     {
-        itemList = null;
-        buffList = null;
-        itemSpriteAssetBundle.Unload(true);
+
     }
+#endregion
 }

@@ -131,10 +131,7 @@ public static class EnemyEvaluators
 
     public static bool HasTargetPostion(RoleInfo info)
     {
-
-        
-            return true;
-        
+            return true;        
     }
 
     public static bool HasFury(RoleInfo info)

@@ -4,18 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-// 类别
-public enum ItemType
-{    
-    consumable = 0,     // 常规消耗品
-    tonic,              // 滋补品, 增加固定属性.
-    weapon,             // 武器
-    armor,              // 护甲
-    trinket,            // 饰品
-    material,           // 素材
-    task                // 任务物品
-}
-
 [Serializable]
 public class Item:IComparable {    
     [Header("基本属性")]

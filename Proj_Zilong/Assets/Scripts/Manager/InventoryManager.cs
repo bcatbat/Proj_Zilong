@@ -26,9 +26,7 @@ public class InventoryManager : MonoBehaviour {
             instance = this;
         DontDestroyOnLoad(this);
 
-        inventory = new Dictionary<Item, int>();
-
-        XmlDataProcessor.ReadItemData();
+        inventory = new Dictionary<Item, int>();        
     }
 
     private void Start()
@@ -264,7 +262,7 @@ public class InventoryManager : MonoBehaviour {
             //AddItem(tr);
 
             // 消耗品3样
-            Item c1 = XmlDataProcessor.GetItemByID(2);AddItem(c1);
+            Item c1 = (2).GetItemByID();AddItem(c1);
             Item c2 = (6).GetItemByID();AddItem(c2);
             Item c3 = (9).GetItemByID();AddItem(c3);
 
